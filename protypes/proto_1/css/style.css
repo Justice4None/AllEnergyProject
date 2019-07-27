@@ -12,6 +12,10 @@ body{
 
 #hud{
     position: fixed;
-    width: 100px;
+    width: 100%;
     height: 100%;
+}
+.navbar {
+    background-color: black;
+    padding: 10px;
 }

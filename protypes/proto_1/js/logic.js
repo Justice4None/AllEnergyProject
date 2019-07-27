@@ -36,7 +36,6 @@ function buildTowers(num) {
 function tower() {
 
     this.type = 'wall',
-        this.health = 10,
         this.x = 0,
         this.y = 0,
         this.width = 16,
@@ -57,6 +56,37 @@ function tower() {
 
         }
 }
+
+function unit() {
+
+    this.type = 'goblin',
+        this.health = 1,
+        this.x = 100,
+        this.y = 100,
+        this.width = 8,
+        this.height = 8,
+        this.color = '#ff0000',
+
+        this.move = function () {
+            this.x++
+            this.render()
+        },
+
+        this.die = function () {
+
+        },
+
+        this.render = function () {
+            ctx.fillStyle = this.color;
+            ctx.arc(this.x, this.y, 8, 0, 2 * Math.PI);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+        }
+
+}
+
+var unit_1 = new unit()
+unit_1.render()
 
 $(canvas).on('click', function () {
     var x = event.clientX;     // Get the horizontal coordinate
@@ -92,6 +122,8 @@ function repeatOften() {
     count++
 
     oscillateColor('#hud', 0.1, 0.8)
+
+    unit_1.move()
 
     function oscillateColor(element, frequency, amplitude) {
 

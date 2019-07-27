@@ -5,42 +5,43 @@ $('#game_canvas').height = window.innerHeight
 var w = window.innerWidth
 var h = window.innerHeight
 var canvas = document.getElementById('game_canvas')
+var ctx = canvas.getContext("2d")
+
+ctx.canvas.width = w;
+ctx.canvas.height = h;
 
 var game = {
     canvas: $('#game_canvas'),
     buildLvl: function () {
-    },
-}
 
-var myTower = new tower()
+    },
+    towers: []
+}
 
 buildTowers(30)
 
 function buildTowers(num) {
 
-    var myTowers = []
-
     for (var i = 0; i < num; i++) {
 
-        myTowers[i] = new tower()
-        myTowers[i].x = Math.random() * w
-        myTowers[i].y = Math.random() * h
-        console.log(myTowers[i].x)
-        myTowers[i].render()
+        game.towers[i] = new tower()
+        game.towers[i].x = Math.random() * w
+        game.towers[i].y = Math.random() * h
+        game.towers[i].render()
 
     }
+
 }
 
 function tower() {
 
     this.type = 'wall',
-        this.health = 10,
         this.x = 0,
         this.y = 0,
         this.width = 16,
         this.height = 16,
-        this.color = 'rgba( ' + Math.random() * 256 + ', ' + Math.random() * 256 + ', ' + Math.random() * 256 + ', 1.0 )',
-        this.ctx = document.getElementById('game_canvas').getContext("2d"),
+        this.color = '#003388',
+
         this.upgrade = function () {
             if (this.type === 'wall') {
                 this.type = 'tower'
@@ -49,14 +50,67 @@ function tower() {
         },
         this.render = function () {
 
-            this.ctx.canvas.width = w;
-            this.ctx.canvas.height = h;
-            //this.ctx.fillStyle = this.color;
-            this.ctx.fillRect(this.x, this.y, 16, 16);
+            //console.log(myTowers[i].x)
+            ctx.fillStyle = this.color;
+            ctx.fillRect(this.x, this.y, this.width, this.height);
 
+        }
+}
+
+function unit() {
+
+    this.type = 'goblin',
+        this.health = 1,
+        this.x = 100,
+        this.y = 100,
+        this.width = 8,
+        this.height = 8,
+        this.color = '#ff0000',
+
+        this.move = function () {
+            this.x++
+            this.render()
+        },
+
+        this.die = function () {
+
+        },
+
+        this.render = function () {
+            ctx.fillStyle = this.color;
+            ctx.arc(this.x, this.y, 8, 0, 2 * Math.PI);
+            ctx.fillStyle = this.color;
+            ctx.fill();
         }
 
 }
+
+var unit_1 = new unit()
+unit_1.render()
+
+$(canvas).on('click', function () {
+    var x = event.clientX;     // Get the horizontal coordinate
+    var y = event.clientY;     // Get the vertical coordinate
+    towerDetection(x, y)
+    //unitDetection(x, y)
+})
+
+function towerDetection(x, y) {
+
+    for (var i = 0; i < game.towers.length; i++) {
+        if (x > game.towers[i].x && x < game.towers[i].x + game.towers[i].width && y > game.towers[i].y && y < game.towers[i].y + game.towers[i].height) {
+            console.log('tower clicked')
+            game.towers[i].upgrade()
+            game.towers[i].render()
+        }
+    }
+}
+
+function unitDetection() {
+
+}
+
+
 
 game.buildLvl()
 
@@ -67,7 +121,9 @@ function repeatOften() {
 
     count++
 
-    //oscillateColor('#hud', 0.1, 0.8)
+    oscillateColor('#hud', 0.1, 0.8)
+
+    unit_1.move()
 
     function oscillateColor(element, frequency, amplitude) {
 

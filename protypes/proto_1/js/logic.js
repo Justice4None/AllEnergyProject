@@ -121,7 +121,7 @@ function repeatOften() {
 
     count++
 
-    oscillateColor('#hud', 0.1, 0.8)
+    //oscillateColor('#hud', 0.1, 0.8)
 
     unit_1.move()
 

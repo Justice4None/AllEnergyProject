@@ -12,10 +12,26 @@ ctx.canvas.height = h;
 
 var game = {
     canvas: $('#game_canvas'),
-    buildLvl: function () {
+    tileSize: Math.floor(h / 64),
+    buildLvl: function (boardWidth, boardHeight) {
+
+        for (var i = 0; i < boardWidth; i++) {
+            for (var j = 0; j < boardWidth; j++) {
+                space(boardWidth * i + j, i * this.tileSize, j * this.tileSize)
+            }
+        }
 
     },
+    spaces: [],
     towers: []
+}
+
+function space(id, x, y) {
+    this.id = id,
+        this.x = id,
+        this.y = id,
+        this.building = none,
+        this.occupants = []
 }
 
 buildTowers(30)
@@ -88,6 +104,13 @@ function unit() {
 var unit_1 = new unit()
 unit_1.render()
 
+$(canvas).mousemove(function () {
+    var x = event.clientX;     // Get the horizontal coordinate
+    var y = event.clientY;     // Get the vertical coordinate
+    towerDetection(x, y)
+    //unitDetection(x, y)
+})
+
 $(canvas).on('click', function () {
     var x = event.clientX;     // Get the horizontal coordinate
     var y = event.clientY;     // Get the vertical coordinate
@@ -110,32 +133,48 @@ function unitDetection() {
 
 }
 
+function update() {
 
+}
 
-game.buildLvl()
 
 var globalID
 var count = 0
 
-function repeatOften() {
+function animate() {
 
     count++
 
+    //TRIGGER CHANGES
     //oscillateColor('#hud', 0.1, 0.8)
-
     unit_1.move()
 
-    function oscillateColor(element, frequency, amplitude) {
+    //draw map
+    ctx.fillStyle = '#004488'
+    ctx.fillRect(0, 0, w, h)
 
-        formula = Math.sin(count / 6 * frequency) * amplitude
-        var concat = 'rgba( ' + formula * 255 + ', 0, 0, 1.0 )'
-        $(element).css('background-color', concat)
-
+    //draw towers
+    for (var i = 0; i < game.towers.length; i++) {
+        ctx.fillStyle = game.towers[i].color;
+        ctx.fillRect(game.towers[i].x, game.towers[i].y, 16, 16);
     }
 
-    globalID = requestAnimationFrame(repeatOften)
+    globalID = requestAnimationFrame(animate)
 
 }
 
-globalID = requestAnimationFrame(repeatOften)
+globalID = requestAnimationFrame(animate)
+game.buildLvl()
+
+
+
+//CSS ANIMATION FUNCTIONS
+
+function oscillateColor(element, frequency, amplitude) {
+
+    formula = Math.sin(count / 6 * frequency) * amplitude
+    var concat = 'rgba( ' + formula * 255 + ', 0, 0, 1.0 )'
+    $(element).css('background-color', concat)
+
+}
 

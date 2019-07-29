@@ -1,25 +1,9 @@
 
-$('#game_canvas').width = window.innerWidth
-$('#game_canvas').height = window.innerHeight
 
 var w = window.innerWidth
 var h = window.innerHeight
 var canvas = document.getElementById('game_canvas')
 var ctx = canvas.getContext("2d")
-
-ctx.canvas.width = w;
-ctx.canvas.height = h;
-
-function space(id, x, y, s) {
-    this.id = id,
-        this.x = x,
-        this.y = y,
-        this.size = s,
-        this.building = 'none',
-        this.occupants = [],
-        this.watching_towers = []
-    console.log('space added')
-}
 
 var game = {
     canvas: $('#game_canvas'),
@@ -37,28 +21,29 @@ var game = {
                 boardCount++
             }
         }
-
     }
 }
 
-//buildTowers(30)
-
-function buildTowers(num) {
-
-    for (var i = 0; i < num; i++) {
-
-        game.towers[i] = new tower(i)
-        game.towers[i].x = Math.random() * w
-        game.towers[i].y = Math.random() * h
-        game.towers[i].render()
-
-    }
-
-}
-
-function tower(id) {
-
+function space(id, x, y, s) {
     this.id = id,
+        this.x = x,
+        this.y = y,
+        this.size = s,
+        this.building = 'none',
+        this.occupants = [],
+        this.watching_towers = [],
+        this.build = function (space_id) {
+            game.towers[i] = new tower(i)
+            game.towers[i].x = Math.random() * w
+            game.towers[i].y = Math.random() * h
+            game.towers[i].render()
+        }
+    console.log('space added')
+}
+
+function tower(space_id) {
+
+    this.id = space_id,
         this.type = 'wall',
         this.x = 0,
         this.y = 0,
@@ -81,20 +66,6 @@ function tower(id) {
         }
 }
 
-$(canvas).mousemove(function () {
-    var x = event.clientX;     // Get the horizontal coordinate
-    var y = event.clientY;     // Get the vertical coordinate
-    towerDetection(x, y)
-    //unitDetection(x, y)
-})
-
-$(canvas).on('click', function () {
-    var x = event.clientX;     // Get the horizontal coordinate
-    var y = event.clientY;     // Get the vertical coordinate
-    towerDetection(x, y)
-    //unitDetection(x, y)
-})
-
 function towerDetection(x, y) {
 
     for (var i = 0; i < game.towers.length; i++) {
@@ -110,10 +81,23 @@ function unitDetection() {
 
 }
 
-function update() {
-
+var update = {
+    //game.board.update()
+    //game.towers.update()
+    //game.units.update()
+    //game.player_1.update()
+    windowResize: function () {
+        $('#game_canvas').width = window.innerWidth
+        $('#game_canvas').height = window.innerHeight
+        ctx.canvas.width = w;
+        ctx.canvas.height = h;
+        console.log('window resize')
+    }
 }
 
+function render() {
+
+}
 
 var globalID
 var count = 0
@@ -142,6 +126,26 @@ function animate() {
 globalID = requestAnimationFrame(animate)
 game.createBoard(10, 10)
 
+
+//User Input Events
+
+$(canvas).mousemove(function () {
+    var x = event.clientX;     // Get the horizontal coordinate
+    var y = event.clientY;     // Get the vertical coordinate
+    towerDetection(x, y)
+    //unitDetection(x, y)
+})
+
+$(canvas).on('click', function () {
+    var x = event.clientX;     // Get the horizontal coordinate
+    var y = event.clientY;     // Get the vertical coordinate
+    towerDetection(x, y)
+    //unitDetection(x, y)
+})
+
+$(window).resize(function () {
+    update.windowResize()
+})
 
 
 //CSS ANIMATION FUNCTIONS

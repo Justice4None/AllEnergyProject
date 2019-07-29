@@ -8,7 +8,7 @@ var ctx = canvas.getContext("2d")
 //Master Game Object
 var game = {
     canvas: $('#game_canvas'),
-    tileSize: Math.floor(h / 64),
+    tileSize: 32,
     spaces: [],
     towers: [],
     createBoard: function (boardWidth, boardHeight) {

@@ -1,5 +1,6 @@
 
 //CSS ANIMATION FUNCTIONS
+
 function oscillateColor(element, frequency, amplitude) {
 
     formula = Math.sin(count / 6 * frequency) * amplitude

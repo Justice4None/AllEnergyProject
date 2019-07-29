@@ -4,10 +4,11 @@
 function spaceDetection(x, y) {
 
     for (var i = 0; i < game.spaces.length; i++) {
-        if (x > game.spaces[i].x && x < game.spaces[i].x + game.spaces[i].width && y > game.spaces[i].y && y < game.spaces[i].y + game.spaces[i].height) {
-            console.log('space hover')
+        //console.log('space')
+        if (x > game.spaces[i].x && x < game.spaces[i].x + game.tileSize && y > game.spaces[i].y && y < game.spaces[i].y + game.tileSize) {
             game.spaces[i].color = '#000000'
-            game.spaces[i].render()
+            game.spaces[i].toggleHover()
+            console.log('space')
         }
     }
 }

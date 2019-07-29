@@ -102,3 +102,34 @@ Armor Value: 0.2 > 0.4 > 0.6
 Attack Dmg Value: 1.15 > 1.65 > 2.15
 Attack Speed Value: 0.1 > 0.4 > 0.7
 Move Speed Value: ???? Medium
+
+=====================================================================
+
+Tower v1
+Attack Dmg Value: 0.5 > 1.25 > 2.0 > 2.75 > 3.5
+Attack Speed Value: 0.5 > 1.0 > 1.5 > 2.0 > 2.5
+
+=====================================================================
+
+**NOTES**:
+* The last two upgrades for the tower need to be *extremely* expensive to properly balance with how strong they are.
+* The "friendly" units are based upon the assumtion that we will eventually have deployable friendly units. If and when 
+  this happens, the tower will need to be nerfed severely to account for the additional firepower.
+* The "v1" will be changed/updated as we tweak the balance of the game, these are just the first version of the units.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

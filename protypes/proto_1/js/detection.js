@@ -1,7 +1,8 @@
 
 //Detection( UNDER CONSTRUCTION )
 
-function spaceDetection(x, y) {
+//returns the space which the xy point is within
+function getSpace(x, y) {
 
     for (var i = 0; i < game.spaces.length; i++) {
         if (x > game.spaces[i].x && x < game.spaces[i].x + game.tileSize && y > game.spaces[i].y && y < game.spaces[i].y + game.tileSize) {
@@ -10,7 +11,8 @@ function spaceDetection(x, y) {
     }
 }
 
-function towerDetection(id) {
+//returns the space which the xy point is within
+function isTower(id) {
 
     for (var i = 0; i < game.towers.length; i++) {
         if (x > game.towers[i].x && x < game.towers[i].x + game.towers[i].width && y > game.towers[i].y && y < game.towers[i].y + game.towers[i].height) {
@@ -21,6 +23,7 @@ function towerDetection(id) {
     }
 }
 
-function unitDetection() {
-
+//returns an array of the unit objects occupying in the space
+function getUnits() {
+    //space[].occupants
 }

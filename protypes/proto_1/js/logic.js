@@ -15,9 +15,10 @@ var game = {
     spaces: [],
     towers: [],
     hoverTile: 0,
-    createBoard: function (boardWidth, boardHeight) {
+    createBoard: function (boardWidth, boardHeight, tileSize) {
 
         var boardCount = 0
+        game.tileSize = tileSize
 
         for (var j = 0; j < boardHeight; j++) {
             for (var i = 0; i < boardWidth; i++) {
@@ -103,7 +104,7 @@ function animate() {
 
 globalID = requestAnimationFrame(animate)
 update.window()
-game.createBoard(10, 10)
+game.createBoard(100, 100, 30)
 
 
 

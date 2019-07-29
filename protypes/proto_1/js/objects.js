@@ -5,16 +5,18 @@ function space(id, x, y) {
         this.x = x,
         this.y = y,
         this.size = game.tileSize,
-        this.building = 'none',
+        this.developed = false,
         this.occupants = [],
         this.watching_towers = [],
         this.developed = false,
         this.occupied = false,
+        this.tower = null,
         this.build = function (space_id) {
             var t = new tower(space_id)
             game.towers.push(t)
         },
         this.render = function (color) {
+            this.color = color
             ctx.fillStyle = color
             ctx.fillRect(this.x, this.y, this.size, this.size);
         }
@@ -23,22 +25,31 @@ function space(id, x, y) {
 //Tower Base Object
 function tower(space_id) {
 
+    game.spaces[space_id].developed = true
+    game.spaces[space_id].tower = this
+
     this.id = space_id,
         this.x = game.spaces[this.id].x,
         this.y = game.spaces[this.id].y,
         this.type = 'wall',
         this.color = '#000000',
+        this.hoverColor = '#550000',
         this.range = 2,
 
         this.upgrade = function () {
             if (this.type === 'wall') {
                 this.type = 'tower'
-                this.color = '#ffaa88'
+                this.color = '#ff3333'
+                this.hoverColor = '#ff8888'
             }
             this.peer()
         },
         this.render = function () {
-            ctx.fillStyle = this.color;
+            if (this.id === game.hoverTile) {
+                ctx.fillStyle = this.color;
+            } else {
+                ctx.fillStyle = this.hoverColor;
+            }
             ctx.fillRect(this.x, this.y, game.tileSize, game.tileSize);
         },
         this.wake = function () {

@@ -13,10 +13,10 @@ ctx.canvas.height = h;
 var game = {
     canvas: $('#game_canvas'),
     tileSize: Math.floor(h / 64),
-    buildLvl: function (boardWidth, boardHeight) {
+    createBoard: function (boardWidth, boardHeight) {
 
-        for (var i = 0; i < boardWidth; i++) {
-            for (var j = 0; j < boardWidth; j++) {
+        for (var j = 0; j < boardHeight; j++) {
+            for (var i = 0; i < boardWidth; i++) {
                 space(boardWidth * i + j, i * this.tileSize, j * this.tileSize)
             }
         }
@@ -26,12 +26,14 @@ var game = {
     towers: []
 }
 
-function space(id, x, y) {
+function space(id, x, y, s) {
     this.id = id,
-        this.x = id,
-        this.y = id,
+        this.x = x,
+        this.y = y,
+        this.size = s,
         this.building = none,
-        this.occupants = []
+        this.occupants = [],
+        this.watching_towers = []
 }
 
 buildTowers(30)
@@ -40,7 +42,7 @@ function buildTowers(num) {
 
     for (var i = 0; i < num; i++) {
 
-        game.towers[i] = new tower()
+        game.towers[i] = new tower(i)
         game.towers[i].x = Math.random() * w
         game.towers[i].y = Math.random() * h
         game.towers[i].render()
@@ -49,13 +51,14 @@ function buildTowers(num) {
 
 }
 
-function tower() {
+function tower(id) {
 
-    this.type = 'wall',
+    this.id = id,
+        this.type = 'wall',
         this.x = 0,
         this.y = 0,
-        this.width = 16,
-        this.height = 16,
+        this.width = 64,
+        this.height = 32,
         this.color = '#003388',
 
         this.upgrade = function () {
@@ -72,37 +75,6 @@ function tower() {
 
         }
 }
-
-function unit() {
-
-    this.type = 'goblin',
-        this.health = 1,
-        this.x = 100,
-        this.y = 100,
-        this.width = 8,
-        this.height = 8,
-        this.color = '#ff0000',
-
-        this.move = function () {
-            this.x++
-            this.render()
-        },
-
-        this.die = function () {
-
-        },
-
-        this.render = function () {
-            ctx.fillStyle = this.color;
-            ctx.arc(this.x, this.y, 8, 0, 2 * Math.PI);
-            ctx.fillStyle = this.color;
-            ctx.fill();
-        }
-
-}
-
-var unit_1 = new unit()
-unit_1.render()
 
 $(canvas).mousemove(function () {
     var x = event.clientX;     // Get the horizontal coordinate
@@ -150,13 +122,13 @@ function animate() {
     unit_1.move()
 
     //draw map
-    ctx.fillStyle = '#004488'
+    ctx.fillStyle = '#55ff88'
     ctx.fillRect(0, 0, w, h)
 
     //draw towers
     for (var i = 0; i < game.towers.length; i++) {
         ctx.fillStyle = game.towers[i].color;
-        ctx.fillRect(game.towers[i].x, game.towers[i].y, 16, 16);
+        ctx.fillRect(game.towers[i].x, game.towers[i].y, 32, 32);
     }
 
     globalID = requestAnimationFrame(animate)

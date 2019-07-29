@@ -8,3 +8,11 @@ function oscillateColor(element, frequency, amplitude) {
     $(element).css('background-color', concat)
 
 }
+
+function billboardFog(weight, scale) {
+
+}
+
+function parallaxFog(weight, scale) {
+
+}

@@ -1,5 +1,4 @@
 
-
 //Game Tile Base Object
 function space(id, x, y) {
     this.id = id,
@@ -12,32 +11,24 @@ function space(id, x, y) {
         this.developed = false,
         this.occupied = false,
         this.build = function (space_id) {
-            game.towers[i] = new tower(i)
-            game.towers[i].x = Math.random() * w
-            game.towers[i].y = Math.random() * h
-            game.towers[i].render()
+            var t = new tower(space_id)
+            game.towers.push(t)
         },
-        this.render = function () {
-            console.log('x: ' + game.spaces[this.id].x)
-            ctx.fillStyle = '#ff0000';
-            ctx.fillRect(this.x, this.y, this.size, this.size);
-        },
-        this.toggleHover = function () {
-            console.log('x: ' + game.spaces[this.id].x)
-            ctx.fillStyle = '#ff8833';
+        this.render = function (color) {
+            ctx.fillStyle = color
             ctx.fillRect(this.x, this.y, this.size, this.size);
         }
-    console.log('space added')
 }
 
 //Tower Base Object
-function tower(space_id, tower_x, tower_y) {
+function tower(space_id) {
 
     this.id = space_id,
-        this.x = tower_x,
-        this.y = tower_y,
+        this.x = game.spaces[this.id].x,
+        this.y = game.spaces[this.id].y,
         this.type = 'wall',
-        this.color = '#ff3388',
+        this.color = '#000000',
+        this.range = 2,
 
         this.upgrade = function () {
             if (this.type === 'wall') {
@@ -48,13 +39,14 @@ function tower(space_id, tower_x, tower_y) {
         },
         this.render = function () {
             ctx.fillStyle = this.color;
-            ctx.fillRect(this.x, this.y, this.width, this.height);
+            ctx.fillRect(this.x, this.y, game.tileSize, game.tileSize);
         },
         this.wake = function () {
             //Detect visible tiles( spaces )
+            game.spaces[this.id].occupied = true
         },
         this.peer = function () {
-            //Check tiles for occupancy
+            //Check proximal tiles for occupancy
         },
         this.fall = function () {
             //console.log(myTowers[i].x)
@@ -81,6 +73,7 @@ function unit(unit_id, space_id, type, x, y, speed, maxHealth, health, damage, a
         },
         this.findPath = function (x, y, target_x, target_y) {
             //Pathfinding Logic
+            //Map Obstruction Test( Before an Obsticle is placed)
             //if( target_y === y && target_x === x ){ !DONT FIND PATH! }
         },
         this.move = function (x, y) {
@@ -97,7 +90,7 @@ function unit(unit_id, space_id, type, x, y, speed, maxHealth, health, damage, a
             //Attack Logic
         },
         this.peer = function (target) {
-            //Track Enemies
+            //Track proximal Units in 8 Spaces( N,NE,E,SE,S,SW,W,NW ) + in occupied space
         },
         this.takeDamage = function () {
             //Health Reduction Logic

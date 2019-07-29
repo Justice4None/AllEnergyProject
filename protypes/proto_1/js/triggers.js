@@ -3,16 +3,14 @@
 $(canvas).mousemove(function () {
     var x = event.clientX;     // Get the horizontal coordinate
     var y = event.clientY;     // Get the vertical coordinate
-    //towerDetection(x, y)
-    spaceDetection(x, y)
+    game.hoverTile = spaceDetection(x, y)
     console.log('x: ' + x + ' y: ' + y)
 })
 
 $(canvas).on('click', function () {
     var x = event.clientX;     // Get the horizontal coordinate
     var y = event.clientY;     // Get the vertical coordinate
-    towerDetection(x, y)
-    //unitDetection(x, y)
+    game.spaces[game.hoverTile].build(spaceDetection(x, y))
 })
 
 $(window).resize(function () {

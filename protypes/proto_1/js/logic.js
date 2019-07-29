@@ -1,7 +1,10 @@
 
 //Globals
-var w = window.innerWidth
-var h = window.innerHeight
+var w = window.innerWidth  // Window X
+var h = window.innerHeight // Window Y
+var x = 0;     // Mouse X
+var y = 0;     // Mouse Y
+
 var canvas = document.getElementById('game_canvas')
 var ctx = canvas.getContext("2d")
 
@@ -11,6 +14,7 @@ var game = {
     tileSize: 32,
     spaces: [],
     towers: [],
+    hoverTile: 0,
     createBoard: function (boardWidth, boardHeight) {
 
         var boardCount = 0
@@ -21,8 +25,17 @@ var game = {
                 boardCount++
             }
         }
-        render()
     }
+}
+
+//User Player Object
+var player = {
+    activeTile: null,
+    hoverTile: null
+
+    //Populated by Travis' Login
+    //Interfaces with Travis' Firebase User Data
+
 }
 
 //Updates Controller
@@ -42,14 +55,34 @@ var update = {
 }
 
 //Render Controller
-function render() {
-    for (var i = 0; i < game.spaces.length; i++) {
+var render = {
 
-        //console.log('id: ' + game.spaces[i].id)
-        //console.log('x: ' + game.spaces[i].x)
-        //console.log('y: ' + game.spaces[i].y)
-        game.spaces[i].render()
+    background: function () {
+        ctx.fillStyle = '#008800'
+        ctx.fillRect(0, 0, w, h);
+    },
+    tiles: function () {
+
+        for (var i = 0; i < game.spaces.length; i++) {
+            if (game.hoverTile === i) {
+                game.spaces[i].render('#ffffaa')
+            } else {
+                game.spaces[i].render('#88ffaa')
+            }
+        }
+
+    },
+    towers: function () {
+        for (var i = 0; i < game.towers.length; i++) {
+            game.towers[i].render()
+        }
+    },
+    units: function () {
+        for (var i = 0; i < game.towers.length; i++) {
+            game.units[i].render()
+        }
     }
+
 }
 
 //Animation Timer
@@ -60,12 +93,9 @@ function animate() {
 
     count++
 
-    //TRIGGER CHANGES
-    //oscillateColor('#hud', 0.1, 0.8)
-
-    //draw map
-    //ctx.fillStyle = '#55ff88'
-    //ctx.fillRect(0, 0, w, h)
+    render.background()
+    render.tiles()
+    render.towers()
 
     globalID = requestAnimationFrame(animate)
 
@@ -74,5 +104,6 @@ function animate() {
 globalID = requestAnimationFrame(animate)
 update.window()
 game.createBoard(10, 10)
+
 
 

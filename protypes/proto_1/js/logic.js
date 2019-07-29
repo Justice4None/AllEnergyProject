@@ -10,33 +10,38 @@ var ctx = canvas.getContext("2d")
 ctx.canvas.width = w;
 ctx.canvas.height = h;
 
-var game = {
-    canvas: $('#game_canvas'),
-    tileSize: Math.floor(h / 64),
-    createBoard: function (boardWidth, boardHeight) {
-
-        for (var j = 0; j < boardHeight; j++) {
-            for (var i = 0; i < boardWidth; i++) {
-                space(boardWidth * i + j, i * this.tileSize, j * this.tileSize)
-            }
-        }
-
-    },
-    spaces: [],
-    towers: []
-}
-
 function space(id, x, y, s) {
     this.id = id,
         this.x = x,
         this.y = y,
         this.size = s,
-        this.building = none,
+        this.building = 'none',
         this.occupants = [],
         this.watching_towers = []
+    console.log('space added')
 }
 
-buildTowers(30)
+var game = {
+    canvas: $('#game_canvas'),
+    tileSize: Math.floor(h / 64),
+    spaces: [],
+    towers: [],
+    createBoard: function (boardWidth, boardHeight) {
+
+        var boardCount = 0
+
+        for (var j = 0; j < boardHeight; j++) {
+            for (var i = 0; i < boardWidth; i++) {
+                game.spaces[boardCount] = new space(boardCount, i * game.tileSize, j * game.tileSize, game.tileSize)
+                console.log(game.spaces[boardCount])
+                boardCount++
+            }
+        }
+
+    }
+}
+
+//buildTowers(30)
 
 function buildTowers(num) {
 
@@ -119,7 +124,6 @@ function animate() {
 
     //TRIGGER CHANGES
     //oscillateColor('#hud', 0.1, 0.8)
-    unit_1.move()
 
     //draw map
     ctx.fillStyle = '#55ff88'
@@ -136,7 +140,7 @@ function animate() {
 }
 
 globalID = requestAnimationFrame(animate)
-game.buildLvl()
+game.createBoard(10, 10)
 
 
 

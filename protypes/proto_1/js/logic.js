@@ -14,10 +14,14 @@ var game = {
     tileSize: 32,
     spaces: [],
     towers: [],
+    units: [],
     hoverTile: 0,
+    boardWidth: 0,
+    boardHeight: 0,
     createBoard: function (boardWidth, boardHeight, tileSize) {
-
         var boardCount = 0
+        game.boardWidth = boardWidth
+        game.boardHeight = boardHeight
         game.tileSize = tileSize
 
         for (var j = 0; j < boardHeight; j++) {
@@ -26,6 +30,13 @@ var game = {
                 boardCount++
             }
         }
+    },
+    addTower: function () {
+        game.spaces[game.hoverTile].build(getSpace())
+        game.spaces[game.hoverTile].developed === true
+    },
+    addUnit: function () {
+
     }
 }
 
@@ -59,7 +70,7 @@ var update = {
 var render = {
 
     background: function () {
-        ctx.fillStyle = '#008800'
+        ctx.fillStyle = '#e2c85d'
         ctx.fillRect(0, 0, w, h);
     },
     tiles: function () {
@@ -68,7 +79,7 @@ var render = {
             if (game.hoverTile === i) {
                 game.spaces[i].render('#ffffaa')
             } else {
-                game.spaces[i].render('#88ffaa')
+                game.spaces[i].render('#e2c85d')
             }
         }
 
@@ -104,7 +115,7 @@ function animate() {
 
 globalID = requestAnimationFrame(animate)
 update.window()
-game.createBoard(100, 100, 30)
+game.createBoard(16, 9, 126)
 
 
 

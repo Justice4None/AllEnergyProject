@@ -32,25 +32,42 @@ function tower(space_id) {
         this.x = game.spaces[this.id].x,
         this.y = game.spaces[this.id].y,
         this.type = 'wall',
+        this.level = 1,
         this.color = '#000000',
         this.hoverColor = '#550000',
         this.range = 2,
 
         this.upgrade = function () {
+
+            this.level++
+
             if (this.type === 'wall') {
                 this.type = 'tower'
                 this.color = '#ff3333'
                 this.hoverColor = '#ff8888'
             }
+
             this.peer()
         },
         this.render = function () {
-            if (this.id === game.hoverTile) {
-                ctx.fillStyle = this.color;
-            } else {
-                ctx.fillStyle = this.hoverColor;
+
+            var img = new Image()
+            if (this.level === 1) {
+                img.src = 'gfx/buildings/tower_1_brown.png'
             }
-            ctx.fillRect(this.x, this.y, game.tileSize, game.tileSize);
+            if (this.level >= 2) {
+                img.src = 'gfx/buildings/tower_2.png'
+            }
+            if (this.level >= 3) {
+                img.src = 'gfx/buildings/tower_3.png'
+            }
+
+
+            if (this.id === game.hoverTile) {
+                ctx.drawImage(img, this.x, this.y, game.tileSize, game.tileSize)
+            } else {
+                ctx.drawImage(img, this.x, this.y, game.tileSize, game.tileSize)
+            }
         },
         this.wake = function () {
             //Detect visible tiles( spaces )
@@ -65,11 +82,12 @@ function tower(space_id) {
 }
 
 //Unit Base Object
-function unit(unit_id, space_id, type, x, y, speed, maxHealth, health, damage, ac) {
+function unit(unit_id, space_id, x, y, type, speed) {
 
     this.id = unit_id,
         this.space = space_id,
         this.type = type,
+        this.color = '#ff00ff',
         this.x = x,
         this.y = y,
         this.target_y = x,
@@ -113,4 +131,8 @@ function unit(unit_id, space_id, type, x, y, speed, maxHealth, health, damage, a
             //Rotation Trig Logic
             //Sprite Shift
         }
+    this.render = function () {
+        ctx.fillStyle = this.color;
+        ctx.arc(100, 75, 50, 0, 2 * Math.PI);
+    }
 }

@@ -1,13 +1,14 @@
 //onclick of sign up button reveal registration form
-$('#signup-button').on('click', function (user) {
+$('#signup-button').on('click', function (e, user) {
+    e.preventDefault();
     auth.onAuthStateChanged(user => {
         if (user) {
+            console.log('this part working')
             $('#login-error').text('user must log out before registering new user');
         } else {
             $('#register-div').css('display', '');
         }
     });
-
 });
 
 
@@ -35,14 +36,14 @@ $('#register-button').on('click', function (e) {
 const logout = document.querySelector('#test-register-form');
 $('#logout-button').on('click', function (e, user) {
     e.preventDefault();
-    auth.signOut().then(() => {
+    auth.signOut().then((user) => {
         console.log('logged out');
-        if (user) {
-            console.log('issue signing out')
-        } else {
-            console.log('sign out successful')
-            $('#login-div').text('You were successfully logged out!');
-        }
+        // if (user) {
+        //     console.log('issue signing out')
+        // } else {
+        //     console.log('sign out successful')
+        //     // $('#register-div').hide();
+        // }
     });
     $('#login-error').hide()
 });
@@ -52,31 +53,30 @@ $('#submit').on('click', function (e, user) {
     e.preventDefault();
     auth.onAuthStateChanged(user => {
         //if no user logged in run 
-        if (!user) {
-
+        if (user) {
+            // console.log('user logged in');
+        } else {
             //get user email and password
             const email = $('#login-email').val();
             const password = $('#login-password').val();
             console.log('login:  ', email, password);
 
-
             //sign in user
             auth.signInWithEmailAndPassword(email, password).then(credential => {
-                $('#login-div').text('You were successfully signed in!');
+                $('#register-div').text('');
             });
             $("input[type='password']").val("");
             $("input[type='username']").val("");
-        } else {
-            $('#login-div').text('User already logged in!');
-        }
+        };
     });
 });
 
 //================listen for auth status change===============
 auth.onAuthStateChanged(user => {
     if (user) {
-        console.log('user logged in:  ', user);
+        console.log('user logged in:  ', user.email);
+        $('#login-div').text('You are signed in as:  ' + user.email);
     } else {
-        console.log('user logged out')
+        $('login-div').text('no user logged in')
     }
 });

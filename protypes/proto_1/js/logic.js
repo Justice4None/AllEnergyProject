@@ -42,8 +42,6 @@ var game = {
 
 //User Player Object
 var player = {
-    activeTile: null,
-    hoverTile: null
 
     //Populated by Travis' Login
     //Interfaces with Travis' Firebase User Data
@@ -97,6 +95,23 @@ var render = {
 
 }
 
+var audio = {
+    files: [],
+    noiseMakers: [],
+    load: function () {
+
+    },
+    play: function () {
+
+    },
+    pause: function () {
+
+    },
+    switch: function () {
+
+    }
+}
+
 //Animation Timer
 var globalID
 var count = 0
@@ -116,7 +131,7 @@ function animate() {
 globalID = requestAnimationFrame(animate)
 update.window()
 
-game.createBoard(20, 12, 60)
+game.createBoard(16, 10, 60)
 
 
 

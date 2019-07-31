@@ -6,9 +6,9 @@ function space(id, x, y) {
         this.y = y,
         this.size = game.tileSize,
         this.developed = false,
+        this.occupied = false,
         this.occupants = [],
         this.watching_towers = [],
-        this.occupied = false,
         this.tower = null,
         this.build = function (space_id) {
             var t = new tower(space_id)
@@ -93,9 +93,26 @@ function unit(unit_id, space_id, x, y, type, speed) {
         this.health = health,
         this.damage = damage,
         this.ac = ac,
-        this.spawn = function (x, y) {
-            //Spawn Logic
+        this.sounds = [],
+        this.addSound = function (name, url) {
+            //load sound file from server
+            //push file to this.sounds[]
+            //push file to audio.files[]
+            //push object to audio.noisemakers[]
         },
+        this.setSound = function (sound) {
+            //assign new sound
+            //remove old sound
+        },
+        this.playSound = function (sound) {
+            //play passed sound file
+        },
+        this.pauseSound = function (sound) {
+            //play passed sound file
+        }
+    this.spawn = function (x, y) {
+        //Spawn Logic
+    },
         this.findPath = function (x, y, target_x, target_y) {
             //Pathfinding Logic
             //Map Obstruction Test( Before an Obsticle is placed)

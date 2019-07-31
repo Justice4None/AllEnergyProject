@@ -11,21 +11,21 @@ var ctx = canvas.getContext("2d")
 //Master Game Object
 var game = {
     canvas: $('#game_canvas'),
-    tileSize: 32,
+    tileSize: null,
     spaces: [],
     towers: [],
     units: [],
     hoverTile: 0,
     boardWidth: 0,
     boardHeight: 0,
-    createBoard: function (boardWidth, boardHeight, tileSize) {
+    createBoard: function (boardWidth, boardHeight) {
         var boardCount = 0
         game.boardWidth = boardWidth
         game.boardHeight = boardHeight
-        game.tileSize = tileSize
+        game.tileSize = h / boardHeight
 
         for (var j = 0; j < boardHeight; j++) {
-            for (var i = 0; i < boardWidth; i++) {
+            for (var i = 2.75; i < boardWidth; i++) {
                 game.spaces[boardCount] = new space(boardCount, i * game.tileSize, j * game.tileSize)
                 boardCount++
             }
@@ -116,7 +116,7 @@ function animate() {
 globalID = requestAnimationFrame(animate)
 update.window()
 
-game.createBoard(20, 12, 60)
+game.createBoard(16, 10)
 
 
 

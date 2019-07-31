@@ -24,6 +24,10 @@ function isTower(id) {
     }
 }
 
+function findNeigbor(id, direction) {
+    //NSEW space neighbor reference
+}
+
 //returns an array of the unit objects occupying in the space
 function getUnits() {
     //space[].occupants

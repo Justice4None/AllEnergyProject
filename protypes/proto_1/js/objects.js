@@ -8,7 +8,6 @@ function space(id, x, y) {
         this.developed = false,
         this.occupants = [],
         this.watching_towers = [],
-        this.developed = false,
         this.occupied = false,
         this.tower = null,
         this.build = function (space_id) {
@@ -52,15 +51,7 @@ function tower(space_id) {
         this.render = function () {
 
             var img = new Image()
-            if (this.level === 1) {
-                img.src = 'gfx/buildings/tower_1_brown.png'
-            }
-            if (this.level >= 2) {
-                img.src = 'gfx/buildings/tower_2.png'
-            }
-            if (this.level >= 3) {
-                img.src = 'gfx/buildings/tower_3.png'
-            }
+            img.src = 'gfx/buildings/tower_' + this.level + '.png'
 
 
             if (this.id === game.hoverTile) {
@@ -79,6 +70,11 @@ function tower(space_id) {
         this.fall = function () {
             //console.log(myTowers[i].x)
         }
+}
+
+function arrow(space_id) {
+    this.x =
+        this.y
 }
 
 //Unit Base Object

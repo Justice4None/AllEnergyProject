@@ -70,7 +70,7 @@ var update = {
 var render = {
 
     background: function () {
-        ctx.fillStyle = '#e2c85d'
+        ctx.fillStyle = '#ffaa33'
         ctx.fillRect(0, 0, w, h);
     },
     tiles: function () {
@@ -115,7 +115,8 @@ function animate() {
 
 globalID = requestAnimationFrame(animate)
 update.window()
-game.createBoard(16, 9, 126)
+
+game.createBoard(20, 12, 60)
 
 
 

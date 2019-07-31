@@ -3,14 +3,13 @@ $('#signup-button').on('click', function (e, user) {
     e.preventDefault();
     auth.onAuthStateChanged(user => {
         if (user) {
-            console.log('this part working')
+            console.log('this part working');
             $('#login-error').text('user must log out before registering new user');
         } else {
             $('#register-div').css('display', '');
         }
     });
 });
-
 
 const auth = firebase.auth();
 const db = firebase.firestore();
@@ -26,7 +25,7 @@ $('#register-button').on('click', function (e) {
 
     //sign up user
     auth.createUserWithEmailAndPassword(email, password).then(credential => {
-        console.log('user signed in')
+        console.log('user signed in');
         $('#test-register-form').hide();
         $('#register-div').text('You were successfully registered!');
     });
@@ -60,7 +59,6 @@ $('#submit').on('click', function (e, user) {
             const email = $('#login-email').val();
             const password = $('#login-password').val();
             console.log('login:  ', email, password);
-
             //sign in user
             auth.signInWithEmailAndPassword(email, password).then(credential => {
                 $('#register-div').text('');
@@ -77,6 +75,6 @@ auth.onAuthStateChanged(user => {
         console.log('user logged in:  ', user.email);
         $('#login-div').text('You are signed in as:  ' + user.email);
     } else {
-        $('login-div').text('no user logged in')
+        $('login-div').text('no user logged in');
     }
 });

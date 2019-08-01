@@ -12,15 +12,15 @@ JSVector.prototype.sub = function (vec) {
     this.y -= vec.y || 0;
 
 }
-JSVector.addGetNew = function (vec1, vec2) {
-    var x = vec1.x + vec2.x || 0;
-    var y = vec1.y + vec2.y || 0;
+JSVector.addGetNew = function (x, y) {
+    var x = this.x += vec.x || 0;
+    var y = this.y += vec.y || 0;
     var newVec = new JSVector(x, y)
     return newVec;
 }
-JSVector.subGetNew = function (vec1, vec2) {
-    var x = vec1.x - vec2.x || 0;
-    var y = vec1.y - vec2.y || 0;
+JSVector.subGetNew = function (x, y) {
+    var x = this.x -= vec.x || 0;
+    var y = this.y -= vec.y || 0;
     var newVec = new JSVector(x, y)
     return newVec;
 }

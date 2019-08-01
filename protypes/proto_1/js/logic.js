@@ -124,8 +124,8 @@ function animate() {
 globalID = requestAnimationFrame(animate)
 update.window()
 
-game.createBoard(20, 12, 60)
-game.addUnit(2)
+game.createBoard(200, 12, 20)
+game.addUnit(5)
 
 
 

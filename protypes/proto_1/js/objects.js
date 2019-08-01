@@ -92,6 +92,11 @@ class Unit {
     run() {
         this.update()
         this.render()
+        this.checkEdges()
+    }
+    checkEdges() {
+        if (this.loc.x < 0 || this.loc.x > window.innerWidth) this.vel.x = - this.vel.x;
+        if (this.loc.y < 0 || this.loc.y > window.innerHeight) this.vel.y = - this.vel.y;
     }
     update() {
         this.loc.add(this.vel);

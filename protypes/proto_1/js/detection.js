@@ -25,7 +25,30 @@ function isTower(id) {
 }
 
 function findNeigbor(id, direction) {
+    // function euclideanDistance() { };
     //NSEW space neighbor reference
+    var N = y - 1,
+        S = y + 1,
+        E = x + 1,
+        W = x - 1,
+        myN = n > -1 && canWalkHere(x, N),
+        myS = S < game.boardHeight && canWalkHere(x, S),
+        MyE = E < game.boardWidth && canWalkHere(E, y),
+        myW = w > -1 && canWalkHere(W, y);
+    if (myN)
+        game.spaces.push({ x: x, y: N });
+    if (myE)
+        game.spaces.push({ x: E, y: y });
+    if (myS)
+        game.spaces.push({ x: x, y: S });
+    if (myW)
+        game.spaces.push({ x: W, y: y });
+    neighbours(myN, myS, myE, myW, N, S, E, W, game.spaces);
+    return game.spaces;
+    // function diagonalNeighours() { };
+
+
+
 }
 
 //returns an array of the unit objects occupying in the space

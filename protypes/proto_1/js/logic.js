@@ -30,12 +30,19 @@ var game = {
                 boardCount++
             }
         }
+
+        console.log(game.spaces)
     },
     addTower: function () {
         game.spaces[game.hoverTile].build(getSpace())
         game.spaces[game.hoverTile].developed === true
     },
-    addUnit: function () {
+    addUnit: function (num) {
+        for (var i = 0; i < num; i++) {
+            var loc = new JSVector(this.canvas.width / 2, this.canvas.height / 2);
+            var e = new Unit(loc);
+            this.units.push(e)
+        }
 
     }
 }
@@ -55,7 +62,7 @@ var update = {
     all: function () {
         //game.board.update()
         //game.towers.update()
-        //game.units.update()
+        // game.units.update()
         //game.player_1.update()
     },
     window: function () {
@@ -90,8 +97,8 @@ var render = {
         }
     },
     units: function () {
-        for (var i = 0; i < game.towers.length; i++) {
-            game.units[i].render()
+        for (var i = 0; i < game.units.length; i++) {
+            game.units[i].run()
         }
     }
 
@@ -108,6 +115,7 @@ function animate() {
     render.background()
     render.tiles()
     render.towers()
+    render.units()
 
     globalID = requestAnimationFrame(animate)
 
@@ -117,6 +125,7 @@ globalID = requestAnimationFrame(animate)
 update.window()
 
 game.createBoard(20, 12, 60)
+game.addUnit(2)
 
 
 

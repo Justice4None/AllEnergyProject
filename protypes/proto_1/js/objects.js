@@ -66,6 +66,10 @@ function tower(space_id) {
         },
         this.peer = function () {
             //Check proximal tiles for occupancy
+            if (game.spaces.length >= 1) {
+                console.log("occupied")
+
+            }
         },
         this.fall = function () {
             //console.log(myTowers[i].x)
@@ -78,57 +82,28 @@ function arrow(space_id) {
 }
 
 //Unit Base Object
-function unit(unit_id, space_id, x, y, type, speed) {
-
-    this.id = unit_id,
-        this.space = space_id,
-        this.type = type,
-        this.color = '#ff00ff',
-        this.x = x,
-        this.y = y,
-        this.target_y = x,
-        this.target_x = y,
-        this.speed = speed,
-        this.maxHealth = maxHealth,
-        this.health = health,
-        this.damage = damage,
-        this.ac = ac,
-        this.spawn = function (x, y) {
-            //Spawn Logic
-        },
-        this.findPath = function (x, y, target_x, target_y) {
-            //Pathfinding Logic
-            //Map Obstruction Test( Before an Obsticle is placed)
-            //if( target_y === y && target_x === x ){ !DONT FIND PATH! }
-        },
-        this.move = function (x, y) {
-            //Movement Logic
-            //if( new space ){ 
-            //  this.space = new space
-            //  this.peer() 
-            //}
-        },
-        this.setTarget = function (new_target_x, new_target_y) {
-            //Movement Logic
-        },
-        this.attack = function (target) {
-            //Attack Logic
-        },
-        this.peer = function (target) {
-            //Track proximal Units in 8 Spaces( N,NE,E,SE,S,SW,W,NW ) + in occupied space
-        },
-        this.takeDamage = function () {
-            //Health Reduction Logic
-        },
-        this.die = function () {
-            //Death Logic
-        },
-        this.rotate = function () {
-            //Rotation Trig Logic
-            //Sprite Shift
-        }
-    this.render = function () {
-        ctx.fillStyle = this.color;
-        ctx.arc(100, 75, 50, 0, 2 * Math.PI);
+class Unit {
+    constructor(loc) {
+        this.loc = loc;
+        this.vel = new JSVector(Math.random() * 6 - 3, Math.random() * 6 - 3)
+        this.rad = 10;
+        this.clr = "rgba(200, 0, 0, .5)";
     }
+    run() {
+        this.update()
+        this.render()
+    }
+    update() {
+        this.loc.add(this.vel);
+
+    }
+    render() {
+        ctx.beginPath();
+        ctx.arc(this.loc.x, this.loc.y, this.rad, 0, Math.PI * 2);
+        ctx.strokeStyle = "rgb(0,0,0)";
+        ctx.stroke();
+        ctx.fillStyle = this.clr;
+        ctx.fill();
+    }
+
 }

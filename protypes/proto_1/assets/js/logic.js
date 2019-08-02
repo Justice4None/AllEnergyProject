@@ -103,7 +103,10 @@ var audio = {
     activeSounds: [],
     load: function () {
         for (i = 0; i < this.masterSounds.length; i++) {
-            masterSounds[masterSounds.length] = new Audio("audio/music" + masterSounds[i] + ".mp3")
+            masterSounds[i] = new Audio("assets/audio/music" + masterSounds[i] + ".mp3")
+        }
+        for (i = 0; i < this.files.length; i++) {
+            files[i] = new Audio("assets/audio/sfx" + files[i] + ".mp3")
         }
     },
     play: function () {
@@ -113,6 +116,10 @@ var audio = {
 
     },
 }
+// var my_audio = new Audio("assets/audio/sfx/" + files.length[i] + ".mp3");
+// my_audio.src()
+// my_audio.play()
+// my_audio.pause()
 
 //Animation Timer
 var globalID

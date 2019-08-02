@@ -70,7 +70,7 @@ $('#submit').on('click', function (e, user) {
 });
 
 //================listen for auth status change===============
-auth.onAuthStateChanged(user => {
+auth.onAuthStateChanged(function (user) {
     if (user) {
         console.log('user logged in:  ', user.email);
         $('#login-div').text('You are signed in as:  ' + user.email);

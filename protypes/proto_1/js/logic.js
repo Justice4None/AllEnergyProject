@@ -98,16 +98,13 @@ var render = {
 var audio = {
     files: [],
     noiseMakers: [],
-    load: function () {
+    add: function () {
+        masterSound[masterSound.length] = new Audio()
+    },
+    play: function (sound) {
 
     },
-    play: function () {
-
-    },
-    pause: function () {
-
-    },
-    switch: function () {
+    pause: function (sound) {
 
     }
 }

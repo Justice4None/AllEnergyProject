@@ -51,8 +51,7 @@ function tower(space_id) {
         this.render = function () {
 
             var img = new Image()
-            img.src = 'gfx/buildings/tower_' + this.level + '.png'
-
+            img.src = 'audio/sfx/' + this.level + '.mp3'
 
             if (this.id === game.hoverTile) {
                 ctx.drawImage(img, this.x, this.y, game.tileSize, game.tileSize)
@@ -69,12 +68,10 @@ function tower(space_id) {
         },
         this.fall = function () {
             //console.log(myTowers[i].x)
-        }
-}
+        },
+        this.shoot = funciton() {
 
-function arrow(space_id) {
-    this.x =
-        this.y
+    }
 }
 
 //Unit Base Object

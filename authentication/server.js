@@ -3,18 +3,18 @@ var dataRef = firebase.database();
 var x = 0;
 var y = 0;
 
-$(canvas).mousemove(function () {
+$(canvas).on('click', function () {
     x = event.clientX;     // Get the horizontal coordinate
     y = event.clientY;     // Get the vertical coordinate
     game.hoverTile = getSpace(x, y)
-})
 
-console.log('x: ' + x + ' y: ' + y)
+    console.log('x: ' + x + ' y: ' + y)
 
-dataRref.ref().push({
-    email: email,
-    x: x,
-    y: y
+    dataRref.ref().push({
+        email: email,
+        x: x,
+        y: y
+    })
 });
 
 

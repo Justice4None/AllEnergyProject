@@ -79,6 +79,7 @@ auth.onAuthStateChanged(function (user) {
         $('#login-div').text('You are signed in as:  ' + user.email);
     } else {
         $('login-div').text('no user logged in');
+<<<<<<< Updated upstream
     }
 });
 
@@ -90,6 +91,8 @@ window.onbeforeunload = (function (event) {
     //login error
     function error(errorObject) {
         console.log("The read failed: " + errorObject.code);
+=======
+>>>>>>> Stashed changes
     }
 
 });

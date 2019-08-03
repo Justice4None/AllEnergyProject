@@ -5,7 +5,7 @@ var JSVector = function (x, y) {
 
 JSVector.prototype.add = function (vec) {
     this.x += vec.x || 0;
-    this.y = + vec.y || 0;
+    this.y += vec.y || 0;
 }
 JSVector.prototype.sub = function (vec) {
     this.x -= vec.x || 0;
@@ -13,14 +13,14 @@ JSVector.prototype.sub = function (vec) {
 
 }
 JSVector.addGetNew = function (x, y) {
-    var x = this.x += vec.x || 0;
-    var y = this.y += vec.y || 0;
+    var x = this.x + vec.x || 0;
+    var y = this.y + vec.y || 0;
     var newVec = new JSVector(x, y)
     return newVec;
 }
 JSVector.subGetNew = function (x, y) {
-    var x = this.x -= vec.x || 0;
-    var y = this.y -= vec.y || 0;
+    var x = this.x - vec.x || 0;
+    var y = this.y - vec.y || 0;
     var newVec = new JSVector(x, y)
     return newVec;
 }
@@ -50,8 +50,5 @@ JSVector.prototype.setMagnitude = function (magnitude) {
 JSVector.prototype.distance = function (vec) {
     var x = this.x - vec.x;
     var y = this.y - vec.y;
-
     return Math.sqrt(x * x + y * y);
 };
-
-// add normalize prototype.

@@ -1,4 +1,3 @@
-
 //Game Tile Base Object
 function space(id, x, y) {
     this.id = id,
@@ -85,9 +84,11 @@ function arrow(space_id) {
 class Unit {
     constructor(loc) {
         this.loc = loc;
-        this.vel = new JSVector(Math.random() * 6 - 3, Math.random() * 6 - 3)
+        this.vel = new JSVector(Math.random() * 6 - 3, Math.random() * 0 - 3)
         this.rad = 10;
         this.clr = "rgba(200, 0, 0, .5)";
+
+
     }
     run() {
         this.update()
@@ -109,6 +110,48 @@ class Unit {
         ctx.stroke();
         ctx.fillStyle = this.clr;
         ctx.fill();
+    }
+
+
+}
+class cell {
+    constructor(game, id, c, r) {
+        this.loc = new JSVector(c * game.tileSize, r * game.tileSize)
+        this.id = id;
+        this.c = c;
+        this.r = r;
+        this.neighbours = [];
+        this.value = -1;
+        this.occupied = false;
+
+    }
+    render() {
+        ctx.font = "10px, arial"
+        if (this.occupied) {
+            ctx.strokeStyle = "white"
+        } else {
+            ctx.strokeStyle = "black"
+        }
+        ctx.strokeRect(this.loc.x, this.loc.y, game.tileSize, game.tileSize)
+        ctx.fillText(this.value, this.loc.x, this.loc.y + 6, game.tileSize, game.tileSize)
+    }
+    loadNeighbors() {
+        var c = this.c
+        var r = this.r
+        var grid = game.grid
+
+        //n
+        if (r > 0 && !this.occupied)
+            this.neighbours.push(grid[c][r - 1])
+        //e
+        if (this.c > grid.length - 1 && !this.occupied)
+            this.neighbours.push(grid[c + 1][r])
+        //s
+        if (this.r > grid[c].length - 1 && !this.occupied)
+            this.neighbours.push(grid[c][r + 1])
+        //w
+        if (this.c > 0 && !this.occupied)
+            this.neighbours.push(grid[c - 1][r])
     }
 
 }

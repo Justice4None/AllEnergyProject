@@ -1,4 +1,3 @@
-
 //Globals
 var w = window.innerWidth  // Window X
 var h = window.innerHeight // Window Y
@@ -12,6 +11,7 @@ var ctx = canvas.getContext("2d")
 var game = {
     canvas: $('#game_canvas'),
     tileSize: 32,
+    grid: [],
     spaces: [],
     towers: [],
     units: [],
@@ -30,9 +30,51 @@ var game = {
                 boardCount++
             }
         }
+        this.loadGrid()
 
-        console.log(game.spaces)
+        console.log(this.grid)
     },
+    loadGrid: function () {
+        for (var c = 0; c < game.boardWidth; c++) {
+            game.grid.push([])
+            for (var r = 0; r < game.boardHeight; r++) {
+                game.grid[c].push(new cell(this, game.boardCount++, c, r))
+                if (Math.random() * 100 < 10) this.grid[c][r].occupied = true
+            }
+        }
+
+        for (let c = 0; c < game.boardWidth; c++) {
+            for (let r = 0; r < game.boardHeight; r++) {
+                game.grid[c][r].loadNeighbors();
+            }
+        }
+        // sort of a starting point
+        this.grid[0][0].occupied = false;
+
+        let nc = this.grid.length - 1;
+        let nr = this.grid[nc].length - 1;
+
+        this.grid[nc][nr].occupied = false;
+        //set a goal
+        this.goal = game.grid[this.boardWidth - 1][this.boardHeight - 1]
+        this.goal.occupied = false
+        this.goal.value = 0
+        // this.brushfire();
+
+    },
+    brushfire: function () {
+        let checkCells = [this.goal];
+        while (checkCells.length) {
+            var curr = checkCells.shift()
+            for (var i = 0; i < curr.neighbours.length; i++) {
+                if (curr.neighbours[i].value === -1) {
+                    checkCells.push(curr.neighbours[i])
+                    curr.neighbours[i].value = curr.value + 1;
+                }
+            }
+        }
+    },
+
     addTower: function () {
         game.spaces[game.hoverTile].build(getSpace())
         game.spaces[game.hoverTile].developed === true
@@ -91,6 +133,14 @@ var render = {
         }
 
     },
+    grid: function () {
+        for (var c = 0; c < game.boardWidth; c++) {
+            for (var r = 0; r < game.boardHeight; r++) {
+                game.grid[c][r].render()
+            }
+        }
+    },
+
     towers: function () {
         for (var i = 0; i < game.towers.length; i++) {
             game.towers[i].render()
@@ -110,12 +160,13 @@ var count = 0
 
 function animate() {
 
-    count++
+    // count++
 
     render.background()
     render.tiles()
     render.towers()
     render.units()
+    render.grid()
 
     globalID = requestAnimationFrame(animate)
 
@@ -126,6 +177,3 @@ update.window()
 
 game.createBoard(200, 12, 20)
 game.addUnit(5)
-
-
-

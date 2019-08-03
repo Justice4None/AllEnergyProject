@@ -13,7 +13,7 @@ $('#signup-button').on('click', function (e, user) {
 });
 
 const auth = firebase.auth();
-const dataRef = firebase.database();
+const dataRef = firebase.firestore();
 
 //==========================signup user==============================
 const signUpForm = document.querySelector('#test-register-form');
@@ -88,9 +88,8 @@ window.onbeforeunload = (function (event) {
         auth.signOut()
     }
     //login error
-    function handleLoginErr(err) {
-        $("#alert .msg").text(err.responseJSON);
-        $("#alert").fadeIn(500);
+    function error(errorObject) {
+        console.log("The read failed: " + errorObject.code);
     }
 
 });

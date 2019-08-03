@@ -25,12 +25,13 @@ var game = {
         game.tileSize = h / boardHeight
 
         for (var j = 0; j < boardHeight; j++) {
-            for (var i = 2.75; i < boardWidth; i++) {
+            for (var i = 2.59; i < boardWidth; i++) {
                 game.spaces[boardCount] = new space(boardCount, i * game.tileSize, j * game.tileSize)
                 boardCount++
             }
         }
     },
+
     addTower: function () {
         game.spaces[game.hoverTile].build(getSpace())
         game.spaces[game.hoverTile].developed === true

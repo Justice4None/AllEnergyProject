@@ -1,7 +1,8 @@
 //onclick of sign up button reveal registration form
 $('#signup-button').on('click', function (e, user) {
     e.preventDefault();
-    auth.onAuthStateChanged(user => {
+    $('#signup-button').hide();
+    auth.onAuthStateChanged(function (user) {
         if (user) {
             console.log('this part working');
             $('#login-error').text('user must log out before registering new user');
@@ -12,7 +13,7 @@ $('#signup-button').on('click', function (e, user) {
 });
 
 const auth = firebase.auth();
-const db = firebase.firestore();
+const dataRef = firebase.database();
 
 //==========================signup user==============================
 const signUpForm = document.querySelector('#test-register-form');
@@ -35,14 +36,16 @@ $('#register-button').on('click', function (e) {
 const logout = document.querySelector('#test-register-form');
 $('#logout-button').on('click', function (e, user) {
     e.preventDefault();
-    auth.signOut().then((user) => {
+    auth.signOut().then(function (user) {
         console.log('logged out');
-        // if (user) {
-        //     console.log('issue signing out')
-        // } else {
-        //     console.log('sign out successful')
-        //     // $('#register-div').hide();
-        // }
+        auth.onAuthStateChanged(function (user) {
+            //if no user logged in run 
+            if (user) {
+                console.log('user still logged in')
+            } else {
+                console.log('user successfully logged')
+            }
+        });
     });
     $('#login-error').hide()
 });
@@ -50,7 +53,7 @@ $('#logout-button').on('click', function (e, user) {
 //========================login user=======================
 $('#submit').on('click', function (e, user) {
     e.preventDefault();
-    auth.onAuthStateChanged(user => {
+    auth.onAuthStateChanged(function (user) {
         //if no user logged in run 
         if (user) {
             // console.log('user logged in');
@@ -77,4 +80,17 @@ auth.onAuthStateChanged(function (user) {
     } else {
         $('login-div').text('no user logged in');
     }
+});
+
+//on window close logout
+window.onbeforeunload = (function (event) {
+    if (event) {
+        auth.signOut()
+    }
+    //login error
+    function handleLoginErr(err) {
+        $("#alert .msg").text(err.responseJSON);
+        $("#alert").fadeIn(500);
+    }
+
 });

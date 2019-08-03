@@ -18,53 +18,88 @@
 </head>
 
 <body>
+
+
+
+
+    <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">User Login</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
     <div class="container text-center"></div>
     <div class="row">
         <div class="card text-center">
             <div class="card-header"></div>
             <div class="card-body">
-                <h5 class="card-title">User Login</h5>
+                <h5 class="card-title"></h5>
                 <p class="card-text">
                     <form class="form-inline" id="login-form">
-                        <div class="form-group">
+                        <li class="form-group">
                             <input class="form-control mr-sm-2" type="username" placeholder="Username"
                                 aria-label="Username" id="login-email">
-                        </div>
-                        <div class="form-group">
+                        </li>
+                        <li class="form-group">
                             <input class="form-control mr-sm-2" type="password" placeholder="Password"
                                 aria-label="Password" id="login-password">
-                        </div>
-                        <div class="form-group">
+                        </li>
+                        <li class="form-group">
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="submit">Log
                                 In</button>
                             <button class="btn btn-outline-success my-2 my-sm-0" type="logout" id="logout-button">Log
                                 Out</button>
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="signup-button">Sign
-                                Up
-                                Here!</button>
+                        </li>
+                        <div id="register-div" style="display: none">
+                            <div id="signup" id="test-register-form">
+                                <h4>sign up here</h4>
+                                <form class="form-inline">
+                                    <ul class="form-group">
+                                    </ul>
+                                    <input class="form-control mr-sm-2" type="username" placeholder="Username"
+                                        aria-label="Username" id="signup-email" required>
+                                    </ul>
+                                    <ul class="form-group">
+                                        <input class="form-control mr-sm-2" type="password" placeholder="Password"
+                                            aria-label="Password" id="signup-password" required>
+                                    </ul>
+                                    <ul class="form-group">
+                                        <button class="btn btn-outline-success my-2 my-sm-0" type="register"
+                                            id="register-button">register</button>
+                                    </ul>
+                                </form>
+                            </div>
                         </div>
-                    </form>
-                </p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-                <div id="register-div" style="display: none">
-                    <div id="signup" id="test-register-form">
-                        <h4>sign up here</h4>
-                        <form class="form-inline">
-                            <input class="form-control mr-sm-2" type="username" placeholder="Username"
-                                aria-label="Username" id="signup-email" required>
-                            <input class="form-control mr-sm-2" type="password" placeholder="Password"
-                                aria-label="Password" id="signup-password" required>
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="register"
-                                id="register-button">register</button>
-                        </form>
-                    </div>
-                </div>
+                        <br>
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="signup-button">Sign
+                            Up Here!</button>
             </div>
+            </form>
+            </p>
             <div class="card-footer text-muted">
                 <div id="login-div"></div>
                 <div id="login-error"></div>
             </div>
         </div>
+    </div>
     </div>
 
     <!--reference ===== bootstraps JS-->

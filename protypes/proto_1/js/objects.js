@@ -46,6 +46,7 @@ function tower(space_id) {
                 this.hoverColor = '#ff8888'
             }
 
+
             this.peer()
         },
         this.render = function () {

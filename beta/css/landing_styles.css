@@ -1,0 +1,43 @@
+
+body{
+    margin: 0;
+    background-color: #ff0000;
+}
+
+.title{
+    position: fixed;
+    width: 512px;
+    margin-left: calc( 50% - 256px );
+}
+
+.landing_btns{
+    position: fixed;
+    width: 512px;
+    height: 60px;
+    margin-left: calc( 50% - 256px );
+    bottom: 100px;
+}
+
+
+.landing_btns button{
+    width: 256px;
+    height: 60px;
+    float: left;
+    border: none;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+#signup_btn{
+    border-radius: 10px 0px 0px 10px;
+    background-color: #310900;
+}
+
+#play_btn{
+    border-radius: 0px 10px 10px 0px;
+    background-image: linear-gradient( to left, #0088ff, #003388 );
+    border-left: 1px solid #0000ff;
+    border: 1px solid #aaaaff;
+    box-shadow: inset 0px 0px 10px #aaaaff;
+}

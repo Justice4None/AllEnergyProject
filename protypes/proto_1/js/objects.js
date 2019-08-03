@@ -15,9 +15,15 @@ function space(id, x, y) {
             game.towers.push(t)
         },
         this.render = function (color) {
-            this.color = color
-            ctx.fillStyle = color
-            ctx.fillRect(this.x, this.y, this.size, this.size);
+
+            var ground_img = new Image()
+            ground_img.src = 'gfx/tiles/gravel.png'
+
+            ctx.drawImage(ground_img, this.x, this.y, game.tileSize, game.tileSize)
+
+            //this.color = color
+            //ctx.fillStyle = color
+            //ctx.fillRect(this.x, this.y, this.size, this.size);
         }
 }
 
@@ -51,7 +57,7 @@ function tower(space_id) {
         this.render = function () {
 
             var img = new Image()
-            img.src = 'audio/sfx/' + this.level + '.mp3'
+            img.src = 'gfx/buildings/tower_' + this.level + '.png'
 
             if (this.id === game.hoverTile) {
                 ctx.drawImage(img, this.x, this.y, game.tileSize, game.tileSize)
@@ -69,9 +75,9 @@ function tower(space_id) {
         this.fall = function () {
             //console.log(myTowers[i].x)
         },
-        this.shoot = funciton() {
+        this.shoot = function () {
 
-    }
+        }
 }
 
 //Unit Base Object

@@ -1,7 +1,7 @@
 //GLOBAL VARIABLES
 
 //NEED MORE FOR STATS ETC...
-var userScore = null;
+var userScore = 0;
 var healthScore = null;
 var buildingType = null;
 
@@ -15,7 +15,6 @@ $(document).ready(function () {
     leftColumn = document.createElement("div");
     rightColumn = document.createElement("div");
 
-
     // WILL CHANGE WHEN BUTTONS ARE FINISHED
     $("#submitButt").on('click', function (event) {
         event.preventDefault();
@@ -28,6 +27,7 @@ $(document).ready(function () {
         rightColumn.className = "rightCol";
 
         rightColumn.id = "rightColumn"
+        leftColumn.id = "leftColumn"
 
         $('#newDiv').append(leftColumn);
         $('#newDiv').append(rightColumn);
@@ -48,22 +48,22 @@ $(document).ready(function () {
 
             tower.append($('<img src="' + this.image + '">').addClass('image'));
         });
+
+        var h2 = document.createElement('H1');
+
+        h2.innerHTML = "Stats"
+        userScore = "0"
+        healthScore = "100"
+
+        $('#leftColumn').append(h2).append("Your Score: " + "<br></br>" + userScore + "<br></br>").append("Your Health: " + "<br></br>" + healthScore);
     });
 
     //FUNCTION TO ADD TOWER VALUE
     function swtichTower() {
-
-
-
     }
 
     //FUNCTION TO SWITCH TOWER VALUE WHEN CLICKED
     $(".image").on('click', function () {
         towerVal = $(this).val();
-
-
-
-
-
     });
 });

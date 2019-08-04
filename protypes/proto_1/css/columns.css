@@ -4,7 +4,9 @@
     height: 100%;
     width: 13%;
     overflow: auto;
-    padding: 5% 0%;
+    padding: 5% 1%;
+    font-family: fantasy;
+    
 }
 
 .leftCol {
@@ -12,5 +14,12 @@
     height: 100%;
     width: 13%;
     overflow: auto;
-    padding: 5% 0%;
+    padding: 5% 1%;
+    font-family: fantasy;
+
+}
+
+.image:hover {
+      box-shadow: 0 0 2px 1px red;
+
 }

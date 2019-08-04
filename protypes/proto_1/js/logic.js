@@ -10,19 +10,19 @@ var ctx = canvas.getContext("2d")
 //Master Game Object
 var game = {
     canvas: $('#game_canvas'),
-    tileSize: 32,
     grid: [],
+    tileSize: null,
     spaces: [],
     towers: [],
     units: [],
     hoverTile: 0,
     boardWidth: 0,
     boardHeight: 0,
-    createBoard: function (boardWidth, boardHeight, tileSize) {
+    createBoard: function (boardWidth, boardHeight) {
         var boardCount = 0
         game.boardWidth = boardWidth
         game.boardHeight = boardHeight
-        game.tileSize = tileSize
+        game.tileSize = h / boardHeight
 
         for (var j = 0; j < boardHeight; j++) {
             for (var i = 0; i < boardWidth; i++) {
@@ -59,10 +59,11 @@ var game = {
         this.goal = game.grid[this.boardWidth - 1][this.boardHeight - 1]
         this.goal.occupied = false
         this.goal.value = 0
-        // this.brushfire();
+        this.brushfire();
 
     },
     brushfire: function () {
+        //number field
         let checkCells = [this.goal];
         while (checkCells.length) {
             var curr = checkCells.shift()
@@ -73,21 +74,38 @@ var game = {
                 }
             }
         }
+        // vector field
+        // for each cell in the grid
+        for (var c = 0; c < game.grid.length; c++) {
+            for (r = 0; r < game.grid[c].length; r++) {
+                // find the smallest value
+                if (!game.grid[c][r].occupied) game.grid[c][r].getSmallestNeighbourValue()
+            }
+        }
     },
 
     addTower: function () {
         game.spaces[game.hoverTile].build(getSpace())
         game.spaces[game.hoverTile].developed === true
     },
-    addUnit: function (num) {
-        for (var i = 0; i < num; i++) {
-            var loc = new JSVector(this.canvas.width / 2, this.canvas.height / 2);
-            var e = new Unit(loc);
-            this.units.push(e)
-        }
+    addUnit: function () {
+        var numEnemies = Math.random() * 5;
+        let startCell;// i, j;
+        for (var i = 0; i < numEnemies; i++) {
+            for (j = 0; j < 3; j++) {
+                let startCell = this.grid[Math.random() * 0][Math.random() * 0]
+                if (startCell && startCell.parent)
+                    break;
+            }
 
+        }
+        if (j < 3) {
+            let randomPath = Math.floor(Math.random() * 2)
+            this.units.push(new Unit(this.grid, startCell, randomPath))
+        }
     }
 }
+
 
 //User Player Object
 var player = {
@@ -175,5 +193,8 @@ function animate() {
 globalID = requestAnimationFrame(animate)
 update.window()
 
-game.createBoard(200, 12, 20)
 game.addUnit(5)
+game.createBoard(16, 10)
+
+
+

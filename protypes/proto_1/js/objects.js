@@ -85,6 +85,7 @@ class Unit {
     constructor(loc) {
         this.loc = loc;
         this.vel = new JSVector(Math.random() * 6 - 3, Math.random() * 0 - 3)
+        this.acc = new JSVector(0, 0)
         this.rad = 10;
         this.clr = "rgba(200, 0, 0, .5)";
 
@@ -96,10 +97,23 @@ class Unit {
         this.checkEdges()
     }
     checkEdges() {
-        if (this.loc.x < 0 || this.loc.x > window.innerWidth) this.vel.x = - this.vel.x;
-        if (this.loc.y < 0 || this.loc.y > window.innerHeight) this.vel.y = - this.vel.y;
+        if (this.loc.x < 0 || this.loc.x > canvas.offsetWidth) this.vel.x = - this.vel.x;
+        if (this.loc.y < 0 || this.loc.y > canvas.offsetHeight) this.vel.y = - this.vel.y;
     }
     update() {
+        var col = Math.floor(this.loc.x / game.boardWidth);
+        var row = Math.floor(this.loc.y / game.boardHeight)
+        if (game.grid[col][row] === game.goal) return;
+        if (game.grid[col][row] && !game.grid[col][row].occupied) {
+            var currCell = game.grid[col][row];
+            var nextCell = currCell.smallestNeighbour;
+
+            // this.acc = this.acc.subGetNew(nextCell.center, this.loc);
+            this.acc.setMagnitude(0, 5);
+
+        }
+        this.vel.add(this.acc);
+        // this.vel.limit(2)
         this.loc.add(this.vel);
 
     }
@@ -116,13 +130,17 @@ class Unit {
 }
 class cell {
     constructor(game, id, c, r) {
+        var game = game;
         this.loc = new JSVector(c * game.tileSize, r * game.tileSize)
+        this.center = new JSVector(this.loc.x + game.tileSize / 2, this.loc.y + game.tileSize / 2)
         this.id = id;
         this.c = c;
         this.r = r;
         this.neighbours = [];
         this.value = -1;
         this.occupied = false;
+        this.getSmallestNeighbourIndex = 0;
+        this.smallestNeighbour = null;
 
     }
     render() {
@@ -152,6 +170,16 @@ class cell {
         //w
         if (this.c > 0 && !this.occupied)
             this.neighbours.push(grid[c - 1][r])
+    }
+    getSmallestNeighbourValue() {
+        var smallest = 10000;
+        for (let i = 0; i < this.neighbours.length; i++) {
+            if (this.neighbours[i].value < smallest) {
+                smallest = this.neighbours[i].value;
+                this.getSmallestNeighbourIndex = i;
+            }
+        }
+        this.smallestNeighbour = this.neighbours[this.getSmallestNeighbourIndex]
     }
 
 }

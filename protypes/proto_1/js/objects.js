@@ -97,15 +97,15 @@ class Unit {
         this.checkEdges()
     }
     checkEdges() {
-        if (this.loc.x < 0 || this.loc.x > canvas.offsetWidth) this.vel.x = - this.vel.x;
-        if (this.loc.y < 0 || this.loc.y > canvas.offsetHeight) this.vel.y = - this.vel.y;
+        if (this.loc.x < 0 || this.loc.x > window.innerWidth) this.vel.x = - this.vel.x;
+        if (this.loc.y < 0 || this.loc.y > window.innerHeight) this.vel.y = - this.vel.y;
     }
     update() {
-        var col = Math.floor(this.loc.x / game.boardWidth);
-        var row = Math.floor(this.loc.y / game.boardHeight)
-        if (game.grid[col][row] === game.goal) return;
-        if (game.grid[col][row] && !game.grid[col][row].occupied) {
-            var currCell = game.grid[col][row];
+        // var col = Math.floor(this.loc.x / game.boardWidth);
+        // var row = Math.floor(this.loc.y / game.boardHeight)
+        if (game.grid === game.goal) return;
+        if (game.grid && !game.grid.occupied) {
+            var currCell = game.grid;
             var nextCell = currCell.smallestNeighbour;
 
             // this.acc = this.acc.subGetNew(nextCell.center, this.loc);
@@ -178,8 +178,9 @@ class cell {
                 smallest = this.neighbours[i].value;
                 this.getSmallestNeighbourIndex = i;
             }
+            this.smallestNeighbour = this.neighbours[this.getSmallestNeighbourIndex]
         }
-        this.smallestNeighbour = this.neighbours[this.getSmallestNeighbourIndex]
+
     }
 
 }

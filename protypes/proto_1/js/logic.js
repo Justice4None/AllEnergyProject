@@ -49,17 +49,19 @@ var game = {
             }
         }
         // sort of a starting point
-        this.grid[0][0].occupied = false;
+        game.grid[0][0].occupied = false;
 
-        let nc = this.grid.length - 1;
-        let nr = this.grid[nc].length - 1;
+        let nc = game.grid.length - 1;
+        let nr = game.grid[nc].length - 1;
 
-        this.grid[nc][nr].occupied = false;
+        game.grid[nc][nr].occupied = false;
         //set a goal
         this.goal = game.grid[this.boardWidth - 1][this.boardHeight - 1]
         this.goal.occupied = false
         this.goal.value = 0
         this.brushfire();
+        this.addUnit();
+
 
     },
     brushfire: function () {
@@ -79,7 +81,9 @@ var game = {
         for (var c = 0; c < game.grid.length; c++) {
             for (r = 0; r < game.grid[c].length; r++) {
                 // find the smallest value
-                if (!game.grid[c][r].occupied) game.grid[c][r].getSmallestNeighbourValue()
+                if (!game.grid[c][r].occupied) {
+                    game.grid[c][r].getSmallestNeighbourValue()
+                }
             }
         }
     },
@@ -88,23 +92,37 @@ var game = {
         game.spaces[game.hoverTile].build(getSpace())
         game.spaces[game.hoverTile].developed === true
     },
-    addUnit: function () {
-        var numEnemies = Math.random() * 5;
-        let startCell;// i, j;
-        for (var i = 0; i < numEnemies; i++) {
-            for (j = 0; j < 3; j++) {
-                let startCell = this.grid[Math.random() * 0][Math.random() * 0]
-                if (startCell && startCell.parent)
-                    break;
+    addUnit: function (num) {
+
+        for (let i = 0; i < num; i++) {
+            var freecell = findFreeCell();
+            var xLoc = game.grid[freecell.c][freecell.r].loc.x + game.tileSize
+            var yLoc = game.grid[freecell.c][freecell.r].loc.y + game.tileSize
+            var spawnLocation = new JSVector(xLoc, yLoc);
+            var e = new Unit(spawnLocation);
+            game.units.push(e)
+        }
+        function findFreeCell() {
+
+            var cellIndex = { c: 0, r: 0 };
+            var col = Math.floor(Math.random() * game.boardWidth / 4)
+            var row = Math.floor(Math.random() * game.boardHeight)
+            while (game.grid[col], [row].occupied) {
+                col = Math.floor(Math.random() * game.boardWidth / 4)
+                row = Math.floor(Math.random() * game.boardHeight)
             }
+            cellIndex.c = col
+            cellIndex.r = row
+            return cellIndex;
 
         }
-        if (j < 3) {
-            let randomPath = Math.floor(Math.random() * 2)
-            this.units.push(new Unit(this.grid, startCell, randomPath))
-        }
     }
+
+
 }
+
+
+
 
 
 //User Player Object

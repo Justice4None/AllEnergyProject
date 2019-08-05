@@ -58,6 +58,7 @@ $('#landing_page').mousemove(function () {
 
 $('#login_btn').on('click', function () {
     showPage('#login_page'); {
+        //Plays the .mp3 referenced in the 'audio3' variable.
         audio3.play();
     }
     hidePage('#landing_page')
@@ -73,11 +74,9 @@ $('#login_btn').on('click', function () {
 })
 
 $('#login_submit_btn').on('click', function () {
-    showPage(menu_page); {
-        //Plays the .mp3 referenced in the 'audio3' variable.
-        audio3.play();
-    }
-    hidePage(login_page)
+    showPage(menu_page);
+    hidePage(login_page);
+    audio3.play();
 
     console.log("Travis: User Needs to be logged in")
     console.log("Travis: User Needs to be logged out on tab close")
@@ -156,12 +155,12 @@ $('#find_game_btn').on('click', function () {
 
 $('#join_game_btn').on('click', function () {
     $(this).css('background-color', '#ff0000')
+    audio3.play();
     hidePage(find_game_page); {
         //Pauses the .mp3 referenced in the 'audio1' variable.
         audio1.pause();
         //Sets the time of the .mp3 refereced in the 'audio1' wariable to 0.0 seconds.
         audio1.currentTime = 0.0
-        audio3.play();
         //Loops the .mp3 referenced in the 'audio2' variable.
         audio2.loop = true;
         //Plays the looped .mp3 referenced in the 'audio2' variable.

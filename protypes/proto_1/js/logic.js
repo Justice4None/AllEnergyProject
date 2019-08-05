@@ -11,27 +11,26 @@ var ctx = canvas.getContext("2d")
 //Master Game Object
 var game = {
     canvas: $('#game_canvas'),
-    tileSize: null,
+    tileSize: 32,
     spaces: [],
     towers: [],
     units: [],
     hoverTile: 0,
     boardWidth: 0,
     boardHeight: 0,
-    createBoard: function (boardWidth, boardHeight) {
+    createBoard: function (boardWidth, boardHeight, tileSize) {
         var boardCount = 0
         game.boardWidth = boardWidth
         game.boardHeight = boardHeight
-        game.tileSize = h / boardHeight
+        game.tileSize = tileSize
 
         for (var j = 0; j < boardHeight; j++) {
-            for (var i = 2.59; i < boardWidth; i++) {
+            for (var i = 0; i < boardWidth; i++) {
                 game.spaces[boardCount] = new space(boardCount, i * game.tileSize, j * game.tileSize)
                 boardCount++
             }
         }
     },
-
     addTower: function () {
         game.spaces[game.hoverTile].build(getSpace())
         game.spaces[game.hoverTile].developed === true
@@ -43,8 +42,6 @@ var game = {
 
 //User Player Object
 var player = {
-    activeTile: null,
-    hoverTile: null
 
     //Populated by Travis' Login
     //Interfaces with Travis' Firebase User Data
@@ -98,6 +95,20 @@ var render = {
 
 }
 
+var audio = {
+    files: [],
+    noiseMakers: [],
+    add: function () {
+        masterSound[masterSound.length] = new Audio()
+    },
+    play: function (sound) {
+
+    },
+    pause: function (sound) {
+
+    }
+}
+
 //Animation Timer
 var globalID
 var count = 0
@@ -117,7 +128,7 @@ function animate() {
 globalID = requestAnimationFrame(animate)
 update.window()
 
-game.createBoard(16, 10)
+game.createBoard(16, 10, 120)
 
 
 

@@ -6,18 +6,24 @@ function space(id, x, y) {
         this.y = y,
         this.size = game.tileSize,
         this.developed = false,
+        this.occupied = false,
         this.occupants = [],
         this.watching_towers = [],
-        this.occupied = false,
         this.tower = null,
         this.build = function (space_id) {
             var t = new tower(space_id)
             game.towers.push(t)
         },
         this.render = function (color) {
-            this.color = color
-            ctx.fillStyle = color
-            ctx.fillRect(this.x, this.y, this.size, this.size);
+
+            var ground_img = new Image()
+            ground_img.src = 'gfx/tiles/gravel.png'
+
+            ctx.drawImage(ground_img, this.x, this.y, game.tileSize, game.tileSize)
+
+            //this.color = color
+            //ctx.fillStyle = color
+            //ctx.fillRect(this.x, this.y, this.size, this.size);
         }
 }
 
@@ -45,15 +51,13 @@ function tower(space_id) {
                 this.color = '#ff3333'
                 this.hoverColor = '#ff8888'
             }
-            var audio = new Audio('./audio/tower-upgrade.mp3');
-            audio.play();
+
             this.peer()
         },
         this.render = function () {
 
             var img = new Image()
             img.src = 'gfx/buildings/tower_' + this.level + '.png'
-
 
             if (this.id === game.hoverTile) {
                 ctx.drawImage(img, this.x, this.y, game.tileSize, game.tileSize)
@@ -70,12 +74,10 @@ function tower(space_id) {
         },
         this.fall = function () {
             //console.log(myTowers[i].x)
-        }
-}
+        },
+        this.shoot = function () {
 
-function arrow(space_id) {
-    this.x =
-        this.y
+        }
 }
 
 //Unit Base Object
@@ -94,9 +96,26 @@ function unit(unit_id, space_id, x, y, type, speed) {
         this.health = health,
         this.damage = damage,
         this.ac = ac,
-        this.spawn = function (x, y) {
-            //Spawn Logic
+        this.sounds = [],
+        this.addSound = function (name, url) {
+            //load sound file from server
+            //push file to this.sounds[]
+            //push file to audio.files[]
+            //push object to audio.noisemakers[]
         },
+        this.setSound = function (sound) {
+            //assign new sound
+            //remove old sound
+        },
+        this.playSound = function (sound) {
+            //play passed sound file
+        },
+        this.pauseSound = function (sound) {
+            //play passed sound file
+        }
+    this.spawn = function (x, y) {
+        //Spawn Logic
+    },
         this.findPath = function (x, y, target_x, target_y) {
             //Pathfinding Logic
             //Map Obstruction Test( Before an Obsticle is placed)

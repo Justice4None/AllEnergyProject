@@ -1,0 +1,135 @@
+Peasant unit (friendly) v1 (Fists)
+Health Value: 0.25 > 0.35 > 0.5
+Armor Value: 0.0 
+Attack Dmg Value: 0.1 > 0.25 > 0.5 (Blunt Damage)
+Attack Speed Value: 1.0 > 1.25 > 1.35
+Move Speed Value: ???? FAST
+
+
+Peasant unit (enemy) v1 (Fists)
+Health Value: 0.25 > 0.35 > 0.5
+Armor Value: 0.0
+Attack Dmg Value: 0.1 > 0.25 > 0.5 (Blunt Damage)
+Attack Speed Value: 1.0 > 1.25 > 1.35
+Move Speed Value: ???? FAST
+
+=====================================================================
+
+Soldier light unit (friendly) v1 (Sword and Light Armor)
+Health Value: 2.5 > 3.0 > 3.5
+Armor Value: 0.5 > 1.0 > 1.35
+Attack Dgm Value: 1.0 > 1.75 > 2.25 (Slash damage)
+Attack Speed Value: 0.35 > 0.70 > 1.05
+Move Speed Value: ???? MEDIUM
+
+Soldier heavy unit (friendly) v1 (Mace and Heavy Armor)
+Health Value: 2.0 > 2.35 > 2.70
+Armor Value: 2.5 > 2.75 > 3.0
+Attack Dmg Value: 1.65 > 2.15 > 2.65 (Blunt Damage)
+Attack Speed Value: 0.1 > 0.25 > 0.5
+Move Speed Value: ???? SLOW
+
+Soldier light unit (enemy) v1 (Sword and Light Armor)
+Health Value: 2.5 > 3.0 > 3.5
+Armor Value: 0.5 > 1.0 > 1.35
+Attack Dmg Value: 1.0 > 1.75 > 2.25 (Slash Damage)
+Attack Speed Value: 0.35 > 0.70 > 1.05
+Move Speed Value: ???? MEDIUM
+
+Soldier heavy unit (enemy) v1 (Mace and Heavy Armor)
+Health Value: 2.0 > 2.35 > 2.70
+Armor Value: 2.5 > 2.75 > 3.0
+Attack Dmg Value: 1.65 > 2.15 > 2.65 (Blunt Damage)
+Attack Speed Value: 0.1 > 0.25 > 0.5
+Move Speed Value: ???? SLOW
+
+=====================================================================
+
+Archer unit (friendly) v1 (Bow and Arrow) 
+Health Value: 0.75 > 1.25 > 1.75
+Armor Value: 0.5 > 0.75 > 1.0
+Attack Dmg Value: 0.85 > 1.35 > 1.85 (Pierce Damage)
+Attack Speed Value: 0.75 > 1.15 > 1.55
+Move Speed Value: ???? FAST
+
+Archer unit (enemy) v1 (Bow and Arrow)
+Health Value: 0.75 > 1.25 > 1.75
+Armor Value: 0.5 > 0.75 > 1.0
+Attack Dmg Value: 0.85 > 1.35 > 1.85 (Pierce Damage)
+Attack Speed Value: 0.75 > 1.15 > 1.55
+Move Speed Value: ???? FAST
+
+Archer unit (friendly) v1 (Crossbow)
+Health Value: 0.75 > 1.25 > 1.75
+Armor Value: 0.6 > 0.85 > 1.1
+Attack Dmg Value: 1.0 > 1.5 > 2.0
+Attack Speed Value: 0.2 > 0.4 > 0.6
+Move Speed Value: ???? MEDIUM
+
+Archer unit (enemy) v1 (Crossbow)
+Health Value: 0.75 > 1.25 > 1.75
+Armor Value: 0.6 > 0.85 > 1.1
+Attack Dmg Value: 1.0 > 1.5 > 2.0
+Attack Speed Value: 0.2 > 0.4 > 0.6
+Move Speed Value: ???? MEDIUM
+
+=====================================================================
+
+Wizard unit (friendly) v1 (Wand)
+Health Value: 0.5 > 0.8 > 1.1
+Armor Value: 0 > 0.2 > 0.4
+Attack Dmg Value: 0.75 > 1.25 > 1.75 (Mana Damage)
+Attack Speed Value: 0.3 > 0.7 > 1.1
+Move Speed Value: ???? MEDIUM
+
+Wizard unit (enemy) v1 (Wand)
+Health Value: 0.5 > 0.8 > 1.1
+Armor Value: 0 > 0.2 > 0.4
+Attack Dmg Value: 0.75 > 1.25 > 1.75 (Mana Damage)
+Attack Speed Value: 0.3 > 0.7 > 1.1
+Move Speed Value: ???? MEDIUM
+
+Wizard unit (friendly) v1 (Staff)
+Health Value: 0.5 > 0.9 > 1.3
+Armor Value: 0.2 > 0.4 > 0.6
+Attack Dmg Value: 1.15 > 1.65 > 2.15
+Attack Speed Value: 0.1 > 0.4 > 0.7
+Move Speed Value: ???? Medium
+
+Wizard unit (enemy) v1 (Staff)
+Health Value: 0.5 > 0.9 > 1.3
+Armor Value: 0.2 > 0.4 > 0.6
+Attack Dmg Value: 1.15 > 1.65 > 2.15
+Attack Speed Value: 0.1 > 0.4 > 0.7
+Move Speed Value: ???? Medium
+
+=====================================================================
+
+Tower v1
+Attack Dmg Value: 0.5 > 1.25 > 2.0 > 2.75 > 3.5
+Attack Speed Value: 0.5 > 1.0 > 1.5 > 2.0 > 2.5
+
+=====================================================================
+
+**NOTES**:
+* The last two upgrades for the tower need to be *extremely* expensive to properly balance with how strong they are.
+* The "friendly" units are based upon the assumtion that we will eventually have deployable friendly units. If and when 
+  this happens, the tower will need to be nerfed severely to account for the additional firepower.
+* The "v1" will be changed/updated as we tweak the balance of the game, these are just the first version of the units.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

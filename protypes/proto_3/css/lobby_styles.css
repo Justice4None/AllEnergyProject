@@ -1,0 +1,55 @@
+.lobby h2{
+    text-align: center;
+    height: 90px;
+    line-height: 90px;
+    margin: 0px;
+}
+
+.player_panels{
+    width: 100%;
+    height: calc( 100% - 90px );
+    position: fixed;
+}
+
+.player_preview{
+    position: relative;
+    width: 50%;
+    height: 100%;
+}
+
+#this_player_prev{
+    float: left;
+    color: #0000ff;
+}
+
+#that_player_prev{
+    float: right;
+    color: #ff0000;
+}
+
+.player_preview .view{
+    position: absolute;
+    width: 100%;
+    height: calc( 100% - 200px );
+    top: 0px;
+    z-index: -1;
+    background-color: #00ffff;
+}
+
+.player_preview .options{
+    position: absolute;
+    width: 100%;
+    height: 200px;
+    text-align: center;
+    bottom: 0px;
+    background-color: #ffff00;
+}
+
+.player_preview .options div{
+    position: relative;
+    float: left;
+    width: 120px;
+    height: 120px;
+    margin: 10px;
+    background-color: #fff;
+}

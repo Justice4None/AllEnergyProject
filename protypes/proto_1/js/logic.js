@@ -25,12 +25,13 @@ var game = {
         game.tileSize = h / boardHeight
 
         for (var j = 0; j < boardHeight; j++) {
-            for (var i = 2.75; i < boardWidth; i++) {
+            for (var i = 2.59; i < boardWidth; i++) {
                 game.spaces[boardCount] = new space(boardCount, i * game.tileSize, j * game.tileSize)
                 boardCount++
             }
         }
     },
+
     addTower: function () {
         game.spaces[game.hoverTile].build(getSpace())
         game.spaces[game.hoverTile].developed === true
@@ -42,8 +43,6 @@ var game = {
 
 //User Player Object
 var player = {
-    activeTile: null,
-    hoverTile: null
 
     //Populated by Travis' Login
     //Interfaces with Travis' Firebase User Data
@@ -97,6 +96,20 @@ var render = {
 
 }
 
+var audio = {
+    files: [],
+    noiseMakers: [],
+    add: function () {
+        masterSound[masterSound.length] = new Audio()
+    },
+    play: function (sound) {
+
+    },
+    pause: function (sound) {
+
+    }
+}
+
 //Animation Timer
 var globalID
 var count = 0
@@ -116,7 +129,7 @@ function animate() {
 globalID = requestAnimationFrame(animate)
 update.window()
 
-game.createBoard(16, 10)
+
 
 
 

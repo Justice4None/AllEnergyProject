@@ -12,39 +12,18 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
         integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 
+    <!--references ======== fire base authentication and database-->
+    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-database.js"></script>
+
 
     <title>Tower_Defense_Prototype_1</title>
 
 </head>
 
 <body>
-
-
-
-
-    <div class="modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">User Login</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
 
     <div class="container text-center"></div>
     <div class="row">
@@ -63,7 +42,7 @@
                                 aria-label="Password" id="login-password">
                         </li>
                         <li class="form-group">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="submit">Log
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="login" id="submit">Log
                                 In</button>
                             <button class="btn btn-outline-success my-2 my-sm-0" type="logout" id="logout-button">Log
                                 Out</button>
@@ -74,12 +53,16 @@
                                 <form class="form-inline">
                                     <ul class="form-group">
                                     </ul>
-                                    <input class="form-control mr-sm-2" type="username" placeholder="Username"
-                                        aria-label="Username" id="signup-email" required>
+                                    <input class="form-control mr-sm-2" type="username" placeholder="Email"
+                                        aria-label="Username" id="signup-email">
                                     </ul>
                                     <ul class="form-group">
                                         <input class="form-control mr-sm-2" type="password" placeholder="Password"
-                                            aria-label="Password" id="signup-password" required>
+                                            aria-label="Password" id="signup-password">
+                                    </ul>
+                                    <ul class="form-group">
+                                        <input class="form-control mr-sm-2" type="display-name" placeholder="UserName"
+                                            aria-label="UserName" id="display-name">
                                     </ul>
                                     <ul class="form-group">
                                         <button class="btn btn-outline-success my-2 my-sm-0" type="register"
@@ -102,6 +85,8 @@
     </div>
     </div>
 
+    <div class="activeUsers"></div>
+
     <!--reference ===== bootstraps JS-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -113,28 +98,13 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-    <!--references ======== fire base authentication and database-->
-    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-firestore.js"></script>
 
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyDjKV-rKdyPgb9PHhiBoOBNWomrEW2t0yE",
-            authDomain: "allenergyproject.firebaseapp.com",
-            databaseURL: "https://allenergyproject.firebaseio.com",
-            projectId: "allenergyproject",
-            appId: "1:541298059757:web:e3046ccc97bbaf10"
-        };
-        firebase.initializeApp(firebaseConfig);
-    </script>
+
 
     <!--references ===== authentication logic-->
     <script src="../authentication/index.js "></script>
 
     <!--referenceing ===== protypes -- proto_1-- js -- logic -->
-    <script src="../protypes/proto_1/js/logic.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"

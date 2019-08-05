@@ -45,8 +45,8 @@ function tower(space_id) {
                 this.color = '#ff3333'
                 this.hoverColor = '#ff8888'
             }
-
-
+            var audio = new Audio('./audio/tower-upgrade.mp3');
+            audio.play();
             this.peer()
         },
         this.render = function () {

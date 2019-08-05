@@ -80,7 +80,7 @@ class Game {
 
         for (var i = 1; i <= 5; i++) {
             var propName = 'E' + i + '0000'
-            var f = JSONX.frames[propName].frame;
+            var f = JSON.frames[propName].frame;
             this.eneData.push(f);
         }
     };

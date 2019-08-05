@@ -50,6 +50,7 @@ $('#landing_page').mousemove(function () {
 
 })
 
+//Audio Variables within Global scope so they can be referenced when and where needed.
 var audio1 = new Audio("./audio/menu-music-1.mp3")
 var audio2 = new Audio("./audio/upbeat-music-1.mp3")
 
@@ -59,11 +60,12 @@ $('#login_btn').on('click', function () {
     console.log("Travis: Add Web Form")
     console.log("Dirk: Login Page Assets Needed - BLOCKING UX")
     console.log("Rebecca: Login Page UX Needed")
-    // console.log("William: Start Menu Intro Music")
-    // var audio1 = new Audio("./audio/music-1.mp3")
+    console.log("William: Start Menu Intro Music")
+    //Loops the .mp3 referenced in the 'audio1' variable.
     audio1.loop = true;
+    //Plays the looped .mp3 referenced in the 'audio1' variable.
     audio1.play()
-    
+
 })
 
 $('#login_submit_btn').on('click', function () {
@@ -133,14 +135,18 @@ $('#find_game_btn').on('click', function () {
 
 $('#join_game_btn').on('click', function () {
     $(this).css('background-color', '#ff0000')
-    hidePage(find_game_page);{
+    hidePage(find_game_page); {
+        //Pauses the .mp3 referenced in the 'audio1' variable.
         audio1.pause();
+        //Sets the time of the .mp3 refereced in the 'audio1' wariable to 0.0 seconds.
         audio1.currentTime = 0.0
     }
     showPage(lobby_page)
 
-    // console.log("William: Start Waiting for match music")
+    console.log("William: Start Waiting for match music")
+    // Loops the .mp3 referenced in the 'audio2' variable.
     audio2.loop = true;
+    // Plays the looped .mp3 referenced in the 'audio2' variable.
     audio2.play();
     // console.log("William: Load all in-game audio assets")
     // Not needed due to the way I call the audio to play.

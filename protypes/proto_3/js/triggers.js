@@ -8,6 +8,10 @@ $(window).on('load', function () {
 
     console.log("Dirk: Style Landing Page")
 })
+//Audio Variables within Global scope so they can be referenced when and where needed.
+var audio1 = new Audio("./audio/menu-music-1.mp3")
+var audio2 = new Audio("./audio/upbeat-music-1.mp3")
+var audio3 = new Audio("./audio/menu-transition.mp3")
 
 
 //log('dirk', 'Need close tab listener for log out event')
@@ -50,12 +54,12 @@ $('#landing_page').mousemove(function () {
 
 })
 
-//Audio Variables within Global scope so they can be referenced when and where needed.
-var audio1 = new Audio("./audio/menu-music-1.mp3")
-var audio2 = new Audio("./audio/upbeat-music-1.mp3")
+
 
 $('#login_btn').on('click', function () {
-    showPage('#login_page')
+    showPage('#login_page'); {
+        audio3.play();
+    }
     hidePage('#landing_page')
     console.log("Travis: Add Web Form")
     console.log("Dirk: Login Page Assets Needed - BLOCKING UX")
@@ -69,7 +73,10 @@ $('#login_btn').on('click', function () {
 })
 
 $('#login_submit_btn').on('click', function () {
-    showPage(menu_page)
+    showPage(menu_page); {
+        //Plays the .mp3 referenced in the 'audio3' variable.
+        audio3.play();
+    }
     hidePage(login_page)
 
     console.log("Travis: User Needs to be logged in")
@@ -80,7 +87,9 @@ $('#login_submit_btn').on('click', function () {
 })
 
 $('#signup_btn').on('click', function () {
-    showPage(signup_page)
+    showPage(signup_page); {
+        audio3.play();
+    }
     hidePage(login_page)
     hidePage(landing_page)
 
@@ -89,28 +98,36 @@ $('#signup_btn').on('click', function () {
 })
 
 $('#signup_submit_btn').on('click', function () {
-    showPage(login_page)
+    showPage(login_page); {
+        audio3.play();
+    }
     hidePage(signup_page)
 
     console.log("Travis: User Needs to be Validated")
 })
 
 $('#settings_btn').on('click', function () {
-    showPage(settings_page)
+    showPage(settings_page); {
+        audio3.play();
+    }
     hidePage(menu_page)
 
     console.log("Dirk: Settings Interface Needed")
 })
 
 $('#save_settings_btn').on('click', function () {
-    showPage(menu_page)
+    showPage(menu_page); {
+        audio3.play();
+    }
     hidePage(settings_page)
 
     console.log("Dirk: Settings Interface Needed")
 })
 
 $('#create_game_btn').on('click', function () {
-    showPage(create_game_page)
+    showPage(create_game_page); {
+        audio3.play();
+    }
     hidePage(menu_page)
 
     console.log("Dirk: Create Game Interface Needed")
@@ -118,7 +135,9 @@ $('#create_game_btn').on('click', function () {
 })
 
 $('#launch_game_btn').on('click', function () {
-    showPage(find_game_page)
+    showPage(find_game_page); {
+        audio3.play();
+    }
     hidePage(create_game_page)
 
     console.log("Dirk: Lobby Interface Needed")
@@ -126,7 +145,9 @@ $('#launch_game_btn').on('click', function () {
 })
 
 $('#find_game_btn').on('click', function () {
-    showPage(find_game_page)
+    showPage(find_game_page); {
+        audio3.play();
+    }
     hidePage(menu_page)
 
     console.log("Dirk: Find Game Interface Needed")
@@ -140,16 +161,15 @@ $('#join_game_btn').on('click', function () {
         audio1.pause();
         //Sets the time of the .mp3 refereced in the 'audio1' wariable to 0.0 seconds.
         audio1.currentTime = 0.0
+        audio3.play();
+        //Loops the .mp3 referenced in the 'audio2' variable.
+        audio2.loop = true;
+        //Plays the looped .mp3 referenced in the 'audio2' variable.
+        audio2.play();
     }
     showPage(lobby_page)
 
     console.log("William: Start Waiting for match music")
-    // Loops the .mp3 referenced in the 'audio2' variable.
-    audio2.loop = true;
-    // Plays the looped .mp3 referenced in the 'audio2' variable.
-    audio2.play();
-    // console.log("William: Load all in-game audio assets")
-    // Not needed due to the way I call the audio to play.
 })
 
 $('#quit_btn').on('click', function () {

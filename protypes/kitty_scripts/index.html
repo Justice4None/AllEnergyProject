@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="kitty_style.css">
+    <title>Kitty Scripts</title>
+</head>
+
+<body>
+    <section class='page'>
+        <h1>kitty.js</h1>
+        <p>^^ a light weight, on the fly user experience library ^^</p>
+    </section>
+    <section class='page'>
+        <div class='left' id='parallax_demo'>
+            <img id='spider_L1' src="img/spider_web/1.svg">
+            <img id='spider_L2' src="img/spider_web/1.svg">
+            <img id='spider_L3' src="img/spider_web/1.svg">
+        </div>
+        <div class='right'>
+            <div class='top'>
+            </div>
+            <div class='bottom'>
+                <code>
+                    $('#parallax_demo').mousemove(function () {
+                        <br><br>
+                        var x = event.clientX;     // Get the horizontal coordinate<br>
+                        var y = event.clientY;     // Get the vertical coordinate
+                        <br><br>
+                        kitty.parallax('#parallax_demo', x, y, 0.8, 0.1)
+                        <br><br>
+                    })
+                </code>
+            </div>
+        </div>
+    </section>
+    <section class='page'>
+        <div class='left'>
+            <h2>buttons</h2>
+        </div>
+        <div class='right'>
+            <div class='top'>
+            </div>
+            <div class='bottom'>
+                <code>code?</code>
+            </div>
+        </div>
+    </section>
+    <section>
+
+    </section>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
+        </script>
+    <script src="js/kitty_scripts.js">
+    </script>
+
+    <script>
+        var x;     // Get the horizontal coordinate
+        var y;     // Get the vertical coordinate
+
+        $('.page').mousemove(function (event) {
+
+            x = event.clientX;     // Get the horizontal coordinate
+            y = event.clientY;     // Get the vertical coordinate
+
+            var layers_array = ['#spider_L1', '#spider_L2', '#spider_L3']
+            kitty.parallax(layers_array)
+
+        })
+
+    </script>
+</body>
+
+</html>

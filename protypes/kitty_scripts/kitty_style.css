@@ -1,0 +1,57 @@
+
+body{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.page{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.left, .right{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+}
+
+.top, .bottom{
+    position: absolute;
+    width: 100%;
+    height: 50%;
+}
+
+.left{
+    left: 0px;
+}
+
+.right{
+    right: 0px;
+}
+
+.top{
+    top: 0px;
+}
+
+.bottom{
+    bottom: 0px;
+}
+
+code{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+/*Animations*/
+
+.horizTranslate {
+    -webkit-transition: 3s;
+    -moz-transition: 3s;
+    -ms-transition: 3s;
+    -o-transition: 3s;
+    transition: 3s;
+    margin-left: 50% !important;
+  }

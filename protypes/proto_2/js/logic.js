@@ -11,38 +11,46 @@ var ctx = canvas.getContext("2d")
 //Master Game Object
 var game = {
     canvas: $('#game_canvas'),
-    tileSize: null,
+    tileSize: 32,
     spaces: [],
     towers: [],
     units: [],
     hoverTile: 0,
     boardWidth: 0,
     boardHeight: 0,
-    createBoard: function (boardWidth, boardHeight) {
+    createBoard: function (boardWidth, boardHeight, tileSize) {
         var boardCount = 0
         game.boardWidth = boardWidth
         game.boardHeight = boardHeight
-        game.tileSize = h / boardHeight
+        game.tileSize = tileSize
 
         for (var j = 0; j < boardHeight; j++) {
-            for (var i = 2.59; i < boardWidth; i++) {
+            for (var i = 0; i < boardWidth; i++) {
                 game.spaces[boardCount] = new space(boardCount, i * game.tileSize, j * game.tileSize)
                 boardCount++
             }
         }
-    },
 
+        console.log(game.spaces)
+    },
     addTower: function () {
         game.spaces[game.hoverTile].build(getSpace())
         game.spaces[game.hoverTile].developed === true
     },
-    addUnit: function () {
+    addUnit: function (num) {
+        for (var i = 0; i < num; i++) {
+            var loc = new JSVector(this.canvas.width / 2, this.canvas.height / 2);
+            var e = new Unit(loc);
+            this.units.push(e)
+        }
 
     }
 }
 
 //User Player Object
 var player = {
+    activeTile: null,
+    hoverTile: null
 
     //Populated by Travis' Login
     //Interfaces with Travis' Firebase User Data
@@ -54,7 +62,7 @@ var update = {
     all: function () {
         //game.board.update()
         //game.towers.update()
-        //game.units.update()
+        // game.units.update()
         //game.player_1.update()
     },
     window: function () {
@@ -89,25 +97,11 @@ var render = {
         }
     },
     units: function () {
-        for (var i = 0; i < game.towers.length; i++) {
-            game.units[i].render()
+        for (var i = 0; i < game.units.length; i++) {
+            game.units[i].run()
         }
     }
 
-}
-
-var audio = {
-    files: [],
-    noiseMakers: [],
-    add: function () {
-        masterSound[masterSound.length] = new Audio()
-    },
-    play: function (sound) {
-
-    },
-    pause: function (sound) {
-
-    }
 }
 
 //Animation Timer
@@ -121,6 +115,7 @@ function animate() {
     render.background()
     render.tiles()
     render.towers()
+    render.units()
 
     globalID = requestAnimationFrame(animate)
 
@@ -129,7 +124,8 @@ function animate() {
 globalID = requestAnimationFrame(animate)
 update.window()
 
-
+game.createBoard(200, 12, 20)
+game.addUnit(5)
 
 
 

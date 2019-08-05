@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Added a link to our external stylesheets-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="css/landing_styles.css">
+    <!--Main-->
+
+    <title>Towers Wake</title>
+</head>
+
+<body>
+    <div class="portrait_box">
+        <img class="title" src="img/gfx/logo_title.svg">
+        <!--<img class="parallax_layer" id="fog_1" src='img/landing/layer_1.png'>
+        <img class="parallax_layer" id="fog_2" src='img/landing/layer_2.png'>-->
+    </div>
+    <section class="landing_btns">
+        <button id="signup_btn">sign up</button>
+        <button id="play_btn">play</button>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!--jQuery-->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!--UI jQuery-->
+
+    <script>
+
+        var count = 0
+        var fogCount = 0
+
+        function animate() {
+
+            window.requestAnimationFrame(animate)
+            count++
+
+            if (fogCount > -256) {
+                fogCount -= 0.2
+            } else {
+                fogCount = 0
+            }
+
+            $('#fog_1').css('left', fogCount * 0.5 + 'px')
+
+        }
+
+        //window.requestAnimationFrame(animate)
+
+    </script>
+
+</body>
+
+</html>

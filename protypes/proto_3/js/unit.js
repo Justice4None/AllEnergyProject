@@ -10,7 +10,7 @@ class Enemy {
         this.isLocked = false;
         this.initialVel = 1.8;
         this.isTarget = false;
-        this.deathSound = new Audio('resources/resources/sounds/splat.mp3');
+        // this.deathSound = new Audio('resources/resources/sounds/splat.mp3');
         this.lastTime = Date.now();
         this.coolDown = 1000;
         this.towerLoc = JSVector(0, 0);
@@ -199,11 +199,11 @@ class Enemy {
             this.angle = this.velVec.angle();
         }
         this.loc.add(this.velVec);          // apply velocity to location
-        this.fun()
+        // this.fun()
     }
-    fun() {
+    // fun() {
 
-    }
+    // }
     checkCollide(shape1, shape2) {
 
         if (shape1.shape === "circle") {
@@ -284,7 +284,7 @@ class Enemy {
 class Enemy1 extends Enemy {
     constructor(game) {
         super(game)
-        this.randomPath = 1
+        // this.randomPath = 1
         this.img = game.enDa[0];
         this.health = 5;
         this.value = 10
@@ -299,21 +299,21 @@ class Enemy2 extends Enemy {
         super(game)
         //  this.img=Enemy.image2
         this.img = game.enDa[1];
-        this.health == 10;
+        this.health = 25;
         this.value = 20;
         this.walk = new Audio("audio/monster-sound-3.mp3");
         this.walk.play()
     }
-    fun() {
-        this.velVec = this.velVec.copy().normalize().scale(Math.random() * 10)
-    }
+    // fun() {
+    //     this.velVec = this.velVec.copy().normalize().scale(Math.random() * 10)
+    // }
 }
 class Enemy3 extends Enemy {
     constructor(game) {
         super(game)
         //  this.img=Enemy.image3
         this.img = game.enDa[2];
-        this.health = 20
+        this.health = 35
         this.value = 30
         this.walk = new Audio("audio/succubus-laugh-1.mp3");
         this.walk.play()
@@ -324,7 +324,7 @@ class Enemy4 extends Enemy {
         super(game)
         this.img = game.enDa[3];
         //  this.img=Enemy.image4
-        this.health = 30
+        this.health = 45
         this.value = 40
         this.walk = new Audio("audio/fire-wizard-2.mp3");
         this.walk.play()

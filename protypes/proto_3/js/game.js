@@ -30,7 +30,7 @@ function loadImages() {
     wallImag = new Image();
     wallImag.src = "resources/resources/images/spritesheets/jungle_wall.png";
     ssImage = new Image();
-    ssImage.src = "resources/resources/images/spritesheets/sprites2_v1.png";
+    ssImage.src = "resources/resources/images/spritesheets/sprites_final.png";
     window.setTimeout(setup, 1500);
     aImage = new Image();
     aImage.src = "resources/resources/images/spritesheets/arrow.png"

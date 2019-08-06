@@ -11,6 +11,7 @@ class Enemy {
         this.initialVel = 1.8;
         this.isTarget = false;
         this.deathSound = new Audio('resources/resources/sounds/splat.mp3');
+        this.walk = new Audio("../audio/acolyte-chant-1.mp3");
         this.lastTime = Date.now();
         this.coolDown = 1000;
         this.towerLoc = JSVector(0, 0);
@@ -142,10 +143,14 @@ class Enemy {
         if (this.health <= 0) {
             this.kill = true;
 
-            this.deathSound.play();
+            // this.deathSound.play();
             //console.log("play");
             if (Enemy1.kill = true) {
                 towerGame.bankValue += 10
+                this.walk.pause()
+                this.deathSound.play()
+            } else {
+                this.walk.play()
             }
             if (Enemy2.kill = true) {
                 towerGame.bankValue += 25
@@ -286,6 +291,7 @@ class Enemy1 extends Enemy {
         this.img = game.enDa[0];
         this.health = 5;
         this.value = 10
+
         //  this.img=Enemy.image1
     }
 }

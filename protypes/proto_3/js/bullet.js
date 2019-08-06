@@ -22,9 +22,9 @@ class Bullet {
         var ctx = towerGame.context;
         ctx.save();
         ctx.translate(this.loc.x, this.loc.y);
-        // ctx.rotate(this.angle + Math.PI / 2);
+        ctx.rotate(this.angle + Math.PI / 2);
         //  ctx.drawImage(this.img, -this.img.width/2,-this.img.height/2);
-        ctx.drawImage(aImage, 0, 0, 128, 32, 0, 0, this.img.w, this.img.h);
+        ctx.drawImage(aImage, 0, 0, 30, 128, 0, 0, this.img.w, this.img.h);
 
         ctx.restore();
     }

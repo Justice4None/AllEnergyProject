@@ -11,7 +11,7 @@ jsonx = {
 		},
 		"E10000":
 		{
-			"frame": { "x": 380, "y": 126, "w": 126, "h": 126 },
+			"frame": { "x": 420, "y": 130, "w": 126, "h": 126 },
 			"rotated": false,
 			"trimmed": false,
 			"spriteSourceSize": { "x": 0, "y": 0, "w": 126, "h": 126 },
@@ -19,7 +19,7 @@ jsonx = {
 		},
 		"E20000":
 		{
-			"frame": { "x": 300, "y": 126, "w": 126, "h": 126 },
+			"frame": { "x": 300, "y": 130, "w": 126, "h": 126 },
 			"rotated": false,
 			"trimmed": false,
 			"spriteSourceSize": { "x": 0, "y": 0, "w": 126, "h": 126 },
@@ -35,7 +35,7 @@ jsonx = {
 		},
 		"E40000":
 		{
-			"frame": { "x": 126, "y": 126, "w": 126, "h": 126 },
+			"frame": { "x": 140, "y": 130, "w": 126, "h": 126 },
 			"rotated": false,
 			"trimmed": false,
 			"spriteSourceSize": { "x": 0, "y": 0, "w": 126, "h": 126 },
@@ -43,7 +43,7 @@ jsonx = {
 		},
 		"E50000":
 		{
-			"frame": { "x": 10, "y": 126, "w": 126, "h": 126 },
+			"frame": { "x": 10, "y": 130, "w": 126, "h": 126 },
 			"rotated": false,
 			"trimmed": false,
 			"spriteSourceSize": { "x": 0, "y": 0, "w": 126, "h": 126 },

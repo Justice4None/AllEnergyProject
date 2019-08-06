@@ -33,7 +33,7 @@ function loadImages() {
     ssImage.src = "resources/resources/images/spritesheets/sprites_final.png";
     window.setTimeout(setup, 1500);
     aImage = new Image();
-    aImage.src = "resources/resources/images/spritesheets/arrow.png"
+    aImage.src = "resources/resources/images/spritesheets/uparr.png"
 }
 function setup() {
     wrap = document.getElementById('wrapperDiv');
@@ -122,8 +122,21 @@ class Game {
         this.brushfire()
 
 
-        var button = $("#pauseButton").on('click', this.paused, false)
+        var button = document.getElementById('pauseButton');
+        button.addEventListener('click', this.pause, false);
+
+        var fastForwardButton = document.getElementById('fastForward');
+        fastForwardButton.addEventListener('click', function () {
+            if (FRAME_RATE == 30) {
+                FRAME_RATE = 60;
+                fastForwardButton.innerHTML = "Slow Down";
+            } else {
+                fastForwardButton.innerHTML = "Fast Forward";
+                FRAME_RATE = 30;
+            }
+        }, false);
     }
+
 
 
 

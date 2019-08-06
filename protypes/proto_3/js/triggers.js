@@ -13,6 +13,24 @@ var audio1 = new Audio("./audio/mellow-music-1.mp3")
 var audio2 = new Audio("./audio/hype-music-1.mp3")
 var audio3 = new Audio("./audio/transition-1.mp3")
 
+//Auth setup
+var config = {
+    apiKey: "AIzaSyDjKV-rKdyPgb9PHhiBoOBNWomrEW2t0yE",
+    authDomain: "allenergyproject.firebaseapp.com",
+    databaseURL: "https://allenergyproject.firebaseio.com",
+    projectId: "allenergyproject",
+    storageBucket: "allenergyproject.appspot.com",
+    messagingSenderId: "541298059757",
+    appId: "1:541298059757:web:e3046ccc97bbaf10"
+};
+firebase.initializeApp(config);
+
+var auth = firebase.auth();
+var dataRef = firebase.firestore();
+var user = firebase.auth().currentUser;
+var db = firebase.database();
+// var uid = firebase.auth().currentUser.uid;
+// var email = firebase.auth().currentUser.email;
 
 
 //log('dirk', 'Need close tab listener for log out event')
@@ -53,6 +71,9 @@ $('#landing_page').mousemove(function () {
     // kitty.sparkle('#landing_page')
 
 })
+
+
+
 
 $('#login_btn').on('click', function () {
     showPage('#login_page'); {

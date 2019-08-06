@@ -2,7 +2,7 @@
 var dataRef = firebase.database();
 var x = 0;
 var y = 0;
-
+//on click push XY coordinates to database
 $(canvas).on('click', function () {
     x = event.clientX;     // Get the horizontal coordinate
     y = event.clientY;     // Get the vertical coordinate
@@ -14,10 +14,10 @@ $(canvas).on('click', function () {
         email: email,
         x: x,
         y: y
-    })
+    });
 });
 
-
+/*
 var dbHoverX = (snapshot.val().x);
 var dbHoverY = (snapshot.val().y);
 
@@ -32,11 +32,11 @@ var player = {
     //Interfaces with Travis' Firebase User Data
 
 }
+*/
 
-console.log(snapshot.val().email);
 
 database.ref().on("value", function (snapshot) {
-
+    console.log(snapshot.val().email);
 });
 
 //click listener
@@ -46,8 +46,9 @@ database.ref().on("value", function (snapshot) {
 
 
 // connected reference
+var connectedRef = firebase.database().ref(".info/connected");
 connectedRef.on("value", function (snap) {
-
+    console.log('connectedRef working' + .info / connected)
     if (snap.val()) {
 
         var con = connectionsRef.push(true);
@@ -55,3 +56,15 @@ connectedRef.on("value", function (snap) {
         con.onDisconnect().remove();
     }
 });
+
+
+
+
+connectedRef.on("value", function (snap) {
+    if (snap.val() === true) {
+        alert("connected");
+    } else {
+        alert("not connected");
+    }
+});
+

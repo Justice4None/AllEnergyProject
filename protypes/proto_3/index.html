@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="css/ui_styles.css">
     <link rel="stylesheet" href="css/landing_styles.css">
     <link rel="stylesheet" href="css/lobby_styles.css">
+    <!--references ======== fire base authentication and database-->
+    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-database.js"></script>
     <style>
         body {
             margin: 0;
@@ -37,12 +42,46 @@
         </div>
     </section>
     <section class="signup page" id="signup_page">
-        <h1>Travis' Sign Up Form</h1>
-        <button class="page_btn" id="signup_submit_btn">Submit</button>
+        <div id="register-div">
+            <div id="signup" id="test-register-form">
+                <h4>sign up here</h4>
+                <form class="form-inline">
+                    <ul class="form-group">
+                    </ul>
+                    <input class="form-control mr-sm-2" type="username" placeholder="Email" aria-label="Username"
+                        id="signup-email">
+                    </ul>
+                    <ul class="form-group">
+                        <input class="form-control mr-sm-2" type="password" placeholder="Password" aria-label="Password"
+                            id="signup-password">
+                    </ul>
+                    <ul class="form-group">
+                        <input class="form-control mr-sm-2" type="display-name" placeholder="UserName"
+                            aria-label="UserName" id="display-name">
+                    </ul>
+                    <ul class="form-group">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="register"
+                            id="register-button">register</button>
+                    </ul>
+                </form>
+
     </section>
     <section class="signin page" id="login_page">
-        <h1>Travis' Sign In Form</h1>
-        <button class="page_btn" id="login_submit_btn">Login</button>
+        <form class="form-inline" id="login-form">
+            <li class="form-group">
+                <input class="form-control mr-sm-2" type="username" placeholder="Username" aria-label="Username"
+                    id="login-email">
+            </li>
+            <li class="form-group">
+                <input class="form-control mr-sm-2" type="password" placeholder="Password" aria-label="Password"
+                    id="login-password">
+            </li>
+            <li class="form-group">
+                <button class="btn btn-outline-success my-2 my-sm-0" id="login_submit_btn">Login</button>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="logout" id="logout-button">Log
+                    Out</button>
+            </li>
+        </form>
     </section>
     <section class="menu page" id="menu_page">
         <div class="menu">
@@ -128,6 +167,7 @@
 <script src="js/tilt.jquery.js"></script>
 <script src="js/triggers.js"></script>
 <script src="js/logic.js"></script>
+<script src="js/game.js"></script>
 
 
 </html>

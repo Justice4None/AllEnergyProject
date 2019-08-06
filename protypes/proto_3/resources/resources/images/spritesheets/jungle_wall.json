@@ -1,0 +1,20 @@
+{
+    "frames": {
+        "B10000": {
+            "@attributes": {
+                "width": "126",
+                "height": "126"
+            },
+            "image": {
+                "@attributes": {
+                    "id": "image0",
+                    "width": "126",
+                    "height": "126",
+                    "x": "0",
+                    "y": "0",
+                    "xlink:href": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAH4AAAB+CAMAAADV/VW6AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABxVBMVEUsNwAtOAA8SQBPXwBSYgAuOQA1QQBJWABecABxhgCHngCbtQCuzACz0QCmwwB1igBCUAAvOwBDUQBXaABrfwCAlgCTrQCoxQCXsQBkdwBleAB5jwCNpgCivQCy0ACwzQCGngBTZAA1QABCTABOVwBZYgBjawBscwB0egB7gACChQCHiQBESwBRYQBPXABueACMjACPjgCSjgCTjgCUjACUigCShgCShQCQhABQUwB+lAA2QgCrxwCyzwCtxACpuQCkrwCfpACbmQCWjgBkYgCduAB7kQCjrQB4cQA0PQCxzwCxzQCUiwCGfAA/RgBOXgCoxABUZACOpwCOggBARgBHVgCtygBziQBbWwCWsACwzgCTrAAvOgCfugBvagBcbgCvzABnewCEegBofABKWQAyPAB3jQBpfABGSwCDmwCIoACMgwCnxACViwCFiABmbwA6RABGTwBeXABjXwBzbACDeQAzPwCZswBATQBjdgBbWgBSUgBgXQCRhAA4RACgvAClwQB0iQBBTwB1bgA/TQCvzQCFnABUUwCIfQA0QQAyPgB8kwCBmAB7kgCqxwBdXAB/lgBqZwB7eAB4dQBDTABMXAD///8PNnqfAAAAAWJLR0SWkWkrOQAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB+MIBgUKGz9eNBwAAAJoSURBVGje7ZbnX9NQFIZTrYjjslyAE3BrXYwWcaMVxUFRlChuxQkaFRVwUgcqal3/rzdNCbk3ae+9+SXmy/t8Pcl5+p6c20TTAAAAAAAAAAAAAAAAAAAAQBTEZs2Oz4lCXDa3fN78BQsJIRWVVf/RW12zaPGSpcuIk9q6stC9dND1y1esXEW8WL2mIYiH0Ni0dt36DRs3bd6ylS1Ygy5FRcKfctt2atuxc1dzS2tb0ibVzlxExOz2Ze/YQ/bu23/g4KHOJMvhmJr+iC992r7/KOfvOqakJx0+7DXH7du7T3D+k6dc+trTLhp6CrWMD32v4+fz8ZNnzvL6uEeLvnNW7by6PeOcnit+sp/T655NEhfyxYvK9oFLzNNzxb/M6ePeba7ki1erVfXX2OVxxb/O6vVifW7kyzcV7fTQkdLxbzH6eNFOg2b5tqI+zdnd8e849XrxTrG7tH5Pze44dEz8tvspfvcE4emriB6hB2r6XpeddA81Dz98ZDx+8nQk5dw9QXjKs+eEvFCxZ9x2fdT66zLGxsdfvnLsnig85fUbUq5g5w4dIW/fTdhF05917J4wPOV9j8pbhz10Hz6yn03U/2lyZvfE4Sl9wl84A3Po9NHPfJ36zfH3T+tlWie+SOvTnkNn/Vl792TCqzB96PihM346/sLuSYVX4GuxoTN+On5r9wIOr01R+bcJwUXGWLawewGHN/XfB4RXGT8mrd3z+R1ZSp+TuMz4+Stgsa2XepzG75D0ErM3+ROSPhdKX2l9wEdJUS85+7D0uSjt2lSks9cGI5299jdSOwAAAAAAAAAAAAAAoDT/AM9Doqnm/SODAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE5LTA4LTA2VDA3OjEwOjEzKzAyOjAwZZRifgAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxOS0wOC0wNlQwNzoxMDoxMyswMjowMBTJ2sIAAAAASUVORK5CYII="
+                }
+            }
+        }
+    }
+}

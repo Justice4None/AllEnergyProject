@@ -53,3 +53,9 @@
     margin: 10px;
     background-color: #fff;
 }
+#menuDiv{
+    position: relative;
+    float: right;
+    height: 120px;
+    width: 120px;
+}

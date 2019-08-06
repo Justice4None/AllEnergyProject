@@ -42,6 +42,7 @@ var db = firebase.database();
 $(canvas).mousemove(function (event) {
     var x = event.clientX;     // Get the horizontal coordinate
     var y = event.clientY;     // Get the vertical coordinate
+
     //game.hoverTile = getSpace(x, y)
 })
 
@@ -67,154 +68,191 @@ $('#landing_page').mousemove(function () {
     var y = event.clientY;     // Get the vertical coordinate
     var prxArray = ['#fog_1', '#fog_2']
     kitty.parallax(prxArray, x, y, 0.8, 0.1)
+    // kitty.sparkle('#landing_page')
+
 })
 
 
 
 
 $('#login_btn').on('click', function () {
-    showPage('#login_page');{
+    showPage('#login_page'); {
         //Plays the .mp3 referenced in the 'audio3' variable.
         audio3.play()
     }
 },
 
-$('#login_btn').on('click', function () {
-    showPage('#login_page');{
-        //Plays the .mp3 referenced in the 'audio3' variable.
-        audio3.play()
-        //Loops the .mp3 referenced in the 'audio1' variable.
-        audio1.loop = true;
-        //Plays the looped .mp3 referenced in the 'audio1' variable.
-        audio1.play()
-    }
-    hidePage('#landing_page')
-    console.log("Travis: Add Web Form")
-    console.log("Dirk: Login Page Assets Needed - BLOCKING UX")
-    console.log("Rebecca: Login Page UX Needed")
-    console.log("William: Start Menu Intro Music")
-}),
+    $('#login_btn').on('click', function () {
+        WebAuthentication.onAuthStateChanged(function (user) {
+            if (user) {
+                showPage('#menu_page');
+                hidePage('#login_page');
+                //Plays the .mp3 referenced in the 'audio3' variable.
+                audio3.play()
+            } else {
+                showPage('#login_page')
+                audio3.pause()
+                //Loops the .mp3 referenced in the 'audio1' variable.
+                audio1.loop = true;
+                //Plays the looped .mp3 referenced in the 'audio1' variable.
+                audio1.play()
+                hidePage('#landing_page')
+            }
+            console.log("Travis: Add Web Form")
+            console.log("Dirk: Login Page Assets Needed - BLOCKING UX")
+            console.log("Rebecca: Login Page UX Needed")
+            console.log("William: Start Menu Intro Music")
+        })
+    }),
 
-$('#login_submit_btn').on('click', function () {
-    showPage(menu_page);{
-        //Plays the .mp3 referenced in the 'audio3' variable.
-        audio3.play()
-    }
-    hidePage(login_page);
-}),
+    $('#login_submit_btn').on('click', function (e, user) {
+        e.preventDefault()
+        auth.onAuthStateChanged(function (user) {
+            if (user) {
+                console.log("user already logged in")
+            } else {
+                var email = $('#login-email').val();
+                var password = $('#login-password').val();
+                console.log('login:  ', email, password);
+                //sign in user
+                auth.signInWithEmailAndPassword(email, password).then(credential => {
+                    console.log(credential)
+                })
+                $("input[type='password']").val("");
+                $("input[type='username']").val("");
+                showPage(menu_page);
+                hidePage(login_page);
+                audio3.play();
 
-$('#login_submit_btn').on('click', function () {
-    showPage(menu_page);{
-        //Plays the .mp3 referenced in the 'audio3' variable.
+            }
+        })
+        console.log("Dirk: Menu Page Assets Needed - BLOCKING UX")
+        console.log("Rebecca: Menu Page UX Needed")
+    }),
+
+    // let signUpForm = document.querySelector('#test-register-form');
+    $('#register-button').on('click', function (e, user) {
+        e.preventDefault();
+        //get user email and password
+        var email = $('#signup-email').val().trim();
+        var password = $('#signup-password').val().trim();
+        var userName = $("#display-name").val().trim();
+        //sign up user
+        auth.createUserWithEmailAndPassword(email, password).then(credential => {
+            $('#test-register-form').hide();
+            $('#register-div').text('You were successfully registered!');
+            showPage(menu_page)
+        });
+    }),
+
+    $('#signup_btn').on('click', function () {
+        showPage(signup_page); {
+            //Plays the .mp3 referenced in the 'audio3' variable.
+            audio3.play()
+            //Loops the .mp3 referenced in the 'audio1' variable.
+            audio1.loop = true;
+            //Plays the looped .mp3 referenced in the 'audio1' variable.
+            audio1.play()
+        }
+        hidePage(login_page);
+        hidePage(landing_page);
         audio3.play();
-    }
-    hidePage(login_page);
-    console.log("Travis: User Needs to be logged in")
-    console.log("Travis: User Needs to be logged out on tab close")
-    console.log("Dirk: Menu Page Assets Needed - BLOCKING UX")
-    console.log("Rebecca: Menu Page UX Needed")
-}),
+        console.log("Dirk: Signup Page Assets Needed - BLOCKING UX")
+        console.log("Rebecca: Signup Page UX Needed")
+    }),
+
+    $('#signup_submit_btn').on('click', function () {
+        showPage(login_page); {
+            //Plays the .mp3 referenced in the 'audio3' variable.
+            audio3.play()
+        }
+        hidePage(signup_page);
+        console.log("Travis: User Needs to be Validated")
+    }),
+
+    $('#settings_btn').on('click', function () {
+        showPage(settings_page); {
+            //Plays the .mp3 referenced in the 'audio3' variable.
+            audio3.play()
+        }
+        hidePage(menu_page);
+        audio3.play();
+        console.log("Dirk: Settings Interface Needed")
+    }),
+
+    $('#save_settings_btn').on('click', function () {
+        showPage(menu_page); {
+            //Plays the .mp3 referenced in the 'audio3' variable.
+            audio3.play()
+        }
+        hidePage(settings_page);
+        audio3.play();
+        console.log("Dirk: Settings Interface Needed")
+    }),
+
+    $('#create_game_btn').on('click', function () {
+        showPage(create_game_page); {
+            //Plays the .mp3 referenced in the 'audio3' variable.
+            audio3.play()
+        }
+        hidePage(menu_page)
+        console.log("Dirk: Create Game Interface Needed")
+        console.log("Travis: Add Game to Server")
+    }),
+
+    $('#launch_game_btn').on('click', function () {
+        showPage(find_game_page); {
+            //Plays the .mp3 referenced in the 'audio3' variable.
+            audio3.play()
+        }
+        hidePage(create_game_page)
+        console.log("Dirk: Lobby Interface Needed")
+        console.log("Travis: Lobby Interface Needed")
+    }),
+
+    $('#find_game_btn').on('click', function () {
+        showPage(find_game_page); {
+            //Plays the .mp3 referenced in the 'audio3' variable.
+            audio3.play()
+        }
+        hidePage(menu_page)
+        console.log("Dirk: Find Game Interface Needed")
+        console.log("Dirk: Find Game fix jQuery-UI plugin")
+    }),
+
+    $('#join_game_btn').on('click', function () {
+        $(this).css('background-color', '#ff0000')
+        console.log("William: Start Waiting for match music")
+        hidePage(find_game_page)
+        showPage(lobby_page); {
+            //Plays the .mp3 referenced in the 'audio3' variable.
+            audio3.play()
+            //Pauses the .mp3 referenced in the 'audio1' variable.
+            audio1.pause();
+            //Sets the time of the .mp3 refereced in the 'audio1' wariable to 0.0 seconds.
+            audio1.currentTime = 0.0
+            //Loops the .mp3 referenced in the 'audio2' variable.
+            audio2.loop = true;
+            //Plays the looped .mp3 referenced in the 'audio2' variable.
+            audio2.play();
+        }
+        console.log("William: Start Waiting for match music")
+        console.log("William: Load all in-game audio assets")
+
+    }),
+    $('#start_game').on('click', function () {
+        startGame()
+
+    }),
 
 
-$('#signup_btn').on('click', function () {
-    showPage(signup_page);{
-        //Plays the .mp3 referenced in the 'audio3' variable.
-        audio3.play()
-        //Loops the .mp3 referenced in the 'audio1' variable.
-        audio1.loop = true;
-        //Plays the looped .mp3 referenced in the 'audio1' variable.
-        audio1.play()
-    }
-    hidePage(login_page);
-    hidePage(landing_page);
-    audio3.play();
-    console.log("Dirk: Signup Page Assets Needed - BLOCKING UX")
-    console.log("Rebecca: Signup Page UX Needed")
-}),
-
-
-$('#signup_submit_btn').on('click', function () {
-    showPage(login_page);{
-        //Plays the .mp3 referenced in the 'audio3' variable.
-        audio3.play()
-    }
-    hidePage(signup_page);
-    console.log("Travis: User Needs to be Validated")
-}),
-
-
-$('#settings_btn').on('click', function () {
-    showPage(settings_page);{
-        //Plays the .mp3 referenced in the 'audio3' variable.
-        audio3.play()
-    }
-    hidePage(menu_page);
-    audio3.play();
-    console.log("Dirk: Settings Interface Needed")
-}),
-
-$('#save_settings_btn').on('click', function () {
-    showPage(menu_page);{
-        //Plays the .mp3 referenced in the 'audio3' variable.
-        audio3.play()
-    }
-    hidePage(settings_page);
-    audio3.play();
-    console.log("Dirk: Settings Interface Needed")
-}),
-
-$('#create_game_btn').on('click', function () {
-    showPage(create_game_page);{
-        //Plays the .mp3 referenced in the 'audio3' variable.
-        audio3.play()
-    }
-    hidePage(menu_page)
-    console.log("Dirk: Create Game Interface Needed")
-    console.log("Travis: Add Game to Server")
-}),
-
-$('#launch_game_btn').on('click', function () {
-    showPage(find_game_page);{
-        //Plays the .mp3 referenced in the 'audio3' variable.
-        audio3.play()
-    }
-    hidePage(create_game_page)
-    console.log("Dirk: Lobby Interface Needed")
-    console.log("Travis: Lobby Interface Needed")
-}),
-
-$('#find_game_btn').on('click', function () {
-    showPage(find_game_page);{
-        //Plays the .mp3 referenced in the 'audio3' variable.
-        audio3.play()
-    }
-    hidePage(menu_page)
-    console.log("Dirk: Find Game Interface Needed")
-    console.log("Dirk: Find Game fix jQuery-UI plugin")
-}),
-
-$('#join_game_btn').on('click', function () {
-    $(this).css('background-color', '#ff0000')
-    console.log("William: Start Waiting for match music")
-    hidePage(find_game_page)
-    showPage(lobby_page);{
-        //Plays the .mp3 referenced in the 'audio3' variable.
-        audio3.play()
-        //Pauses the .mp3 referenced in the 'audio1' variable.
-        audio1.pause();
-        //Sets the time of the .mp3 refereced in the 'audio1' wariable to 0.0 seconds.
-        audio1.currentTime = 0.0
-        //Loops the .mp3 referenced in the 'audio2' variable.
-        audio2.loop = true;
-        //Plays the looped .mp3 referenced in the 'audio2' variable.
-        audio2.play();
-    }
-    console.log("William: Start Waiting for match music")
-    console.log("William: Load all in-game audio assets")
-
-
-
-$('#quit_btn').on('click', function () {
-    console.log("Travis: Log the user out")
-    console.log("Rebecca: Hide Menu Page and show Landing Page")
+    $('#quit_btn').on('click', function () {
+        console.log("Travis: Log the user out")
+        console.log("Rebecca: Hide Menu Page and show Landing Page")
+        window.onbeforeunload = (function (event) {
+            if (event) {
+                auth.signOut()
+            }
+        });
+    }))
 

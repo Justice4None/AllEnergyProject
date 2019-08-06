@@ -13,6 +13,24 @@ var audio1 = new Audio("./audio/mellow-music-1.mp3")
 var audio2 = new Audio("./audio/hype-music-1.mp3")
 var audio3 = new Audio("./audio/transition-1.mp3")
 
+//Auth setup
+var config = {
+    apiKey: "AIzaSyDjKV-rKdyPgb9PHhiBoOBNWomrEW2t0yE",
+    authDomain: "allenergyproject.firebaseapp.com",
+    databaseURL: "https://allenergyproject.firebaseio.com",
+    projectId: "allenergyproject",
+    storageBucket: "allenergyproject.appspot.com",
+    messagingSenderId: "541298059757",
+    appId: "1:541298059757:web:e3046ccc97bbaf10"
+};
+firebase.initializeApp(config);
+
+var auth = firebase.auth();
+var dataRef = firebase.firestore();
+var user = firebase.auth().currentUser;
+var db = firebase.database();
+// var uid = firebase.auth().currentUser.uid;
+// var email = firebase.auth().currentUser.email;
 
 
 //log('dirk', 'Need close tab listener for log out event')
@@ -50,6 +68,9 @@ $('#landing_page').mousemove(function () {
     var prxArray = ['#fog_1', '#fog_2']
     kitty.parallax(prxArray, x, y, 0.8, 0.1)
 })
+
+
+
 
 $('#login_btn').on('click', function () {
     showPage('#login_page');{
@@ -94,6 +115,7 @@ $('#login_submit_btn').on('click', function () {
     console.log("Rebecca: Menu Page UX Needed")
 }),
 
+
 $('#signup_btn').on('click', function () {
     showPage(signup_page);{
         //Plays the .mp3 referenced in the 'audio3' variable.
@@ -110,6 +132,7 @@ $('#signup_btn').on('click', function () {
     console.log("Rebecca: Signup Page UX Needed")
 }),
 
+
 $('#signup_submit_btn').on('click', function () {
     showPage(login_page);{
         //Plays the .mp3 referenced in the 'audio3' variable.
@@ -118,6 +141,7 @@ $('#signup_submit_btn').on('click', function () {
     hidePage(signup_page);
     console.log("Travis: User Needs to be Validated")
 }),
+
 
 $('#settings_btn').on('click', function () {
     showPage(settings_page);{
@@ -188,9 +212,9 @@ $('#join_game_btn').on('click', function () {
     console.log("William: Start Waiting for match music")
     console.log("William: Load all in-game audio assets")
 
-}),
+
 
 $('#quit_btn').on('click', function () {
     console.log("Travis: Log the user out")
     console.log("Rebecca: Hide Menu Page and show Landing Page")
-}))
+

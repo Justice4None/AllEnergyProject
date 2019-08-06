@@ -28,17 +28,17 @@ var JSVector = function (vx, vy) {
             return (this);
         },
 
-        // 2-20-17 added dist()
+
         dist: function (vec2) {
             return (vec2.copy().sub(this).length());
         },
 
-        // 2-20-17 added angleBetween()
+
         angleBetween: function (vec2) {
             return (vec2.angle() - this.angle());
         },
 
-        // 2-20-17 added angle()
+
         angle: function () {
             return (Math.atan2(this.y, this.x));
         },
@@ -89,12 +89,11 @@ var JSVector = function (vx, vy) {
             return '(' + vec.x.toFixed(3) + ',' + vec.y.toFixed(3) + ')';
         },
 
-        // 2-20-17 added dotProd
         dotProd: function (v2) {
             return (this.x * v2.x) + (this.y * v2.y);
         },
 
-        // 2-20-17 added copy()
+
         copy: function () {
             return (JSVector(this.x, this.y));
         }
@@ -139,7 +138,7 @@ function JSVector() {
     };
 
     // Normalize (unit length). Also returns length before normalisation.
-    // 2-20-17 normalize the spelling of normalise to normalize
+
     JSVector.prototype.normalize = function () {
         var len = Math.sqrt(this.x * this.x + this.y * this.y);
         if (len) {
@@ -180,22 +179,22 @@ function JSVector() {
 
     };
 
-    // 2-20-17 added copy()
+
     JSVector.prototype.copy = function () {
         return (new JSVector(this.x, this.y));
     };
 
-    // 2-20-17 added dist()
+
     JSVector.prototype.dist = function (vec2) {
         return (vec2.copy().sub(this).len());
     };
 
-    // 2-20-17 added angleBetween()
+
     JSVector.prototype.angleBetween = function (vec2) {
         return (vec2.angle() - this.angle());
     };
 
-    // 2-20-17 added angle()
+
     JSVector.prototype.angle = function () {
         return (Math.atan2(this.y, this.x));
     };

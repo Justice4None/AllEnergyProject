@@ -59,7 +59,7 @@ class Level2 extends Level {
         this.game.removeBullets();
         this.game.removeEnemies();
         this.game.controlWaves()
-        // this.game.backgroundMusic.play();
+        this.game.backgroundMusic.play();
         if (this.game.isRunning) {
             this.game.render();
         }

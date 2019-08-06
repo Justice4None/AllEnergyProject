@@ -11,7 +11,6 @@ class Enemy {
         this.initialVel = 1.8;
         this.isTarget = false;
         this.deathSound = new Audio('resources/resources/sounds/splat.mp3');
-        this.walk = new Audio("../audio/acolyte-chant-1.mp3");
         this.lastTime = Date.now();
         this.coolDown = 1000;
         this.towerLoc = JSVector(0, 0);
@@ -147,10 +146,8 @@ class Enemy {
             //console.log("play");
             if (Enemy1.kill = true) {
                 towerGame.bankValue += 10
-                this.walk.pause()
-                this.deathSound.play()
-            } else {
-                this.walk.play()
+                let death = new Audio("audio/arrow-impact-1.mp3")
+                death.play()
             }
             if (Enemy2.kill = true) {
                 towerGame.bankValue += 25
@@ -291,6 +288,8 @@ class Enemy1 extends Enemy {
         this.img = game.enDa[0];
         this.health = 5;
         this.value = 10
+        this.walk = new Audio("audio/acolyte-march-footsteps-1.mp3");
+        this.walk.play()
 
         //  this.img=Enemy.image1
     }
@@ -302,6 +301,8 @@ class Enemy2 extends Enemy {
         this.img = game.enDa[1];
         this.health == 10;
         this.value = 20;
+        this.walk = new Audio("audio/monster-sound-3.mp3");
+        this.walk.play()
     }
     fun() {
         this.velVec = this.velVec.copy().normalize().scale(Math.random() * 10)
@@ -314,6 +315,8 @@ class Enemy3 extends Enemy {
         this.img = game.enDa[2];
         this.health = 20
         this.value = 30
+        this.walk = new Audio("audio/succubus-laugh-1.mp3");
+        this.walk.play()
     }
 }
 class Enemy4 extends Enemy {
@@ -323,6 +326,8 @@ class Enemy4 extends Enemy {
         //  this.img=Enemy.image4
         this.health = 30
         this.value = 40
+        this.walk = new Audio("audio/fire-wizard-2.mp3");
+        this.walk.play()
     }
 }
 class Enemy5 extends Enemy {
@@ -332,6 +337,8 @@ class Enemy5 extends Enemy {
         //  this.img=Enemy.image5
         this.health = 100
         this.value = 100
+        this.walk = new Audio("audio/titan-walking.mp3");
+        this.walk.play()
     }
 
 }

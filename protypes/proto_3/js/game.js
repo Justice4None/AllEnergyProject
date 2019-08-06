@@ -26,11 +26,11 @@ sliderDiv.appendChild(slider1); */
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 function loadImages() {
     bsImage = new Image();
-    bsImage.src = "resources/resources/images/spritesheets/buttons.png";
+    bsImage.src = "resources/resources/images/spritesheets/buttons_1.png";
     wallImag = new Image();
     wallImag.src = "resources/resources/images/spritesheets/jungle_wall.png";
     ssImage = new Image();
-    ssImage.src = "resources/resources/images/spritesheets/sprites2.png";
+    ssImage.src = "resources/resources/images/spritesheets/sprites2_v1.png";
     window.setTimeout(setup, 1500);
     aImage = new Image();
     aImage.src = "resources/resources/images/spritesheets/arrow.png"
@@ -210,6 +210,7 @@ class Game {
                         enemy.kill = true;
                 }
                 console.log("brushfire created an invalid map and no undo was inputed")
+
             }
         }
     }
@@ -244,10 +245,10 @@ class Game {
             return function () {
                 if (cell.occupied) {
                     cell.occupied = false;
-                    towerGame.bankValue += towerGame.wallCost
+                    towerGame.bankValue += 30
                 } else {
                     cell.occupied = true;
-                    towerGame.bankValue -= towerGame.wallCost
+                    towerGame.bankValue -= 30
                 }
             }
         }
@@ -357,7 +358,7 @@ class Game {
             this.grid[i] = [];
             for (var j = 0; j < this.rows; j++) {
                 this.grid[i][j] = new Cell(this, JSVector((i * this.w), (j * this.w)), ++cellId)
-                if (Math.random() * 100 < 10) this.grid[i][j].occupied = true;
+                // if (Math.random() * 100 < 20) this.grid[i][j].occupied = true;
 
 
 
@@ -370,8 +371,8 @@ class Game {
             alert("Images not loaded");
             // quit code
         }
-        var propertyName = "T" + (index + 1) + "0000";
-        var frame = jsonx.frames[propertyName].frame;
+        var propertyName = "B" + (index + 1) + "0000";
+        var frame = buttonsJSON.frames[propertyName].frame;
         var bulletPropertyName = "p" + (index + 1) + "0000";
         var bulletFrame = jsonx.frames[bulletPropertyName].frame;
         this.towImgData.push(frame);
@@ -394,6 +395,7 @@ class Game {
             if (i == 0) {
                 mtd.ability = "normal";
                 mtd.cost = 10;//200;
+                // mtd.style.backgroundImage = "url(resources/resources/images/spritesheets/arrow.png)"
 
             } else if (i == 1) {
                 mtd.ability = "fast";
@@ -419,7 +421,7 @@ class Game {
             innerDiv.id = "innerDiv" + i;
             innerDiv.style.width = "90px";
             innerDiv.style.height = "90px";
-            innerDiv.style.backgroundImage = "url(resources/resources/images/spritesheets/buttons.png)";
+            innerDiv.style.backgroundImage = "url(resources/resources/images/spritesheets/buttons_1.png)";
             innerDiv.style.backgroundPosition = `${-button.x}px ${-button.y}px`;
             innerDiv.style.margin = "5px";
             mtd.appendChild(innerDiv);
@@ -484,6 +486,8 @@ class Game {
         cell.hasTower = true;
         //  only one tower placed at a time
         towerGame.placingTower = false;
+        let placeSound = new Audio("audio/tower-upgrade.mp3")
+        placeSound.play()
         // placing a tower makes the cell containing the tower
         // unavailable to enemies the same as if it were
         // occupied (blocked)
@@ -559,12 +563,14 @@ class Game {
 
         else if (!towerGame.placingTower && !cell.hasTower) {
             // toggle the occupied property of the clicked cell
-            if (!cell.occupied && towerGame.bankValue >= towerGame.wallCost) {
+            if (!cell.occupied && towerGame.bankValue >= 30) {
+                towerGame.bankValue -= 30;
                 cell.occupied = true;
             } else if (!cell.occupied) {
-                alert("Insufficient Funds!");
+
             }
             else {
+                towerGame.bankValue += 30;
                 cell.occupied = false;
             }
             towerGame.brushfire(towerGame.undo(cell));   // all new distances and parents

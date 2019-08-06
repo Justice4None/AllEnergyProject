@@ -157,6 +157,7 @@ $('#register-button').on('click', function (e, user) {
         $('#test-register-form').hide();
         $('#register-div').text('You were successfully registered!');
         showPage(menu_page)
+        audio3.play();
     });
     // dataRef.ref(user).push({
     //     email: email,

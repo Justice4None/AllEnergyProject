@@ -28,9 +28,6 @@ $('#signup-button').on('click', function (e, user) {
     });
 });
 
-
-
-
 //==========================signup user==============================
 var signUpForm = document.querySelector('#test-register-form');
 $('#register-button').on('click', function (e) {
@@ -107,8 +104,9 @@ window.onbeforeunload = (function (event) {
 //================listen for auth status change===============
 auth.onAuthStateChanged(function (user) {
     if (user) {
+        var gameLaunch = $('<a href="../protypes/proto_3/index.html"><button>Launch Game!</button></a>')
         //launch game here
-        $('#login-div').text('You are signed in as:  ' + user.email);
+        $('#login-div').html(gameLaunch);
         //----------------------------------------------------------------------------------------------------------
         // Fetch the current user's ID from Firebase Authentication.
         var uid = firebase.auth().currentUser.uid;

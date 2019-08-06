@@ -1,15 +1,68 @@
 var audio = {
-    files: ["acolyte-chant-1", "acolyte-chant-2", "acolyte-chant-3", "acolyte-chant-4", "acolyte-chant-5", "acolyte-chant-6", "acolyte-chant-7", "acolyte-chant-8", "acolyte-chant-9", "acolyte-chant-10", "acolyte-chant-11", "acolyte-chant-12", "acolyte-chant-13", "acolyte-chant-long", "acolyte-march-footsteps-1", "arrow-impact-1", "bird-calls-high", "bird-calls-low", "desolving", "insect-swarm-1", "invalid-click", "level-up", "magic-spell-1", "monster-sounds-1", "monster-sounds-2", "monster-sounds-3", "monster-sounds-4", "monster-sounds-5", "monster-sounds-6", "monster-sounds-7", "monster-sounds-8", "monster-sounds-9", "monster-sounds-10", "new-map", "succubus-fire-1", "succubus-laugh-1"],
-    noiseMakers: [],
+    acolytes: ["acolyte-chant-1", "acolyte-chant-2", "acolyte-chant-3", "acolyte-chant-4", "acolyte-chant-5", "acolyte-chant-6", "acolyte-chant-7", "acolyte-chant-8", "acolyte-chant-9", "acolyte-chant-10", "acolyte-chant-11", "acolyte-chant-12", "acolyte-chant-13", "acolyte-chant-long", "acolyte-march-footsteps-1", "desolving"],
+    monsters: ["monster-sound-1", "monster-sound-2", "monster-sound-3", "monster-sound-4", "monster-sound-5", "monster-sound-6", "monster-sound-7", "monster-sound-8", "monster-sound-9", "monster-sound-10"],
+    wizards: ["nature-wizard-dull", "nature-wizard-metallic"],
+    towers: [],
+    menus: [],
+    succubus: [],
+    archers: [],
+    swordsman: [],
+    ambiance: [],
+    misc: [],
+    titan: [],
+    creatures: [],
+    mama: [],
     //EXAMPLE MASTERS SOUNDS, NOT REPRESENTATIVE OF FINAL AUDIO
     masterSounds: ["music-track-1", "music-track-2"],
     activeSounds: [],
     load: function () {
         for (i = 0; i < this.masterSounds.length; i++) {
-            masterSounds[i] = new Audio("assets/audio/music" + masterSounds[i] + ".mp3")
+            masterSounds[i] = new Audio("audio/sfx/master" + masterSounds[i] + ".mp3")
         }
-        for (i = 0; i < this.files.length; i++) {
-            files[i] = new Audio("assets/audio/sfx" + files[i] + ".mp3")
+        for (i = 0; i < this.acolytes.length; i++) {
+            acolytes[i] = new Audio("audio/sfx/acolytes" + acolytes[i] + ".mp3")
+        }
+        for (i = 0; i < this.monsters.length; i++) {
+            monsters[i] = new Audio("audio/sfx/monsters" + monsters[i] + ".mp3")
+        }
+        for (i = 0; i < this.wizards.length; i++) {
+            wizards[i] = new Audio("audio/sfx/wizards/fire" + wizards[i] + ".mp3")
+        }
+        for (i = 0; i < this.wizards.length; i++) {
+            wizards[i] = new Audio("audio/sfx/wizards/ice" + wizards[i] + ".mp3")
+        }
+        for (i = 0; i < this.wizards.length; i++) {
+            wizards[i] = new Audio("audio/sfx/wizards/nature" + wizards[i] + ".mp3")
+        }
+        for (i = 0; i < this.towers.length; i++) {
+            towers[i] = new Audio("audio/sfx/towers" + towers[i] + ".mp3")
+        }
+        for (i = 0; i < this.menus.length; i++) {
+            menus[i] = new Audio("audio/sfx/menus" + menus[i] + ".mp3")
+        }
+        for (i = 0; i < this.succubus.length; i++) {
+            succubus[i] = new Audio("audio/sfx/succubus" + succubus[i] + ".mp3")
+        }
+        for (i = 0; i < this.archers.length; i++) {
+            archers[i] = new Audio("audio/sfx/archers" + archers[i] + ".mp3")
+        }
+        for (i = 0; i < this.swordsman.length; i++) {
+            swordsman[i] = new Audio("audio/sfx/swordsman" + swordsman[i] + ".mp3")
+        }
+        for (i = 0; i < this.ambiance.length; i++) {
+            ambiance[i] = new Audio("audio/sfx/ambiance" + ambiance[i] + ".mp3")
+        }
+        for (i = 0; i < this.misc.length; i++) {
+            misc[i] = new Audio("audio/sfx/misc" + misc[i] + ".mp3")
+        }
+        for (i = 0; i > this.titan.length; i++) {
+            titan[i] = new Audio("audio/sfx/titan" + titan[i] + ".mp3")
+        }
+        for (i = 0; i < this.creatures.length; i++) {
+            creatures[i] = new Audio("audio/sfx/creatures" + creatures[i] + ".mp3")
+        }
+        for (i = 0; i < this.mama.length; i++) {
+            mama[i] = new Audio("audio/sfx/mama" + mama[i] + ".mp3")
         }
     },
     play: function () {

@@ -7,6 +7,8 @@ var FRAME_RATE = 30;
 var cellId = 0;
 
 var bsImage;
+var wallImag;
+var aImage;
 var ssImage;
 var load = document.getElementById('loader');
 var wrap;
@@ -25,9 +27,13 @@ sliderDiv.appendChild(slider1); */
 function loadImages() {
     bsImage = new Image();
     bsImage.src = "resources/resources/images/spritesheets/buttons.png";
+    wallImag = new Image();
+    wallImag.src = "resources/resources/images/spritesheets/jungle_wall.png";
     ssImage = new Image();
     ssImage.src = "resources/resources/images/spritesheets/sprites2.png";
     window.setTimeout(setup, 1500);
+    aImage = new Image();
+    aImage.src = "resources/resources/images/spritesheets/arrow.png"
 }
 function setup() {
     wrap = document.getElementById('wrapperDiv');
@@ -57,8 +63,7 @@ class Game {
         this.towers = []
         this.enemies = []
         this.bullets = []
-        this.explosiveBullets = []
-        this.explosiveBullets = []
+        this.dmg = [1, 5, 10, 15, 20]
         this.bankIncValue;
         this.textBankInc
         this.bankValue = 500
@@ -232,17 +237,17 @@ class Game {
         if (tower) {
             return function () {
                 cell.hasTower = false;
-                Game.towers.splice(Game.towers.indexOf(tower))
+                towerGame.towers.splice(towerGame.towers.indexOf(tower))
                 throw "you cannot place a tower here"
             }
         } else {
             return function () {
                 if (cell.occupied) {
                     cell.occupied = false;
-                    Game.bankValue += Game.wallCost
+                    towerGame.bankValue += towerGame.wallCost
                 } else {
                     cell.occupied = true;
-                    Game.bankValue -= Game.wallCost
+                    towerGame.bankValue -= towerGame.wallCost
                 }
             }
         }
@@ -352,6 +357,11 @@ class Game {
             this.grid[i] = [];
             for (var j = 0; j < this.rows; j++) {
                 this.grid[i][j] = new Cell(this, JSVector((i * this.w), (j * this.w)), ++cellId)
+                if (Math.random() * 100 < 10) this.grid[i][j].occupied = true;
+
+
+
+
             }
         }
     }// ++++ end of loadGrid
@@ -550,13 +560,11 @@ class Game {
         else if (!towerGame.placingTower && !cell.hasTower) {
             // toggle the occupied property of the clicked cell
             if (!cell.occupied && towerGame.bankValue >= towerGame.wallCost) {
-                towerGame.bankValue -= towerGame.wallCost;
                 cell.occupied = true;
             } else if (!cell.occupied) {
                 alert("Insufficient Funds!");
             }
             else {
-                towerGame.bankValue += towerGame.wallCost;
                 cell.occupied = false;
             }
             towerGame.brushfire(towerGame.undo(cell));   // all new distances and parents

@@ -1,0 +1,16 @@
+{
+    "@attributes": {
+        "width": "128",
+        "height": "32"
+    },
+    "image": {
+        "@attributes": {
+            "id": "image0",
+            "width": "128",
+            "height": "32",
+            "x": "0",
+            "y": "0",
+            "xlink:href": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAAAgCAAAAAD/SS/5AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfjCAYGEDAhiYneAAABCklEQVRYw2P4P8CAYdQBow4YdcCoA0YdQCd77rRoMQBB4Ie/h9KFGBjEc4/jd8C7c9S0/cUkc5DtDMw9Z0tlGRj4Enf9wR0Cf2+uqvaRY9Cnmu0f5rkyga1nYHRRZ2DgCF7zA1ka2QEfD09NM+OCKJadTx0wM4iNAQnoLfiA5j6oA+6uqw9QYqA9qMcIIKgD7m9oClZmHEAHgMHnY9MzLHmoGwUtOhDzoBGht+QLHgeAwb87a+r8FaiYCC9VyANtZpHUEgQ7gTt+z1+8DoAm3YtUcwDQT0ezRYFWq3v78YHdIF1+laADqA3+bI/jZWDgiq4K5wS7waj/JX0dgBuMOmDUAaMOGHXAqAMAELVh41EUeyoAAAAldEVYdGRhdGU6Y3JlYXRlADIwMTktMDgtMDZUMDg6MTY6MzQrMDI6MDDIeP7/AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDE5LTA4LTA2VDA4OjE2OjM0KzAyOjAwuSVGQwAAAABJRU5ErkJggg=="
+        }
+    }
+}

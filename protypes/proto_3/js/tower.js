@@ -30,18 +30,16 @@ class Tower {
 
     render() {
         if (this.ability == "freeze") {
-            this.coolDown = towerGame.value;
+            this.coolDown = 2500
             console.log(towerGame.value); //2500
             this.range = 500;
         }
         else if (this.ability == "normal") {
-            this.coolDown = towerGame.value; //700
+            this.coolDown = 700 //700
         } else if (this.ability == "fast") {
-            this.coolDown = towerGame.value; //200
+            this.coolDown = 200; //200
         } else if (this.ability == "explosive") {
-            this.coolDown = towerGame.value;
-        } else {
-            this.coolDown = 100; //100
+            this.coolDown = 100
         }
         var ctx = towerGame.context;
         ctx.save();

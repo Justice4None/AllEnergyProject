@@ -90,14 +90,14 @@ class Enemy {
             if (this.checkCollide(this, towerGame.bullets[h])) {
                 if (towerGame.bullets[h].ability == "normal") {
                     //this.health = this.health - 100;
-                    this.health = this.health - towerGame.dmg.value; //dmgconsole.log(this.health)
+                    this.health = this.health - towerGame.dmg[0]; //dmgconsole.log(this.health)
                     towerGame.bullets.splice(h, 1);
                 } else if (towerGame.bullets[h].ability == "fast") {
-                    this.health = this.health - towerGame.dmg.value; //450
+                    this.health = this.health - towerGame.dmg[2]; //450
                     //  console.log(this.health)
                     towerGame.bullets.splice(h, 1);
                 } else if (towerGame.bullets[h].ability == "freeze") {
-                    this.health = this.health - towerGame.dmg.value; //1200
+                    this.health = this.health - towerGame.dmg[3]; //1200
                     //console.log("asdfasdfa");
                     //  this.vel = this.initialVel - .8;
                 } else if (towerGame.bullets[h].ability == "explosive") {
@@ -109,8 +109,6 @@ class Enemy {
                     }
                     this.locations = this.loc;
                     console.log("idk");
-                    towerGame.explosiveBullets.push(new Explosives(towerGame.bullets[h].loc));
-                    console.log(towerGame.explosiveBullets.length);
                     //towerGame.explosiveBullets.push(new Explosives(towerGame.bullets[h].loc));
                     towerGame.bullets.splice(h, 1);
                     //console.log("exp");
@@ -127,15 +125,15 @@ class Enemy {
 
 
 
-        for (let i = 0; i < towerGame.explosiveBullets.length; i++) {
-            if (this.loc.dist(towerGame.explosiveBullets[i].loc) < 70) {
-                this.health = this.health - towerGame.dmg.value;
-            }
-            if (towerGame.explosiveBullets[i].kills == true) {
-                towerGame.explosiveBullets.splice(i, 1);
-                //  console.log("die");
-            }
-        }
+        // for (let i = 0; i < towerGame.explosiveBullets.length; i++) {
+        //     if (this.loc.dist(towerGame.explosiveBullets[i].loc) < 70) {
+        //         this.health = this.health - towerGame.dmg.value;
+        //     }
+        //     if (towerGame.explosiveBullets[i].kills == true) {
+        //         towerGame.explosiveBullets.splice(i, 1);
+        //         //  console.log("die");
+        //     }
+        // }
 
 
 
@@ -146,11 +144,26 @@ class Enemy {
 
             this.deathSound.play();
             //console.log("play");
-            var incValue = parseInt(towerGame.bankIncValue.value);
+            if (Enemy1.kill = true) {
+                towerGame.bankValue += 10
+            }
+            if (Enemy2.kill = true) {
+                towerGame.bankValue += 25
+            }
+            if (Enemy3.kill = true) {
+                towerGame.bankValue += 30
+            }
+            if (Enemy4.kill = true) {
+                towerGame.bankValue += 50
+            }
+            if (Enemy5.kill = true) {
+                towerGame.bankValue += 100
+            }
 
-            towerGame.bankValue += incValue;
+
+            // towerGame.bankValue += incValue;
             //towerGame.bankValue += towerGame.bankIncValue.value;
-            console.log("inc value " + towerGame.bankIncValue.value);
+            // console.log("inc value " + incValue);
 
             //console.log("kills");
         }
@@ -271,7 +284,8 @@ class Enemy1 extends Enemy {
         super(game)
         this.randomPath = 1
         this.img = game.enDa[0];
-        this.health = 15;
+        this.health = 5;
+        this.value = 10
         //  this.img=Enemy.image1
     }
 }
@@ -280,7 +294,8 @@ class Enemy2 extends Enemy {
         super(game)
         //  this.img=Enemy.image2
         this.img = game.enDa[1];
-        this.health == 30;
+        this.health == 10;
+        this.value = 20;
     }
     fun() {
         this.velVec = this.velVec.copy().normalize().scale(Math.random() * 10)
@@ -291,7 +306,8 @@ class Enemy3 extends Enemy {
         super(game)
         //  this.img=Enemy.image3
         this.img = game.enDa[2];
-        this.health = 45
+        this.health = 20
+        this.value = 30
     }
 }
 class Enemy4 extends Enemy {
@@ -299,7 +315,8 @@ class Enemy4 extends Enemy {
         super(game)
         this.img = game.enDa[3];
         //  this.img=Enemy.image4
-        this.health = 60
+        this.health = 30
+        this.value = 40
     }
 }
 class Enemy5 extends Enemy {
@@ -308,6 +325,7 @@ class Enemy5 extends Enemy {
         this.img = game.enDa[4];
         //  this.img=Enemy.image5
         this.health = 100
+        this.value = 100
     }
 
 }

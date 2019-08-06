@@ -1,3 +1,5 @@
+"use strict"
+
 class Cell {
     constructor(game, loc, id) {
         this.game = game;       // the global instance
@@ -22,7 +24,7 @@ class Cell {
         ctx.strokeStyle = 'white';
         //   ctx.strokeRect(this.loc.x, this.loc.y, this.game.w, this.game.w);
         if (this.occupied) {
-            ctx.drawImage(bsImage, Cell.wallImage.x, Cell.wallImage.y, Cell.wallImage.w, Cell.wallImage.h, this.loc.x, this.loc.y, this.game.w, this.game.w);
+            ctx.drawImage(wallImag, 0, 0, 126, 126, this.loc.x, this.loc.y, this.game.w, this.game.w);
         }
         else if (this == this.game.root) {
             ctx.fillStyle = "yellow";
@@ -113,7 +115,7 @@ class Cell {
             let v = new JSVector(dx, dy);
             return v;
         }
-        else return (vector2d(0, 0));
+        else return (JSVector(0, 0));
     }
 
     getText() {

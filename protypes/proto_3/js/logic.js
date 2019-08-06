@@ -11,4 +11,5 @@ function hidePage(page) {
 function startGame() {
     hidePage(lobby_page)
     showPage(game_page)
+
 }

@@ -1,3 +1,57 @@
+'use strict'
+
+window.addEventListener('load', loadImages, false);
+
+var towerGame;   // the global game object
+var FRAME_RATE = 30;
+var cellId = 0;
+
+var bsImage;
+var wallImag;
+var aImage;
+var ssImage;
+var load = document.getElementById('loader');
+var wrap;
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++slider
+// var sliderDiv = document.createElement('div');
+// sliderDiv.setAttribute('id', 'sliderDiv');
+// document.body.appendChild(sliderDiv);
+/*
+var slider1 = document.createElement('input');
+slider1.setAttribute('type', 'range');
+slider1.setAttribute('min', '0');
+slider1.setAttribute('max', '1000');
+slider1.setAttribute('id', 'slider1');
+sliderDiv.appendChild(slider1); */
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+function loadImages() {
+    bsImage = new Image();
+    bsImage.src = "resources/resources/images/spritesheets/buttons_1.png";
+    wallImag = new Image();
+    wallImag.src = "resources/resources/images/spritesheets/jungle_wall.png";
+    ssImage = new Image();
+    ssImage.src = "resources/resources/images/spritesheets/sprites_final.png";
+    window.setTimeout(setup, 1500);
+    aImage = new Image();
+    aImage.src = "resources/resources/images/spritesheets/uparr.png"
+}
+function setup() {
+    wrap = document.getElementById('wrapperDiv');
+    load.style.display = 'none';
+    wrap.style.display = 'block';
+
+    towerGame = new Game();
+    window.setTimeout(draw, 100);    // wait 100ms for resources to load then start draw loop
+    //panelthings
+}
+
+function draw() {   // the animation loop
+    towerGame.run();
+    //console.clear();
+    window.setTimeout(draw, 1000 / FRAME_RATE);  // come back here every interval
+}
+
+
 
 class Game {
     constructor() {
@@ -9,49 +63,54 @@ class Game {
         this.towers = []
         this.enemies = []
         this.bullets = []
-        this.fireSliders = []
-        this.fireSlidersText = []
-        this.dmgSliders = []
-        this.dmgSlidersText = []
-        this.costSliders = []
-        this.costSlidersText = []
-        this.areaBullets = []
-        this.areaBullets = []
+        this.dmg = [1, 5, 10, 15, 20]
         this.bankIncValue;
         this.textBankInc
         this.bankValue = 500
         this.rays = []
-        this.towersCostArr = []
+        this.towersBankValuesARR = []
         this.checkOnce = true;
         this.enemyNum = Math.floor(Math.random() > 1)
-        this.eneData = []
-        this.towImg = []
-        this.bulletImg = []
+        this.enDa = []
+        this.towImgData = []
+        this.bulletImgData = []
         this.paused = false
 
         this.loadEnemyImages()
         this.score = 0
         this.wave = 0
         this.health = 100
-        this.canvas = $('#canvas')
-        this.context = this.canvas.getContext("2d")
-        this.canvas.width = 900
-        this.canvas.height = 750
+        this.canvas = document.createElement("canvas");
         if (!this.canvas || !this.canvas.getContext)
-            throw "No valid canvas found!"
-        this.createFireRateSlider()
-        this.createDamageSliders()
-        this.createTowerCostSlider()
-        this.createEnemyDeathValueSlider()
+            throw "No valid canvas found!";
+        this.canvas.width = 900;
+        this.canvas.height = 750;
+        this.canvas.canDiv = document.getElementById('canDiv')
+        this.canvas.canDiv.appendChild(this.canvas);
+        this.context = this.canvas.getContext("2d");
         this.lastTime = Date.now();
         this.tileDivs = this.createTileDivs();
         this.loadDOMCallBacks(this.tileDivs)
+        this.canvas.addEventListener('mousemove', this.handleCNVMouseMoved, false);
+        this.canvas.addEventListener('mouseover', this.handleCNVMouseOver, false);
+        this.canvas.addEventListener('click', this.handleCNVMouseClicked, false);
         this.currentWaveNum = 0
         this.wave = new Wave(this, AllWaves[this.currentWaveNum])
+        this.mouseX = 0
+        this.mouseY = 0
         this.loadWallImage()
         this.level = new Level1(this)
         this.w = 50
         this.done = false
+
+        window.onkeydown = function (e) {
+            var code = e.keyCode ? e.keyCode : e.which;
+            if (code === 38) { //up key
+                //console.clear();
+                //console.log("Basic Tower: " + slider1.value);
+            }
+        };
+
 
         // big grid boy
         this.grid = []
@@ -62,12 +121,29 @@ class Game {
         this.root = this.grid[this.cols - 1][this.rows - 1]
         this.brushfire()
 
-        var button = $("#pauseButton").on('click', this.paused, false)
+
+        var button = document.getElementById('pauseButton');
+        button.addEventListener('click', this.pause, false);
+
+        var fastForwardButton = document.getElementById('fastForward');
+        fastForwardButton.addEventListener('click', function () {
+            if (FRAME_RATE == 30) {
+                FRAME_RATE = 60;
+                fastForwardButton.innerHTML = "Slow Down";
+            } else {
+                fastForwardButton.innerHTML = "Fast Forward";
+                FRAME_RATE = 30;
+            }
+        }, false);
     }
+
+
+
+
     loadWallImage() {
         // grab the wall image from the  sprite sheet
-        var propName = "Block0000";
-        var f = buttonsJSON.frames[propName].frame;
+        var f = new Image
+        f.src = "resources/resources/images/spritesheets/jungle_wall.png"
         // console.log(f.x);
         Cell.wallImage = f;
 
@@ -80,8 +156,8 @@ class Game {
 
         for (var i = 1; i <= 5; i++) {
             var propName = 'E' + i + '0000'
-            var f = JSONX.frames[propName].frame;
-            this.eneData.push(f);
+            var f = jsonx.frames[propName].frame;
+            this.enDa.push(f);
         }
     };
 
@@ -90,16 +166,16 @@ class Game {
 
         if (!this.paused) {
             this.level.run()
-            this.updateFireRateSliders()
-            this.updateDamageSliders()
-            this.updateTileDivs()
+            // this.updateFireRateSliders()
+            // this.updateDamageSliders()
+            // this.updateTileDivs()
         }
     }
     pause() {
         var butt = $("#pauseButton");
-        Game.paused = !Game.paused;
+        towerGame.paused = !towerGame.paused;
         if (towerGame.paused) butt.innerHTML = 'play'
-        butt.innerHTML = 'pause'
+        if (!towerGame.paused) butt.innerHTML = 'pause'
     }
     render() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height)
@@ -110,7 +186,9 @@ class Game {
             for (var j = 0; j < this.rows; j++) {
                 var cell = this.grid[i][j];
                 cell.dist = this.cols * this.rows * 10; // max distance
-                cell.vec = nullcell.parent = offscreenBufferingcell.addNeighbors(this, this.grid);
+                cell.vec = null
+                cell.parent = 0
+                cell.addNeighbors(this, this.grid);
             }
         }
         this.root.dist = 0;
@@ -119,10 +197,10 @@ class Game {
 
         //loops cells as long as queue is not empty
         while (queue.length) {
-            var curr = queue.shift()
-            for (let j = 0; j < this.currentTower.neighbors.length; j++) {
+            var current = queue.shift()
+            for (let j = 0; j < current.neighbors.length; j++) {
                 let neighbor = current.neighbors[j]
-                var dist = curr.dist + 10;
+                var dist = current.dist + 10;
                 if (current.loc.x != neighbor.loc.x && current.loc.y != neighbor.loc.y)
                     dist = current.dist + 14;
                 //diagonals are included above
@@ -145,6 +223,7 @@ class Game {
                         enemy.kill = true;
                 }
                 console.log("brushfire created an invalid map and no undo was inputed")
+
             }
         }
     }
@@ -172,24 +251,24 @@ class Game {
         if (tower) {
             return function () {
                 cell.hasTower = false;
-                Game.towers.splice(Game.towers.indexOf(tower))
+                towerGame.towers.splice(towerGame.towers.indexOf(tower))
                 throw "you cannot place a tower here"
             }
         } else {
             return function () {
                 if (cell.occupied) {
                     cell.occupied = false;
-                    Game.bankValue += Game.wallCost
+                    towerGame.bankValue += 30
                 } else {
                     cell.occupied = true;
-                    Game.bankValue -= Game.wallCost
+                    towerGame.bankValue -= 30
                 }
             }
         }
     }
     sendEnemies() {
         var numEnemies = Math.random() * 5;
-        var row, col, sartCell, i, j;
+        var row, col, startCell, i, j;
         for (i = 0; i < numEnemies; i++) {
             for (j = 0; j < 3; j++) {
                 startCell = this.grid[0][0];
@@ -204,9 +283,9 @@ class Game {
 
     }
     controlWaves() {
-        if (this.wave.idWaveOver()) {
+        if (this.wave.isWaveOver()) {
             this.currentWaveNum += 1
-            this.wave = new WaveShaperNode(this, AllWaves[this.currentWaveNum])
+            this.wave = new Wave(this, AllWaves[this.currentWaveNum])
         } else {
             this.wave.run()
         }
@@ -289,9 +368,14 @@ class Game {
     }
     loadGrid() {
         for (var i = 0; i < this.cols; i++) {
-            this.grid[i] = []
-            for (var j = o; j < this.rows; j++) {
+            this.grid[i] = [];
+            for (var j = 0; j < this.rows; j++) {
                 this.grid[i][j] = new Cell(this, JSVector((i * this.w), (j * this.w)), ++cellId)
+                // if (Math.random() * 100 < 20) this.grid[i][j].occupied = true;
+
+
+
+
             }
         }
     }// ++++ end of loadGrid
@@ -300,8 +384,8 @@ class Game {
             alert("Images not loaded");
             // quit code
         }
-        var propertyName = "T" + (index + 1) + "0000";
-        var frame = JSONX.frames[propertyName].frame;
+        var propertyName = "B" + (index + 1) + "0000";
+        var frame = buttonsJSON.frames[propertyName].frame;
         var bulletPropertyName = "p" + (index + 1) + "0000";
         var bulletFrame = jsonx.frames[bulletPropertyName].frame;
         this.towImgData.push(frame);
@@ -310,149 +394,9 @@ class Game {
         mtd.cnvBulImg = this.bulletImgData[index];
 
     }
-    printSliderData() {
-        console.log("Tower1 Shoot Speed: " + slider1.value);
-    }
-    createFireRateSilder() {
-        var towers = [];
-        for (var i = 0; i < 4; i++) {
-            var sl = document.createElement('input');
-            sl.setAttribute('type', 'range');
-            sl.setAttribute('min', '50');
-            sl.setAttribute('max', '3000');
-            if (i == 0) {
-                sl.setAttribute('value', '700');
-            } else if (i == 1) {
-                sl.setAttribute('value', '200');
-            } else if (i == 2) {
-                sl.setAttribute('value', '2500');
-            } else if (i == 3) {
-                sl.setAttribute('value', '700');
-
-            }
-
-            //sl.setAttribute('value', '1000');
-            sl.setAttribute('id', 'slider1');
-
-            var CoolDownSliderText = document.createElement('div');
-            CoolDownSliderText.id = "cd";
-            CoolDownSliderText.innerHTML = 'Tower ' + (i + 1) + ' Cool Down: ' + sl.value;
-            CoolDownSliderText.style.color = '#ffffff';
-            sliderDiv.appendChild(CoolDownSliderText);
-            sliderDiv.appendChild(sl);
-            this.fireSliders.push(sl);
-            this.fireSlidersText.push(CoolDownSliderText);
-        }
-    }
-
-    createDamageSliders() {
-        for (var i = 0; i < 5; i++) {
-            var dmgSlider = document.createElement("input");
-            dmgSlider.setAttribute('type', 'range');
-            dmgSlider.setAttribute('min', '5');
-
-            dmgSlider.setAttribute('id', 'slider2');
-            if (i == 0) {
-                dmgSlider.setAttribute('max', '1000');
-                dmgSlider.setAttribute('value', '500');
-            } else if (i == 1) {
-                dmgSlider.setAttribute('max', '1000');
-                dmgSlider.setAttribute('value', '400');
-            } else if (i == 2) {
-                dmgSlider.setAttribute('max', '1750');
-                dmgSlider.setAttribute('value', '1200');
-            } else if (i == 3) {
-                dmgSlider.setAttribute('max', '400');
-                dmgSlider.setAttribute('value', '100');
-            } else {
-                dmgSlider.setAttribute('max', '80');
-                dmgSlider.setAttribute('value', '20');
-            }
-
-            var dmgSliderText = document.createElement('div');
-            dmgSliderText.id = "dmg";
-            dmgSliderText.innerHTML = 'Tower ' + (i + 1) + ' Damage: ' + dmgSlider.value;
-            dmgSliderText.style.color = '#f44245';
-            sliderDiv.appendChild(dmgSliderText);
-            sliderDiv.appendChild(dmgSlider);
-            this.dmgSliders.push(dmgSlider);
-            this.dmgSlidersText.push(dmgSliderText);
-
-
-        }
-    }
-
-    createTowerCostSliders() {
-        for (var i = 0; i < 5; i++) {
-            var costSlider = document.createElement("input");
-            costSlider.setAttribute('type', 'range');
-            costSlider.setAttribute('min', '100');
-            costSlider.setAttribute('max', '1500');
-            costSlider.setAttribute('id', 'slider3');
-            if (i == 0) {
-                costSlider.setAttribute('value', '200');
-            } else if (i == 1) {
-                costSlider.setAttribute('value', '500');
-            } else if (i == 2) {
-                costSlider.setAttribute('value', '500');
-            } else if (i == 3) {
-                costSlider.setAttribute('value', '700');
-            } else {
-                costSlider.setAttribute('value', '1000');
-            }
-            if (i == 5) {
-                costSlider.setAttribute('type', 'range');
-                costSlider.setAttribute('min', '10');
-                costSlider.setAttribute('max', '100');
-                costSlider.setAttribute('value', '20');
-            }
-            var costSliderText = document.createElement('div');
-            costSliderText.id = "cost";
-            costSliderText.innerHTML = 'Tower ' + (i + 1) + ' Cost: ' + costSlider.value;
-            costSliderText.style.color = '#56f442';
-            sliderDiv.appendChild(costSliderText);
-            sliderDiv.appendChild(costSlider);
-            this.costSliders.push(costSlider);
-            this.costSlidersText.push(costSliderText);
-        }
-    }
-
-    createEnemyDeathValueSlider() {
-        var bankInc = document.createElement("input");
-        bankInc.setAttribute('type', 'range');
-        bankInc.setAttribute('min', '1');
-        bankInc.setAttribute('max', '75');
-        bankInc.setAttribute('id', 'slider4');
-        var text = document.createElement('div');
-        text.id = "inc";
-        text.innerHTML = 'Money Given After Kill ' + bankInc.value;
-        text.style.color = '#dbe82c';
-        sliderDiv.appendChild(text);
-        sliderDiv.appendChild(bankInc);
-        this.bankIncValue = bankInc;
-        this.textBankInc = text;
-    }
-
-    updateDamageSliders() {
-        for (var i = 0; i < 5; i++) {
-            this.dmgSlidersText[i].innerHTML = 'Tower ' + (i + 1) + ' Damage: ' + this.dmgSliders[i].value;
-
-        }
-        for (var i = 0; i < 5; i++) {
-            this.costSlidersText[i].innerHTML = 'Tower ' + (i + 1) + ' Cost: ' + this.costSliders[i].value;
-        }
-        this.textBankInc.innerHTML = 'Money After Kill ' + this.bankIncValue.value;
-    }
-
-    updateFireRateSliders() {
-        for (var i = 0; i < 4; i++) {
-            this.fireSlidersText[i].innerHTML = 'Tower ' + (i + 1) + ' Cool Down: ' + this.fireSliders[i].value;
-        }
-    }
-
     updateTileDivs() {
         for (var i = 0; i < 5; i++) {
-            this.towersBankValuesARR[i].cost = this.costSliders[i].value;
+            this.towersBankValuesARR[i].cost = this.cost
         }
     }
     createTileDivs() {
@@ -463,23 +407,24 @@ class Game {
             var mtd = document.createElement("div"); // createDiv("");
             if (i == 0) {
                 mtd.ability = "normal";
-                mtd.cost = this.costSliders[0].value;//200;
+                mtd.cost = 10;//200;
+                // mtd.style.backgroundImage = "url(resources/resources/images/spritesheets/arrow.png)"
 
             } else if (i == 1) {
                 mtd.ability = "fast";
-                mtd.cost = this.costSliders[1].value;
+                mtd.cost = 20;
 
             } else if (i == 2) {
                 mtd.ability = "freeze";
-                mtd.cost = this.costSliders[2].value;
+                mtd.cost = 30;
 
             } else if (i == 3) {
                 mtd.ability = "explosive";
-                mtd.cost = this.costSliders[3].value;
+                mtd.cost = 40;
 
             } else {
                 mtd.ability = "ray";
-                mtd.cost = this.costSliders[4].value;
+                mtd.cost = 50;
             }// createDiv("");
 
             var b = buttons[i];
@@ -489,7 +434,7 @@ class Game {
             innerDiv.id = "innerDiv" + i;
             innerDiv.style.width = "90px";
             innerDiv.style.height = "90px";
-            innerDiv.style.backgroundImage = "url(resources/images/spritesheets/buttons.png)";
+            innerDiv.style.backgroundImage = "url(resources/resources/images/spritesheets/buttons_1.png)";
             innerDiv.style.backgroundPosition = `${-button.x}px ${-button.y}px`;
             innerDiv.style.margin = "5px";
             mtd.appendChild(innerDiv);
@@ -554,6 +499,8 @@ class Game {
         cell.hasTower = true;
         //  only one tower placed at a time
         towerGame.placingTower = false;
+        let placeSound = new Audio("audio/tower-upgrade.mp3")
+        placeSound.play()
         // placing a tower makes the cell containing the tower
         // unavailable to enemies the same as if it were
         // occupied (blocked)
@@ -597,6 +544,50 @@ class Game {
 
 
 
+    }
+    //  ++++++++++++++++++++++++++++++++++++++++++++++++++    mouse handlers
+    handleCNVMouseOver() {
+        if (towerGame.towers.length < 1) return;
+        towerGame.towers[towerGame.towers.length - 1].visible = true;
+    }
+
+    handleCNVMouseMoved(event) {
+        // add some properties to the canvas to track the mouse.
+        this.mouseX = event.offsetX;
+        this.mouseY = event.offsetY;
+        if (towerGame.towers.length < 1) return;
+        if (!towerGame.towers[towerGame.towers.length - 1].placed &&
+            towerGame.placingTower === true) {
+            //follow mouse
+            towerGame.towers[towerGame.towers.length - 1].loc.x = this.mouseX;
+            towerGame.towers[towerGame.towers.length - 1].loc.y = this.mouseY;
+            //        console.log(this.mouseX + ", " + this.mouseY + ", " + towerGame.towers[towerGame.towers.length-1].loc.toString());
+        }
+    }
+
+    handleCNVMouseClicked(event) {
+        var row = Math.floor(event.offsetY / towerGame.w);
+        var col = Math.floor(event.offsetX / towerGame.w);
+        var cell = towerGame.grid[col][row];
+
+        if (towerGame.placingTower && towerGame.canAddTower(cell)) {
+            towerGame.placeTower(cell);
+        }
+
+        else if (!towerGame.placingTower && !cell.hasTower) {
+            // toggle the occupied property of the clicked cell
+            if (!cell.occupied && towerGame.bankValue >= 30) {
+                towerGame.bankValue -= 30;
+                cell.occupied = true;
+            } else if (!cell.occupied) {
+
+            }
+            else {
+                towerGame.bankValue += 30;
+                cell.occupied = false;
+            }
+            towerGame.brushfire(towerGame.undo(cell));   // all new distances and parents
+        }
     }
     // collision detection utility
     distance(c0, c1) {

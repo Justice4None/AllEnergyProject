@@ -60,7 +60,7 @@ class Wave {
 //enemyPosition is a 2d array that spefies the area in whicch an enemt will be randomly spawned
 //the numbers are formated as fractions of the total grid with the smaller number coming first
 //additionalEnemyArguments specifies any additional arguments that might be added to an enemy class
-AllWaves = [
+var AllWaves = [
     {
         "packets": [
             {

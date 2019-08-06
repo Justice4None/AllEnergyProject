@@ -19,12 +19,14 @@ $(window).on('load', function () {
 $(canvas).mousemove(function (event) {
     var x = event.clientX;     // Get the horizontal coordinate
     var y = event.clientY;     // Get the vertical coordinate
+
     //game.hoverTile = getSpace(x, y)
 })
 
 $(canvas).on('click', function (event) {
     var x = event.clientX;     // Get the horizontal coordinate
     var y = event.clientY;     // Get the vertical coordinate
+
 
     console.log("Ghett: Engine Click Logic")
     console.log("Travis: Send Click to Sever")
@@ -46,7 +48,7 @@ $('#landing_page').mousemove(function () {
 
     var prxArray = ['#fog_1', '#fog_2']
     kitty.parallax(prxArray, x, y, 0.8, 0.1)
-    kitty.sparkle('#landing_page')
+    // kitty.sparkle('#landing_page')
 
 })
 
@@ -131,6 +133,10 @@ $('#join_game_btn').on('click', function () {
 
     console.log("William: Start Waiting for match music")
     console.log("William: Load all in-game audio assets")
+})
+$('#start_game').on('click', function () {
+    startGame()
+
 })
 
 $('#quit_btn').on('click', function () {

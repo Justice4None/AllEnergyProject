@@ -10,10 +10,10 @@ class Enemy {
         this.isLocked = false;
         this.initialVel = 1.8;
         this.isTarget = false;
-        this.deathSound = new Audio('resources/sounds/splat.mp3');
+        this.deathSound = new Audio('resources/resources/sounds/splat.mp3');
         this.lastTime = Date.now();
         this.coolDown = 1000;
-        this.towerLoc = vector2d(0, 0);
+        this.towerLoc = JSVector(0, 0);
         this.velVec;
         this.increasedDamg = 20;
         //  this.health = 1000;
@@ -90,15 +90,14 @@ class Enemy {
             if (this.checkCollide(this, towerGame.bullets[h])) {
                 if (towerGame.bullets[h].ability == "normal") {
                     //this.health = this.health - 100;
-                    this.health = this.health - towerGame.dmgSliders[0].value; //dmgSliders
-                    //console.log(this.health)
+                    this.health = this.health - towerGame.dmg.value; //dmgconsole.log(this.health)
                     towerGame.bullets.splice(h, 1);
                 } else if (towerGame.bullets[h].ability == "fast") {
-                    this.health = this.health - towerGame.dmgSliders[1].value; //450
+                    this.health = this.health - towerGame.dmg.value; //450
                     //  console.log(this.health)
                     towerGame.bullets.splice(h, 1);
                 } else if (towerGame.bullets[h].ability == "freeze") {
-                    this.health = this.health - towerGame.dmgSliders[2].value; //1200
+                    this.health = this.health - towerGame.dmg.value; //1200
                     //console.log("asdfasdfa");
                     //  this.vel = this.initialVel - .8;
                 } else if (towerGame.bullets[h].ability == "explosive") {
@@ -122,7 +121,7 @@ class Enemy {
         }
 
         if (this.isLocked) {
-            this.damages = this.damages + towerGame.dmgSliders[4].value;//this.increasedDamg;
+            this.damages = this.damages + towerGame.dmg.value;//this.increasedDamg;
             this.health = this.health - this.damages;
         }
 
@@ -130,7 +129,7 @@ class Enemy {
 
         for (let i = 0; i < towerGame.explosiveBullets.length; i++) {
             if (this.loc.dist(towerGame.explosiveBullets[i].loc) < 70) {
-                this.health = this.health - towerGame.dmgSliders[3].value;
+                this.health = this.health - towerGame.dmg.value;
             }
             if (towerGame.explosiveBullets[i].kills == true) {
                 towerGame.explosiveBullets.splice(i, 1);
@@ -201,9 +200,9 @@ class Enemy {
             } else if (shape2.shape === "square") {
                 //circle-square
                 let topLeft = shape2.loc;
-                let topRight = new vector2d(shape2.loc.x + shape2.w, shape2.loc.y);
-                let bottomRight = new vector2d(shape2.loc.x + shape2.w, shape2.loc.y + shape2.w);
-                let bottomLeft = new vector2d(shape2.loc.x, shape2.loc.y + _shape2.w);
+                let topRight = new JSVector(shape2.loc.x + shape2.w, shape2.loc.y);
+                let bottomRight = new JSVector(shape2.loc.x + shape2.w, shape2.loc.y + shape2.w);
+                let bottomLeft = new JSVector(shape2.loc.x, shape2.loc.y + _shape2.w);
                 let dist1 = this.dist(topLeft, shape1.loc);
                 let dist2 = this.dist(topRight, shape1.loc);
                 let dist3 = this.dist(bottomRight, shape1.loc);
@@ -222,9 +221,9 @@ class Enemy {
             if (shape2.shape === "circle") {
                 //square-circle
                 let topLeft = shape1.loc;
-                let topRight = new vector2d(shape1.loc.x + shape1.w, shape1.loc.y);
-                let bottomRight = new vector2d(shape1.loc.x + shape1.w, shape1.loc.y + shape1.w);
-                let bottomLeft = new vector2d(shape1.loc.x, shape1.loc.y + shape1.w);
+                let topRight = new JSVector(shape1.loc.x + shape1.w, shape1.loc.y);
+                let bottomRight = new JSVector(shape1.loc.x + shape1.w, shape1.loc.y + shape1.w);
+                let bottomLeft = new JSVector(shape1.loc.x, shape1.loc.y + shape1.w);
                 let dist1 = this.dist(topLeft, shape2.loc);
                 let dist2 = this.dist(topRight, shape2.loc);
                 let dist3 = this.dist(bottomRight, shape2.loc);
@@ -248,13 +247,13 @@ class Enemy {
         } else if (shape1.shape === "point") {
             if (shape2.shape === "circle") {
                 //point-circle
-                if (shape2.r >= vector2d.dist(shape2.loc, shape1.loc)) return true;
+                if (shape2.r >= JSVector.dist(shape2.loc, shape1.loc)) return true;
                 return false;
             } else if (shape2.shape === "square") {
                 //point-square
             } else if (shape2.shape === "point") {
                 //point-point
-                if (vector2d.dist(shape2.loc, shape1.loc) < 1) return true;
+                if (JSVector.dist(shape2.loc, shape1.loc) < 1) return true;
                 return false;
             } else {
                 throw "shape2 shape not acceptable.";
@@ -272,7 +271,7 @@ class Enemy1 extends Enemy {
         super(game)
         this.randomPath = 1
         this.img = game.enDa[0];
-        this.health = 1000;
+        this.health = 15;
         //  this.img=Enemy.image1
     }
 }
@@ -281,7 +280,7 @@ class Enemy2 extends Enemy {
         super(game)
         //  this.img=Enemy.image2
         this.img = game.enDa[1];
-        this.health == 3000;
+        this.health == 30;
     }
     fun() {
         this.velVec = this.velVec.copy().normalize().scale(Math.random() * 10)
@@ -292,7 +291,7 @@ class Enemy3 extends Enemy {
         super(game)
         //  this.img=Enemy.image3
         this.img = game.enDa[2];
-        this.health = 10000
+        this.health = 45
     }
 }
 class Enemy4 extends Enemy {
@@ -300,7 +299,7 @@ class Enemy4 extends Enemy {
         super(game)
         this.img = game.enDa[3];
         //  this.img=Enemy.image4
-        this.health = 20000
+        this.health = 60
     }
 }
 class Enemy5 extends Enemy {
@@ -308,7 +307,7 @@ class Enemy5 extends Enemy {
         super(game)
         this.img = game.enDa[4];
         //  this.img=Enemy.image5
-        this.health = 1000000000000000000
+        this.health = 100
     }
 
 }

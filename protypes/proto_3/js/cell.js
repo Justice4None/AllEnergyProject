@@ -1,3 +1,5 @@
+"use strict"
+
 class Cell {
     constructor(game, loc, id) {
         this.game = game;       // the global instance
@@ -113,7 +115,7 @@ class Cell {
             let v = new JSVector(dx, dy);
             return v;
         }
-        else return (vector2d(0, 0));
+        else return (JSVector(0, 0));
     }
 
     getText() {

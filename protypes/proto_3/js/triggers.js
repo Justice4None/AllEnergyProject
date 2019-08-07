@@ -83,7 +83,7 @@ $('#login_btn').on('click', function () {
 },
 
     $('#login_btn').on('click', function () {
-        WebAuthentication.onAuthStateChanged(function (user) {
+        auth.onAuthStateChanged(function (user) {
             if (user) {
                 showPage('#menu_page');
                 hidePage('#login_page');

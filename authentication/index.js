@@ -29,7 +29,7 @@ $('#signup-button').on('click', function (e, user) {
 });
 
 //==========================signup user==============================
-var signUpForm = document.querySelector('#test-register-form');
+/*var signUpForm = document.querySelector('#test-register-form');
 $('#register-button').on('click', function (e) {
     e.preventDefault();
 
@@ -48,6 +48,7 @@ $('#register-button').on('click', function (e) {
         userName: userName,
     });
 });
+*/
 
 // db.ref(User).on("value", function (snapshot) {
 //     console.log(snapshot.val().email);
@@ -72,6 +73,7 @@ $('#logout-button').on('click', function (e, user) {
 });
 
 //========================login user=======================
+/*
 $('#submit').on('click', function (e, user) {
     e.preventDefault();
     auth.onAuthStateChanged(function (user) {
@@ -92,13 +94,14 @@ $('#submit').on('click', function (e, user) {
         };
     });
 });
+*/
 
 //=======on window close--logout======
-window.onbeforeunload = (function (event) {
-    if (event) {
-        auth.signOut()
-    }
-});
+// window.onbeforeunload = (function (event) {
+//     if (event) {
+//         auth.signOut()
+//     }
+// });
 
 
 //================listen for auth status change===============

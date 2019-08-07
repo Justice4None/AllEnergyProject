@@ -14,7 +14,9 @@ var audio2 = new Audio("./audio/hype-music-1.mp3")
 var audio3 = new Audio("./audio/transition-1.mp3")
 
 //Auth setup
-var config = {
+
+// Your web app's Firebase configuration
+var firebaseConfig = {
     apiKey: "AIzaSyDjKV-rKdyPgb9PHhiBoOBNWomrEW2t0yE",
     authDomain: "allenergyproject.firebaseapp.com",
     databaseURL: "https://allenergyproject.firebaseio.com",
@@ -23,7 +25,9 @@ var config = {
     messagingSenderId: "541298059757",
     appId: "1:541298059757:web:e3046ccc97bbaf10"
 };
-firebase.initializeApp(config);
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
 
 var auth = firebase.auth();
 var dataRef = firebase.firestore();
@@ -83,7 +87,7 @@ $('#login_btn').on('click', function () {
 },
 
     $('#login_btn').on('click', function () {
-        WebAuthentication.onAuthStateChanged(function (user) {
+        auth.onAuthStateChanged(function (user) {
             if (user) {
                 showPage('#menu_page');
                 hidePage('#login_page');
@@ -153,100 +157,9 @@ $('#login_btn').on('click', function () {
             audio1.loop = true;
             //Plays the looped .mp3 referenced in the 'audio1' variable.
             audio1.play()
-<<<<<<< HEAD
-        };
-    });
-});
-
-$('#login_submit_btn').on('click', function (e, user) {
-    e.preventDefault();
-    auth.onAuthStateChanged(function (user) {
-        //if no user logged in run 
-        if (user) {
-            console.log('user already logged in');
-
-        } else {
-            //get user email and password
-            var email = $('#login-email').val();
-            var password = $('#login-password').val();
-            console.log('login:  ', email, password);
-            //sign in user
-            auth.signInWithEmailAndPassword(email, password).then(credential => {
-                console.log(credential)
-            });
-            $("input[type='password']").val("");
-            $("input[type='username']").val("");
-            showPage(menu_page);
-            hidePage(login_page);
-            audio3.play();
-        };
-    });
-
-    console.log("Dirk: Menu Page Assets Needed - BLOCKING UX")
-    console.log("Rebecca: Menu Page UX Needed")
-});
-
-
-
-
-$('#signup_btn').on('click', function () {
-
-    showPage(signup_page); {
-        audio3.play();
-    }
-
-    showPage(signup_page)
-
-    hidePage(login_page)
-    hidePage(landing_page)
-
-    console.log("Dirk: Signup Page Assets Needed - BLOCKING UX")
-    console.log("Rebecca: Signup Page UX Needed")
-})
-
-//register or sign up user
-var signUpForm = document.querySelector('#test-register-form');
-$('#register-button').on('click', function (e, user) {
-    e.preventDefault();
-    //get user email and password
-    var email = $('#signup-email').val().trim();
-    var password = $('#signup-password').val().trim();
-    var userName = $("#display-name").val().trim();
-    //sign up user
-    auth.createUserWithEmailAndPassword(email, password).then(credential => {
-        $('#test-register-form').hide();
-        $('#register-div').text('You were successfully registered!');
-        showPage(menu_page)
-        audio3.play();
-    });
-    // dataRef.ref(user).push({
-    //     email: email,
-    //     userName: userName,
-    // });
-
-});
-
-$('#settings_btn').on('click', function () {
-
-    showPage(settings_page); {
-        audio3.play();
-    }
-
-    showPage(settings_page)
-
-    hidePage(menu_page)
-
-    console.log("Dirk: Settings Interface Needed")
-})
-
-$('#save_settings_btn').on('click', function () {
-
-    showPage(menu_page); {
-=======
         }
         hidePage(login_page);
         hidePage(landing_page);
->>>>>>> a3f58a854b114ddfa98dcc4ee68404b07a29bf72
         audio3.play();
         console.log("Dirk: Signup Page Assets Needed - BLOCKING UX")
         console.log("Rebecca: Signup Page UX Needed")

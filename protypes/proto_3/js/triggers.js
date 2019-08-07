@@ -83,6 +83,9 @@ $('#login_btn').on('click', function () {
     showPage('#login_page'); {
         //Plays the .mp3 referenced in the 'audio3' variable.
         audio3.play()
+        audio1.loop = true;
+        //Plays the looped .mp3 referenced in the 'audio1' variable.
+        audio1.play()
     }
 },
 

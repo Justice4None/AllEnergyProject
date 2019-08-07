@@ -51,7 +51,7 @@ class Panel {
 var panelJSON = [{
     name: "Start Panel",
     id: "firstPanel",
-    pic: "resources/resources/images/panels/panel.png",
+    // pic: "resources/resources/images/panels/panel.png",
     picId: "pan",
     buttonJSON: [
         {
@@ -63,89 +63,89 @@ var panelJSON = [{
                 towerGame.level = new Level2(towerGame)
                 document.getElementById("firstPanel").parentNode.removeChild(document.getElementById("firstPanel"))
             }
-        }, {
-            name: "Instruction Button",
-            id: "instruction",
-            pic: "resources/resources/images/panels/other.png",
-            picId: "wframe",
-            funk: function () {
-                towerGame.level.panelInstructions = new Panel(towerGame, 1)
-                document.getElementById("firstPanel").parentNode.removeChild(document.getElementById("firstPanel"))
-            }
-        }, {
-            name: "Quit Button",
-            id: "quitButton",
-            pic: "resources/resources/images/panels/end.png",
-            picId: "exit",
-            funk: function () {
-                towerGame.level = new Level3(towerGame)
-                document.getElementById("firstPanel").parentNode.removeChild(document.getElementById("firstPanel"))
-            }
-        }]
-}, {
-    name: "Instruction Panel",
-    id: "instructionPanel",
-    pic: "resources/resources/images/panels/panel.png",
-    picId: "pan",
-    buttonJSON: [
-        {
-            name: "Back Button",
-            id: "back",
-            pic: "back.png",
-            picId: "back",
-            funk: function () {
-                towerGame.level.panelStart = new Panel(towerGame, 0)
-                document.getElementById("instructionPanel").parentNode.removeChild(document.getElementById("instructionPanel"))
-            }
-        }]
-}, {
-    name: "End Panel",
-    id: "endPanel",
-    pic: "resources/resources/images/panels/panel.png",
-    picId: "pan",
-    buttonJSON: [
-        {
-            name: "Replay Button",
-            id: "replayButton",
-            pic: "resources/resources/images/panels/restart.png",
-            picId: "wframe",
-            funk: function () {
-                towerGame.level = new Level1(towerGame)
-                document.getElementById("endPanel").parentNode.removeChild(document.getElementById("endPanel"))
-            }
-        }, {
-            name: "Quit Button",
-            id: "quitButton",
-            pic: "resources/resources/images/panels/end.png",
-            picId: "exit",
-            funk: function () {
-                document.getElementById("endPanel").parentNode.removeChild(document.getElementById("endPanel"))
-                towerGame.level.panelQuit = new Panel(towerGame, 2)
-            }
-        }, {
-            name: "Credits Button",
-            id: "creditsButton",
-            pic: "resources/resources/images/panels/credits.png",
-            picId: "wframe",
-            funk: function () {
-                towerGame.level.panelCredits = new Panel(towerGame, 3)
-                document.getElementById("endPanel").parentNode.removeChild(document.getElementById("endPanel"))
-            }
-        }]
-}, {
-    name: "Credites Panel",
-    id: "creditesPanel",
-    pic: "pan.png",
-    picId: "pan",
-    buttonJSON: [
-        {
-            name: "Back Button",
-            id: "back",
-            pic: "back.png",
-            picId: "back",
-            funk: function () {
-                towerGame.level.panelQuit = new Panel(towerGame, 2)
-                document.getElementById("creditesPanel").parentNode.removeChild(document.getElementById("creditesPanel"))
-            }
+            //         }, {
+            //             name: "Instruction Button",
+            //             id: "instruction",
+            //             pic: "resources/resources/images/panels/other.png",
+            //             picId: "wframe",
+            //             funk: function () {
+            //                 towerGame.level.panelInstructions = new Panel(towerGame, 1)
+            //                 document.getElementById("firstPanel").parentNode.removeChild(document.getElementById("firstPanel"))
+            //             }
+            //         }, {
+            //             name: "Quit Button",
+            //             id: "quitButton",
+            //             pic: "resources/resources/images/panels/end.png",
+            //             picId: "exit",
+            //             funk: function () {
+            //                 towerGame.level = new Level3(towerGame)
+            //                 document.getElementById("firstPanel").parentNode.removeChild(document.getElementById("firstPanel"))
+            //             }
+            //         }]
+            // }, {
+            //     name: "Instruction Panel",
+            //     id: "instructionPanel",
+            //     pic: "resources/resources/images/panels/panel.png",
+            //     picId: "pan",
+            //     buttonJSON: [
+            //         {
+            //             name: "Back Button",
+            //             id: "back",
+            //             pic: "back.png",
+            //             picId: "back",
+            //             funk: function () {
+            //                 towerGame.level.panelStart = new Panel(towerGame, 0)
+            //                 document.getElementById("instructionPanel").parentNode.removeChild(document.getElementById("instructionPanel"))
+            //             }
+            //         }]
+            // }, {
+            //     name: "End Panel",
+            //     id: "endPanel",
+            //     pic: "resources/resources/images/panels/panel.png",
+            //     picId: "pan",
+            //     buttonJSON: [
+            //         {
+            //             name: "Replay Button",
+            //             id: "replayButton",
+            //             pic: "resources/resources/images/panels/restart.png",
+            //             picId: "wframe",
+            //             funk: function () {
+            //                 towerGame.level = new Level1(towerGame)
+            //                 document.getElementById("endPanel").parentNode.removeChild(document.getElementById("endPanel"))
+            //             }
+            //         }, {
+            //             name: "Quit Button",
+            //             id: "quitButton",
+            //             pic: "resources/resources/images/panels/end.png",
+            //             picId: "exit",
+            //             funk: function () {
+            //                 document.getElementById("endPanel").parentNode.removeChild(document.getElementById("endPanel"))
+            //                 towerGame.level.panelQuit = new Panel(towerGame, 2)
+            //             }
+            //         }, {
+            //             name: "Credits Button",
+            //             id: "creditsButton",
+            //             pic: "resources/resources/images/panels/credits.png",
+            //             picId: "wframe",
+            //             funk: function () {
+            //                 towerGame.level.panelCredits = new Panel(towerGame, 3)
+            //                 document.getElementById("endPanel").parentNode.removeChild(document.getElementById("endPanel"))
+            //             }
+            //         }]
+            // }, {
+            //     name: "Credites Panel",
+            //     id: "creditesPanel",
+            //     pic: "pan.png",
+            //     picId: "pan",
+            //     buttonJSON: [
+            //         {
+            //             name: "Back Button",
+            //             id: "back",
+            //             pic: "back.png",
+            //             picId: "back",
+            //             funk: function () {
+            //                 towerGame.level.panelQuit = new Panel(towerGame, 2)
+            //                 document.getElementById("creditesPanel").parentNode.removeChild(document.getElementById("creditesPanel"))
+            //             }
         }]
 }]

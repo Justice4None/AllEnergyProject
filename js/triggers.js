@@ -140,7 +140,7 @@ $('#login_btn').on('click', function () {
         var email = $('#signup-email').val().trim();
         var password = $('#signup-password').val().trim();
         var userName = $("#display-name").val().trim();
-        //sign up user
+        // //sign up user
         auth.createUserWithEmailAndPassword(email, password).then(credential => {
             $('#test-register-form').hide();
             $('#register-div').text('You were successfully registered!');
@@ -252,10 +252,11 @@ $('#login_btn').on('click', function () {
     $('#quit_btn').on('click', function () {
         console.log("Travis: Log the user out")
         console.log("Rebecca: Hide Menu Page and show Landing Page")
-        window.onbeforeunload = (function (event) {
-            if (event) {
-                auth.signOut()
-            }
-        });
+
     }))
+window.onbeforeunload = (function (event) {
+    if (event) {
+        auth.signOut()
+    }
+});
 

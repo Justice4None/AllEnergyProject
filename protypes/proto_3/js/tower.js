@@ -110,18 +110,9 @@ class Tower {
             }
         }
         if (this.ability == "ray" && towerGame.enemies.length != 0) {
-            var a3 = this.loc.x - this.target.x;
-            var b3 = this.loc.y - this.target.y;
-            var k = Math.sqrt(a3 * a3 + b3 * b3);
-            if (k < 300 && towerGame.enemies.length != 0 && this.target.x != towerGame.canvas.mouseX) {
-                var rys = new LockOn(this.loc, this.target);
-                rys.run();
-                if (this.findEnemyIndex() < towerGame.enemies.length)
-
-                    towerGame.enemies[this.findEnemyIndex()].isLocked = true;//health -=  10;
-            } else {
-                towerGame.rays = [];
-            }
+            let sb = new Bullet(bulletLocation, this.bulletImg, this.towAngle, this.ability)
+            towerGame.bullets.push(sb);
+            this.shotSound2.play()
         }
     }
     findEnemyIndex() {
